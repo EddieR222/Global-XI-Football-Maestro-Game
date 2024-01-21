@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://etm0dk2bjjr1"]
+
+[resource]
+default_font_size = 32
+MainMenu/base_type = &"Button"
+MainMenu/colors/font_color = Color(1, 1, 1, 1)
+MainMenu/colors/font_hover_color = Color(0.45098, 0.580392, 0.384314, 1)
+MainMenu/colors/font_hover_pressed_color = Color(0.45098, 0.580392, 0.384314, 1)
+MainMenu/font_sizes/font_size = 32
