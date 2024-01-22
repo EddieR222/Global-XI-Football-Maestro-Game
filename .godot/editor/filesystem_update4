@@ -1,7 +1,3 @@
-res://main_menu.tscn
-res://game_mode.tscn
-res://main_menu.gd
-res://Scenes/main_menu.tscn
-res://Scenes/Main Menu/main_menu.tscn
-res://Scenes/game_mode.tscn
 res://Scenes/Country Editor/country_editor.tscn
+res://Scenes/Main Menu/main_menu.tscn
+res://Scenes/Country Editor/country_editor.gd
