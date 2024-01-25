@@ -1,3 +1,7 @@
-res://Scenes/Country Editor/FileDialog.gd
-res://Scenes/Country Editor/country_editor.tscn
 res://Scenes/Main Menu/main_menu.tscn
+res://Scenes/Country Editor/country_editor.tscn
+res://Resources/country.gd
+res://SaverLoader/TerritorySaveLoader.gd
+res://Resources/territory.gd
+res://Resources/territorylist.gd
+res://Scenes/Main Menu/main_menu.gd

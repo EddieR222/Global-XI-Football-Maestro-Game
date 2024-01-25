@@ -146,13 +146,145 @@ theme_override_constants/margin_bottom = 30
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Country"
+placeholder_text = "Territory"
 alignment = 1
 max_length = 30
+clear_button_enabled = true
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 7.0
+columns = 2
+
+[node name="Territory_ID" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource("1_6vdfr")
+text = "Territory ID"
+horizontal_alignment = 1
+
+[node name="T ID" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+max_value = 255.0
+allow_greater = true
+alignment = 1
+
+[node name="CoTerritory_ID" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "CoTerritory ID
+"
+horizontal_alignment = 1
+
+[node name="CoT ID" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+max_value = 255.0
+allow_greater = true
+alignment = 1
+
+[node name="CoTerritory_Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "CoTerritory ID
+"
+horizontal_alignment = 1
+
+[node name="CoT Name" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_6vdfr")
+placeholder_text = "CoTerritory Name"
+alignment = 1
+max_length = 30
+
+[node name="Confederation_ID" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "Confedertion ID
+"
+horizontal_alignment = 1
+
+[node name="Con ID" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+max_value = 255.0
+allow_greater = true
+alignment = 1
+
+[node name="Code Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "3 Letter Code Name
+"
+horizontal_alignment = 1
+
+[node name="Code Name Text" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_6vdfr")
+placeholder_text = "Three Letter Code Name"
+alignment = 1
+max_length = 3
+
+[node name="Population" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "Population"
+horizontal_alignment = 1
+
+[node name="Pop Val" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+allow_greater = true
+alignment = 1
+
+[node name="Area" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "Area (Km^2)
+"
+horizontal_alignment = 1
+
+[node name="Area Val" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+allow_greater = true
+alignment = 1
+
+[node name="GDP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "GDP"
+horizontal_alignment = 1
+
+[node name="GDP Val" type="SpinBox" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_6vdfr")
+allow_greater = true
+alignment = 1
+suffix = "B"
+
+[node name="First Names" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6vdfr")
+text = "First Names
+"
+horizontal_alignment = 1
 
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

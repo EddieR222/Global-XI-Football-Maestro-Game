@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_game_modes_pressed():
-	get_tree().change_scene_to_file("res://start_up.tscn")
+	get_tree().change_scene_to_file("res://Scenes/start_up.tscn")
 	
 
 
