@@ -14,13 +14,12 @@ extends Resource
 # Country Information
 @export var Population: int;
 @export var Area: int;
-@export var Language_Most_Spoken: String;
 @export var GDP: int;
 
 
 # Name Database
-var First_Names: Array[String];
-var Last_Names: Array[String];
+@export var First_Names: PackedStringArray;
+@export var Last_Names: PackedStringArray;
 
 
 # Soccer Ratings (Domestic and International) 

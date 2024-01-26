@@ -1,24 +1,25 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1706143813
+::res://::1706213585
 ::res://Game Database/::1705883795
 ::res://Game Database/Country Files/::1705883795
 ::res://Images/::1705806975
 icon.svg::CompressedTexture2D::5423449936511656178::1702155814::1705806961::1::::<><>::
 main_menu.jpg::CompressedTexture2D::5700266824544363140::1704023311::1705806971::1::::<><>::
 start_up_background.jpg::CompressedTexture2D::5194900076173832497::1702156635::1705806975::1::::<><>::
-::res://Resources/::1706143820
-TerritoryList.gd::GDScript::-1::1706144231::0::1::::<>Node<>::
-territory.gd::GDScript::-1::1706143820::0::1::::Territory<>Resource<>::
-::res://SaverLoader/::1706143802
-TerritorySaveLoader.gd::GDScript::-1::1706144179::0::1::::TerritorySaveLoader<>Node<>::
+::res://Resources/::1706145020
+territory.gd::GDScript::-1::1706145020::0::1::::Territory<>Resource<>::
+territorylist.gd::GDScript::-1::1706144707::0::1::::TerritoryList<>Resource<>::
+::res://SaverLoader/::1706145020
+TerritorySaveLoader.gd::GDScript::-1::1706145020::0::1::::TerritorySaveLoader<>Node<>::
 ::res://Scenes/::1705807068
 game_mode.tscn::PackedScene::6152867077861201729::1705807022::0::1::::<><>::
 start_up.tscn::PackedScene::5474885288116163727::1705806974::0::1::::<><>::uid://cgapilsdm1ebp::::res://Images/start_up_background.jpg
-::res://Scenes/Country Editor/::1706136738
+::res://Scenes/Country Editor/::1706212609
 country_editor.gd::GDScript::-1::1705882644::0::1::::<>Control<>::
-country_editor.tscn::PackedScene::5212704358268972504::1706136738::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/country_editor.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg
-::res://Scenes/Main Menu/::1706136738
-main_menu.gd::GDScript::-1::1705806949::0::1::::<>Control<>::
-main_menu.tscn::PackedScene::9010644990611671047::1706136738::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
+country_editor.tscn::PackedScene::5212704358268972504::1706212609::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/country_editor.gd<>res://SaverLoader/TerritorySaveLoader.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/FileDialog.gd
+FileDialog.gd::GDScript::-1::1706210978::0::1::::<>FileDialog<>::
+::res://Scenes/Main Menu/::1706212343
+main_menu.gd::GDScript::-1::1706145495::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::9010644990611671047::1706212343::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
 ::res://Textures/::1705806949
 main_menu.tres::Theme::320751974886637368::1705353029::0::1::::<><>::

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TerritoryList" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Resources/territory.gd" id="1_ljy8e"]
+[ext_resource type="Script" path="res://Resources/territorylist.gd" id="2_wdi16"]
+
+[sub_resource type="Resource" id="Resource_q6u2c"]
+script = ExtResource("1_ljy8e")
+Territory_ID = 0
+Territory_Name = "mexico"
+CoTerritory_ID = 0
+CoTerritory_Name = ""
+Confederation_ID = 0
+Confederation_Name = ""
+Code = ""
+Population = 0
+Area = 74
+GDP = 0
+First_Names = PackedStringArray("jshrsrhsrhshsrh")
+Last_Names = PackedStringArray("aabzbdz", "eflkelfkeef", "ekfkelf", "felfkelf")
+Rating = 6
+League_Elo = 0.0
+
+[resource]
+script = ExtResource("2_wdi16")
+list = Array[ExtResource("1_ljy8e")]([SubResource("Resource_q6u2c")])
