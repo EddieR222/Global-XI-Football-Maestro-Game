@@ -10,11 +10,12 @@ extends Resource
 @export var Confederation_ID: int
 @export var Confederation_Name: String;
 @export var Code: String;
+@export var Flag: Image;
 
 # Country Information
-@export var Population: int;
-@export var Area: int;
-@export var GDP: int;
+@export var Population: float; # In Millions
+@export var Area: float; #In Thousands
+@export var GDP: float; # In Billions
 
 
 # Name Database

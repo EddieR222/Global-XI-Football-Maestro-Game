@@ -10,7 +10,31 @@ class_name TerritorySaveLoader extends Node
 
 
 func alphabetize_country_list():
-	pass
+	
+	# Sort ItemList by Alphabetical Order
+	$"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".sort_items_by_text();
+	
+	# Now Reorganize Dictionary to Reflect new index order after alphabetizing
+	var size_items: int = $"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".item_count
+	var new_dict: Dictionary = {};
+	
+	for index: int in range(0, size_items):
+		var territory: String = $"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".get_item_text(index);
+		print(territory)
+		
+		for t: Territory in item_dict.values():
+			if t.Territory_Name == territory:
+				new_dict[index] = t;
+	
+	item_dict = new_dict
+	for t: Territory in item_dict.values():
+		print(t.Territory_Name);	
+		
+		
+		
+	
+	
+	
 	
 
 
@@ -29,17 +53,19 @@ func _on_save_file_pressed():
 	
 	territory_list.list = saved_territories
 	
-	ResourceSaver.save(territory_list, "user://default.tres");
+	var file_name: String = $"../MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/GridContainer/MarginContainer6/LineEdit".text;
+	ResourceSaver.save(territory_list, "user://{filename}.tres".format({"filename": file_name}));
 	
 	
 # This function will run when the player presses the "Add Country" Button
 func _on_add_territory_pressed():
 	# Add a blank Territory Item to ItemList
-	var texture = load("res://Images/icon.svg");
+	var texture: CompressedTexture2D = load("res://Images/icon.svg");
 	var index: int = $"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".add_item("Territory", texture, true);
 	
 	# Add blank Territory Item List to List Dictionary
 	var t: Territory = Territory.new();
+	t.Territory_Name = "Territory"
 	item_dict[index] = t;
 	
 	
@@ -61,8 +87,23 @@ func _on_line_edit_text_changed(new_text):
 	# Set new_text for ItemList
 	$"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".set_item_text(selected_index, new_text);
 	
-	#Update info inside of dictionary
+	#Update Flag FilePath to reflect name change
+	#var old_path: String = item_dict[selected_index].Territory_Name + ".png";
+	#var new_path: String = new_text + ".png";
+	
+	#var dir: DirAccess = DirAccess.open("res://Images/Territory Flags/");
+	#var err: Error = dir.rename(old_path, new_path);
+	
+	#if dir.file_exists(new_path):		
+		#var new_filename = "res://Images/Territory Flags/" + new_path;
+		#var new_flag: CompressedTexture2D = load(new_filename);
+		#$"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".set_item_icon(selected_index, new_flag);
+	
+	
 	item_dict[selected_index].Territory_Name = new_text;
+	
+	#alphabetize_country_list();
+	
 	
 
 
@@ -125,7 +166,7 @@ func _on_league_rating_val_value_changed(value):
 func _on_file_dialog_file_selected(path):
 	# Load the List of Territories from the file in user data
 	Territory_List = load(path) as TerritoryList;
-	$"../MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/GridContainer/MarginContainer6/LineEdit".text = path
+	$"../MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/GridContainer/MarginContainer6/LineEdit".text = path.get_file().replace(".tres", "");
 	
 	# Clear Item Dictionary as we want to just load the new ones in
 	item_dict = {};
@@ -136,9 +177,56 @@ func _on_file_dialog_file_selected(path):
 	#Load all territories into itemlist and save their positions inside item dictionary
 	for territory in Territory_List.list:
 		# Load Flag of territory
-		var territory_flag = load("res://Images/icon.svg");
+		var flag = territory.Flag;
+		flag.decompress();
+		var territory_flag = ImageTexture.create_from_image(flag)
 		
 		# Add Territory into Itemlist
 		var index = $"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".add_item(territory.Territory_Name, territory_flag, true );
 		
 		item_dict[index] = territory;
+		
+	
+
+
+func _on_texture_button_pressed():
+	$"../Flag Input".visible = 1;
+
+
+func _on_flag_input_file_selected(path):
+	# Load Image of Territory Flag
+	var flag: Image = Image.load_from_file(path);
+	flag.resize(150, 100, 2);
+	
+	
+	var flag_texture: ImageTexture = ImageTexture.create_from_image(flag);
+	
+	## Now we create new filepath
+	#var new_filepath: String = "res://Images/Territory Flags/" + item_dict[selected_index].Territory_Name + ".png"
+	#
+	#flag.save_png(new_filepath);
+	#item_dict[selected_index].Flag = compressed_flag;
+	
+	$"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".set_item_icon(selected_index, flag_texture);
+	$"../MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureButton".texture_normal = flag_texture
+	
+	flag.compress(Image.COMPRESS_BPTC);
+	item_dict[selected_index].Flag = flag;
+	
+	
+	
+	
+	
+	
+
+
+func _on_delete_territory_pressed():
+	$"../MarginContainer/HBoxContainer/VBoxContainer/ItemList".remove_item(selected_index)
+	
+	item_dict.erase(selected_index);
+	
+	alphabetize_country_list();
+	
+	selected_index = 0;
+	
+	

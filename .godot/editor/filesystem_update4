@@ -1,20 +1,6 @@
 res://Scenes/Country Editor/country_editor.tscn
-res://SaverLoader/TerritorySaveLoader.gd
-res://Scenes/Country Editor/country_editor.gd
-res://Scenes/Main Menu/main_menu.tscn
-res://Scenes/Country Editor/T ID.gd
-res://Scenes/Country Editor/CoT ID.gd
-res://Scenes/Country Editor/CoT Name.gd
-res://Scenes/Country Editor/Con ID.gd
-res://Scenes/Country Editor/Code Name Text.gd
-res://Scenes/Country Editor/Pop Val.gd
-res://Scenes/Country Editor/Area Val.gd
-res://Scenes/Country Editor/GDP Val.gd
-res://Scenes/Country Editor/First Name List.gd
-res://Scenes/Country Editor/Last Names List.gd
-res://Scenes/Country Editor/Rating Value.gd
-res://Scenes/Country Editor/League Rating Val.gd
 res://Resources/territory.gd
-res://Scenes/Country Editor/FileDialog.gd
-res://Scenes/Country Editor/LineEdit.gd
-res://Scenes/Country Editor/Territory Name Edit.gd
+res://SaverLoader/TerritorySaveLoader.gd
+res://Game Database/territories.tres
+res://Scenes/Country Editor/ItemList.gd
+res://Scenes/Country Editor/TextureButton.gd
