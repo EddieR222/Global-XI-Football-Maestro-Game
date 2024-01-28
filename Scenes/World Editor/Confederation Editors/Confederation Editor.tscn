@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3mi5d5p2nwma"]
+
+[ext_resource type="Theme" uid="uid://etm0dk2bjjr1" path="res://Textures/main_menu.tres" id="1_meumr"]
+[ext_resource type="Script" path="res://Scenes/World Editor/Confederation Editors/ItemList.gd" id="2_a0jvg"]
+
+[node name="GraphNode" type="GraphNode"]
+custom_minimum_size = Vector2(1000, 500)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = -917.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme = ExtResource("1_meumr")
+resizable = true
+title = "UEFA"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_font_sizes/font_size = 50
+item_count = 1
+fixed_column_width = 50
+fixed_icon_size = Vector2i(150, 100)
+item_0/text = "Sup"
+script = ExtResource("2_a0jvg")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confederation Level: "
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 9.0
+alignment = 1
+
+[node name="Add Territory" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_meumr")
+text = "Add Territory +"
+
+[node name="Delete Territory" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_meumr")
+text = "Delete Territory - "
+
+[node name="Blank" type="PanelContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Edit Territory" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_meumr")
+text = "Edit Territory Information"
+text_overrun_behavior = 3
+
+[node name="Edit Tournaments" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_meumr")
+text = "Edit  Territory Tournaments"
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Add Territory" to="HBoxContainer/ItemList" method="_on_add_territory_pressed"]

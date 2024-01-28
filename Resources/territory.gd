@@ -24,7 +24,7 @@ extends Resource
 
 
 # Soccer Ratings (Domestic and International) 
-@export var Rating: int;
+@export var Rating: float;
 @export var League_Elo: float;
 
 

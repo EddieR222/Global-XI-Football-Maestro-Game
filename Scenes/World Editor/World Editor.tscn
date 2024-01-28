@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://rl5cyv1p3072"]
+
+[ext_resource type="Script" path="res://Scenes/World Editor/World Editor.gd" id="1_0v7p6"]
+[ext_resource type="Script" path="res://Scenes/World Editor/GraphEdit.gd" id="3_hpr62"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0v7p6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0117647, 0.0588235, 0.0862745, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Load File" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "   File  "
+flat = true
+
+[node name="Save File" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "  Save   "
+flat = true
+
+[node name="Add Confed Node" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Add New Confederation"
+
+[node name="Confed Edit" type="GraphEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+show_zoom_label = true
+script = ExtResource("3_hpr62")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Add Confed Node" to="VBoxContainer/Confed Edit" method="_on_add_confed_node_pressed"]

@@ -196,7 +196,7 @@ func _on_texture_button_pressed():
 func _on_flag_input_file_selected(path):
 	# Load Image of Territory Flag
 	var flag: Image = Image.load_from_file(path);
-	flag.resize(150, 100, 2);
+	flag.resize(120, 80, 2);
 	
 	
 	var flag_texture: ImageTexture = ImageTexture.create_from_image(flag);
