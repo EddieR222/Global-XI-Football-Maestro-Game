@@ -1,6 +1,10 @@
-FileDialog
-Button
+ConfirmationDialog
 GraphNode
+Button
+GraphEdit
+HBoxContainer
+VBoxContainer
+FileDialog
 Window
 PopupMenu
 ColorRect
@@ -9,7 +13,3 @@ Label
 SubViewport
 MenuButton
 MenuBar
-SpinBox
-LineEdit
-HBoxContainer
-PanelContainer

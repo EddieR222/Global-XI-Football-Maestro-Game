@@ -6,7 +6,10 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 
 
 @export var confedaration_dict: Dictionary;
-@export var territory_dict: Dictionary = {}
+@export var territory_dict: Dictionary;
+@export var node_tracker: Dictionary; 
+
+
 
 """
 Preload Nodes that we will instantiate later 
@@ -16,19 +19,23 @@ Preload Nodes that we will instantiate later
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	# Here we want to set up the Global Nodes. These will be avaliable regardless of countries or clubs included
 	# The First Node is the World National Tournaments
 	var world_nation_node: GraphNode = confed_node.instantiate();
 	add_child(world_nation_node);
 	world_nation_node.position_offset.x = get_viewport().get_mouse_position().x
-	world_nation_node.size = Vector2(1000, 500);
+
 	
 	
 	# The Second Node is the World Club Tournaments
 	var world_club_node: GraphNode = confed_node.instantiate();
 	add_child(world_club_node);
 	world_club_node.position_offset.x = get_viewport().get_mouse_position().x
-	world_club_node.size = Vector2(150, 150);
+	
+	
+	
+	
 	
 
 
@@ -54,5 +61,16 @@ func _on_add_confed_node_pressed():
 	var new_node: GraphNode = confed_node.instantiate(); 
 	add_child(new_node);
 	new_node.position_offset.x = get_viewport().get_mouse_position().x
+	
+	# Now we connect this confederation node's edit button to this script. 
+	var edit_terr_button: Button = new_node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
+	edit_terr_button.pressed.connect(_on_edit_territory_pressed)
+	
+	
+	
+	
+	
+func _on_edit_territory_pressed():
+	print("Edit Button Pressed")
 	
 	

@@ -85,12 +85,10 @@ text = "Edit Territory Information"
 text_overrun_behavior = 3
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-initial_position = 2
-size = Vector2i(1796, 124)
-dialog_text = "Deleting A Country Will Also Delete All Teams and Tournaments Of The Country As Well, Do You Still Wish To Delete?"
+initial_position = 1
+size = Vector2i(200, 124)
+visible = true
 
-[connection signal="item_selected" from="HBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Add Territory" to="." method="_on_add_territory_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Delete Territory" to="." method="_on_delete_territory_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Edit Territory" to="HBoxContainer/ItemList" method="_on_edit_territory_pressed"]
-[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

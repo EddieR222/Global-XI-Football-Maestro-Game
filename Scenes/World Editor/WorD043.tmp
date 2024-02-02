@@ -60,6 +60,9 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
 show_zoom_label = true
 script = ExtResource("3_hpr62")
+confedaration_dict = null
+territory_dict = null
+node_tracker = null
 
 [node name="Territory Edit" parent="VBoxContainer/Confed Edit" instance=ExtResource("3_d85e2")]
 visible = false

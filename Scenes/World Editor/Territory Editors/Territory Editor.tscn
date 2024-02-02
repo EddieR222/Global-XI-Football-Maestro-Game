@@ -17,12 +17,12 @@
 [ext_resource type="Script" path="res://Scenes/Country Editor/League Rating Val.gd" id="15_cimjh"]
 
 [node name="Territory Edit" type="GraphNode"]
-custom_minimum_size = Vector2(800, 950)
+custom_minimum_size = Vector2(600, 1012)
 offset_left = 2.0
 offset_top = 3.0
-offset_right = 896.0
-offset_bottom = 936.0
-resizable = true
+offset_right = 602.0
+offset_bottom = 1015.0
+theme = ExtResource("5_b6u1a")
 title = "Edit Territory Information"
 slot/0/left_enabled = false
 slot/0/left_type = 0
@@ -68,7 +68,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("2_wlquc")
-stretch_mode = 0
+stretch_mode = 4
 script = ExtResource("3_16urc")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/HBoxContainer"]
@@ -91,7 +91,7 @@ clear_button_enabled = true
 script = ExtResource("4_mpt5v")
 
 [node name="FileDialog" type="FileDialog" parent="VBoxContainer2/HBoxContainer"]
-title = "Open Image"
+title = "Open a File"
 initial_position = 1
 size = Vector2i(392, 159)
 ok_button_text = "Open"
