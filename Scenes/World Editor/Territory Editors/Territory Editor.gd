@@ -80,7 +80,8 @@ func _on_file_dialog_file_selected(path):
 """ End of Signal Functions"""
 
 
-func _on_done_pressed() -> Territory:
+	
+func get_territory() -> Territory:
 	return territory;
 	
 	
