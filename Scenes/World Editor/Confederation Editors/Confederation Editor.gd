@@ -23,10 +23,13 @@ func _on_delete_territory_pressed():
 	$ConfirmationDialog.visible = 1;
 
 
-func _on_confirmation_dialog_confirmed():
+func _on_confirmation_dialog_confirmed() -> void:
 	$HBoxContainer/ItemList.remove_item(selected_index)
 	
 
 
 func _on_item_list_item_selected(index: int) -> void:
 	selected_index = index
+
+
+

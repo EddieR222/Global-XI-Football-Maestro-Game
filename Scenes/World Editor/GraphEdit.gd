@@ -5,8 +5,7 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 
 
 
-@export var confedaration_dict: Dictionary;
-@export var territory_dict: Dictionary;
+@export var world_map: WorldMap;
 @export var node_tracker: Dictionary; 
 @export var node_selected_num: int;
 
@@ -23,16 +22,20 @@ func _ready():
 	
 	# Here we want to set up the Global Nodes. This is the base level for all confederation as this is the 
 	# world node that contains all other confederations and nations
-	var world_nation_node: GraphNode = confed_node.instantiate();
-	add_child(world_nation_node);
-	world_nation_node.position_offset.x = get_viewport().get_mouse_position().x
-	world_nation_node.title = "World"
+	var world_confed_node: GraphNode = confed_node.instantiate();
+	add_child(world_confed_node);
+	world_confed_node.position_offset.x = get_viewport().get_mouse_position().x
 	
 	# Now we connect buttons to here
-	var edit_terr_button: Button = world_nation_node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
-	edit_terr_button.pressed.connect(_on_edit_territory_pressed);
-	world_nation_node.node_selected.connect(_on_node_selected);
-
+	connect_signals_from_confed_node(world_confed_node);
+	
+	# Now we make the confederation info for this node which will be stored in WorldMap;
+	var world_confed_info = Confederation.new(); 
+	world_confed_info.Level = 0;
+	world_confed_info.Owner_ID = 0;
+	world_confed_info.ID = 0;
+	world_confed_info.Name = "World"
+	world_map.Confederation_Dict[0] = world_confed_info;
 	
 	
 	# We also have to instantiate the country editor, there will only be one in the entire document and it will follow 
@@ -43,7 +46,7 @@ func _ready():
 	
 	
 	#Finally we add these nodes to the nodes tracker to be able to manpulate them later
-	node_tracker[0] = world_nation_node
+	node_tracker[0] = world_confed_node
 	node_tracker[1] = terr_edit_node
 
 
@@ -56,14 +59,26 @@ func _process(delta):
 
 func compress_node_tracker(deleted_key: int):
 	# Here we simply want to compress the dictionary so all nodes are in numerical order
-	var index = deleted_key + 1;
-	while index != node_tracker.size():
-		var temp_node: GraphNode = node_tracker[index];
-		node_tracker[index - 1] = temp_node;
+	var index = deleted_key;
+	while index + 1 in node_tracker:
+		var temp_node: GraphNode = node_tracker[index + 1];
+		node_tracker[index] = temp_node;
 		index += 1;
-		
-	node_tracker.erase(node_tracker.size() - 1); 
+	node_tracker.erase(index); 
 	
+	
+	
+func connect_signals_from_confed_node(node: GraphNode) -> void:
+	# Here we connect the edit territory button to this scene
+	var edit_terr_button: Button = node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
+	edit_terr_button.pressed.connect(_on_edit_territory_pressed);
+	
+	# Here we connect the node selection to this scene
+	node.node_selected.connect(_on_node_selected);
+	
+	# Here we connect the line Edit text to this scene
+	var confed_name_edit: LineEdit = node.get_node("LineEdit");
+	confed_name_edit.text_submitted.connect(_on_confed_name_changed);
 
 """
 The following are Signal Handlers that pertain to the addition and deletion of confederations nodes
@@ -78,9 +93,7 @@ func _on_add_confed_node_pressed():
 	new_node.position_offset.x = get_viewport().get_mouse_position().x
 	
 	# Now we connect this confederation node's "Edit Button" to this script. 
-	var edit_terr_button: Button = new_node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
-	edit_terr_button.pressed.connect(_on_edit_territory_pressed)
-	new_node.node_selected.connect(_on_node_selected)
+	connect_signals_from_confed_node(new_node);
 		
 	# Now we add this node to the node_tracker so we can track it
 	node_tracker[node_tracker.size()] = new_node;
@@ -88,13 +101,10 @@ func _on_add_confed_node_pressed():
 	
 func _on_node_selected():
 	# First we need to find which node is selected by checking their selected variable
-	for index in range(node_tracker.size()+1):
+	for index in range(node_tracker.size()):
 		var curr_node: GraphNode = node_tracker[index]
 		if curr_node.selected == true:
-			
 			node_selected_num = index;
-			print(node_selected_num)
-			print(node_tracker.keys())
 			return
 	
 	# If we reach here, then no node is selected and we set node_selected_num to -1 to relfect that
@@ -118,15 +128,9 @@ func _on_delete_node_pressed():
 	node_tracker.erase(node_selected_num)
 	node_to_delete.queue_free();
 	
-	# Now we delete it from dictionary
+	# Now we correct the dictionary to keep consitent linear keys 
 	compress_node_tracker(node_selected_num);
 	
-		
-	
-	
-	
-	
-	pass # Replace with function body.
 	
 	
 	
@@ -138,7 +142,8 @@ func _on_edit_territory_pressed():
 	# Now we set its position to the right side of the Confederation Node that opened it
 	node_tracker[1].position = node_tracker[0].position + Vector2(node_tracker[0].size.x, 0);
 	
-
-
+func _on_confed_name_changed(new_name: String) -> void:
+	world_map.Confederation_Dict[node_selected_num].name = new_name;
+	print(world_map.Confederation_Dict[node_selected_num])
 	
 

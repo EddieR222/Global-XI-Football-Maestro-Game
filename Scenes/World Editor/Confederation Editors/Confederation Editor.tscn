@@ -25,7 +25,20 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
 script = ExtResource("2_vc7l5")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+text = "New Confederation"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
