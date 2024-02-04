@@ -1,6 +1,6 @@
+Button
 ConfirmationDialog
 GraphNode
-Button
 GraphEdit
 HBoxContainer
 VBoxContainer
@@ -12,4 +12,3 @@ Control
 Label
 SubViewport
 MenuButton
-MenuBar

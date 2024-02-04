@@ -55,7 +55,6 @@ custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
-scroll_offset = Vector2(0, -16)
 
 [node name="Done Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
