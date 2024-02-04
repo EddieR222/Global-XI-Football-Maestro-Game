@@ -26,6 +26,11 @@ func _ready():
 	var world_confed_node: GraphNode = confed_node.instantiate();
 	add_child(world_confed_node);
 	world_confed_node.position_offset.x = get_viewport().get_mouse_position().x
+	var line_edit: LineEdit = world_confed_node.get_node("HBoxContainer2/LineEdit")
+	line_edit.text = "World"
+	line_edit.editable = false;
+	var label: Label = world_confed_node.get_node("HBoxContainer2/Label")
+	label.text = "Level: 0";
 	
 	# Now we connect buttons to here
 	connect_signals_from_confed_node(world_confed_node);
@@ -82,13 +87,53 @@ func connect_signals_from_confed_node(node: GraphNode) -> void:
 	node.node_selected.connect(_on_node_selected);
 	
 	# Here we connect the line Edit text to this scene
-	var confed_name_edit: LineEdit = node.get_node("LineEdit");
+	var confed_name_edit: LineEdit = node.get_node("HBoxContainer2/LineEdit");
 	confed_name_edit.text_submitted.connect(_on_confed_name_changed);
+	
+	#Here we connect the selection of an itemlist to this scene
+	var itemlist: ItemList = node.get_node("HBoxContainer/ItemList");
+	itemlist.item_selected.connect(_on_territory_selected);
+	
+	#Here we connect the delete territory button
+	var delete_confirmation = node.get_node("ConfirmationDialog")
+	delete_confirmation.confirmed.connect(_on_deleted_confirmed);
 	
 func connect_signals_from_territory_node(node: GraphNode) -> void:
 	# Here we connect the "Done" button from territory node
 	var done_button: Button = node.get_node("VBoxContainer2/Done");
 	done_button.pressed.connect(_on_done_button_pressed);
+	
+	
+	
+
+"""
+The following functions can be used to save and load territory information from
+the territory edit node
+"""
+func save_territory() -> void:
+	# First we need to grab the current territory information displayed on the 
+	# territory edit node
+	var curr_territory: Territory = node_tracker[1].get_territory();
+	print_territory(curr_territory);
+	# Now we save this territory info to confed node local territory dictionary
+	node_tracker[node_open_edit].set_selected_territory(curr_territory);
+	
+	# Now we save the localy saved data into the world_map resource
+	world_map.Confederation_Dict[node_open_edit].Territory_List = node_tracker[node_open_edit].get_territory_dict();
+	
+	# Now we need to display the changes in ItemList
+	node_tracker[node_open_edit].reflect_territory_changes();
+	
+func load_territory(selected_index: int ) -> void:
+	# First we grab the territory info
+	var node_edit: GraphNode = node_tracker[node_open_edit];
+	var selected_terr: Territory = node_edit.territory_list[selected_index];
+	
+	# Now we call the group in territory edit node in order to display this information
+	node_tracker[1].load_previous_territory_info(selected_terr);
+	
+
+
 
 """
 The following are Signal Handlers that pertain to the addition and deletion of confederations nodes
@@ -108,6 +153,9 @@ func _on_add_confed_node_pressed():
 	# Now we add this node to the node_tracker so we can track it
 	node_tracker[node_tracker.size()] = new_node;
 	
+	# Make it by deault level 1
+	var label: Label = new_node.get_node("HBoxContainer2/Label")
+	label.text = "Level: 1";
 	
 
 	
@@ -146,6 +194,9 @@ func _on_delete_node_pressed():
 	
 	
 	
+""" 
+The following function handles 
+"""
 	
 	
 func _on_edit_territory_pressed():
@@ -154,7 +205,6 @@ func _on_edit_territory_pressed():
 	# "Done" button
 	if node_tracker[1].visible == true:
 		return
-	
 	
 	# This makes the territory editor visible
 	node_tracker[1].visible = true;
@@ -166,28 +216,55 @@ func _on_edit_territory_pressed():
 	node_tracker[1].position = node_tracker[node_open_edit].position + Vector2(node_tracker[node_open_edit].size.x, 0);
 	
 	# Now we need to display the previously saved territory information
-	var previous_terr: Territory = node_tracker[node_selected_num].get_selected_territory();
+	var previous_terr: Territory = node_tracker[node_open_edit].get_selected_territory();
 	node_tracker[1].load_previous_territory_info(previous_terr);
 	
 func _on_confed_name_changed(new_name: String) -> void:
-	world_map.Confederation_Dict[node_selected_num].name = new_name;
-	print(world_map.Confederation_Dict[node_selected_num])
+	world_map.Confederation_Dict[node_selected_num].Name = new_name;
+	#print(world_map.Confederation_Dict[node_selected_num])
 	
 func _on_done_button_pressed():
-	# Get territory info from node and store into world map confederation dict
-	var terr_node: GraphNode = node_tracker[1];
-	var terr: Territory = terr_node.get_territory();
-	
-	print(terr.Territory_Name)
-	# Save this territory locally inside the confed node
-	node_tracker[node_open_edit].set_selected_territory(terr);
-	
-	# Save this locally to world_map
-	world_map.Confederation_Dict[node_open_edit] = node_tracker[node_open_edit].get_territory_dict();
-	
-	
+	#Save territory info to required resources such as confed_node and world_map
+	save_territory();
 	
 	# Now we make the edit territory node invisible
 	node_tracker[1].visible = false;
+	
+func _on_territory_selected(index: int) -> void:
+	#First we need to check if current node selected has terr edit open
+	if node_open_edit != node_selected_num:
+		print("Wrong node, no effect")
+		return
+	
+	#Now we also have to check if edit territory is open
+	if node_tracker[1].visible == false:
+		print("Edit Territory Not Visible")
+		return
+		
+	if node_tracker[node_open_edit].selected_index == -1:
+		return
+		
+	# Now we know that the edit territory node is visible and we selected a territory
+	# from the confed node that opened the territory node.
+	#First we need to save current input from territory edit node
+	save_territory();
+	
+	# Now we change the selected_index in the confed node
+	node_tracker[node_open_edit].selected_index = index;
+	
+	#Finally, we load the selected territory info onto the edit territory node
+	load_territory(index);
+	
+func _on_deleted_confirmed():
+	node_tracker[1].visible = false;
+	
+	node_tracker[node_open_edit].delete_and_organize();
+	
+	
+func print_territory(t: Territory):
+	print(t.Territory_Name);
+	print(t.CoTerritory_ID);
+	print(t.CoTerritory_Name);
+	print(t.Code);
 	
 

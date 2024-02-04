@@ -2,7 +2,7 @@ extends GraphNode
 
 #var territory: Territory;
 
-@onready var territory: Territory = Territory.new()
+@onready var territory: Territory = Territory.new();
 
 
 """
@@ -10,8 +10,10 @@ This function loads all the previous saved info of the country into the UI input
 or a previous edited territory
 """
 func load_previous_territory_info(t: Territory) -> void:
-	get_tree().call_group("T_Info", "territory_selected", t);
 	territory = t;
+	get_tree().call_group("T_Info", "territory_selected", t);
+	
+	
 	
 
 """
@@ -24,7 +26,7 @@ func _on_territory_name_edit_text_submitted(new_text: String) -> void:
 	territory.Territory_Name = new_text
 	
 func _on_CoT_ID_value_changed(value: float):
-	territory.Confederation_ID = int(value)
+	territory.CoTerritory_ID = int(value);
 
 func _on_COT_name_text_submitted(new_text: String):
 	territory.CoTerritory_Name = new_text
@@ -58,7 +60,7 @@ func _on_last_names_list_text_changed():
 	territory.Last_Names = saved_names
 
 func _on_rating_value_value_changed(value: float):
-	territory.Rating = value;
+	territory.Rating = int(value);
 	
 func _on_league_rating_val_value_changed(value: float):
 	territory.League_Elo = value;

@@ -1,6 +1,6 @@
 class_name WorldMap extends Resource
 
-var Confederation_Dict: Dictionary;
+@export var Confederation_Dict: Dictionary;
 
 
 
