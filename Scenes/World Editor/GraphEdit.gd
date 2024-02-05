@@ -26,11 +26,14 @@ func _ready():
 	var world_confed_node: GraphNode = confed_node.instantiate();
 	add_child(world_confed_node);
 	world_confed_node.position_offset.x = get_viewport().get_mouse_position().x
+	
+	
 	var line_edit: LineEdit = world_confed_node.get_node("HBoxContainer2/LineEdit")
 	line_edit.text = "World"
 	line_edit.editable = false;
 	var label: Label = world_confed_node.get_node("HBoxContainer2/Label")
 	label.text = "Level: 0";
+	enable_slots(world_confed_node)
 	
 	# Now we connect buttons to here
 	connect_signals_from_confed_node(world_confed_node);
@@ -84,7 +87,7 @@ func connect_signals_from_confed_node(node: GraphNode) -> void:
 	edit_terr_button.pressed.connect(_on_edit_territory_pressed);
 	
 	# Here we connect the node selection to this scene
-	node.node_selected.connect(_on_node_selected);
+	#node.node_selected.connect(_on_node_selected_lol);
 	
 	# Here we connect the line Edit text to this scene
 	var confed_name_edit: LineEdit = node.get_node("HBoxContainer2/LineEdit");
@@ -157,9 +160,12 @@ func _on_add_confed_node_pressed():
 	var label: Label = new_node.get_node("HBoxContainer2/Label")
 	label.text = "Level: 1";
 	
+	#Enable Slots for all added nodes
+	enable_slots(new_node)
+	
 
 	
-func _on_node_selected():
+func _on_node_selected_lol():
 	# First we need to find which node is selected by checking their selected variable
 	for index in range(node_tracker.size()):
 		var curr_node: GraphNode = node_tracker[index]
@@ -205,6 +211,11 @@ func _on_edit_territory_pressed():
 	# "Done" button
 	if node_tracker[1].visible == true:
 		return
+	if not node_tracker[node_open_edit].territory_list.has(node_tracker[node_open_edit].selected_index):
+		return	
+	if node_open_edit != node_selected_num:
+		return
+	
 	
 	# This makes the territory editor visible
 	node_tracker[1].visible = true;
@@ -267,4 +278,22 @@ func print_territory(t: Territory):
 	print(t.CoTerritory_Name);
 	print(t.Code);
 	
+	
+	
+func enable_slots(node: GraphNode):
+	node.set_slot(0, true, 0, Color(1,1,1,1), true, 0, Color(0,1,0,1), null, null, true)
+	
+	return
+	
 
+
+
+func _on_connection_request(from_node, from_port, to_node, to_port):
+	connect_node(from_node, from_port, to_node, to_port);
+	
+
+
+func _on_node_selected(node: Node):
+	node_selected_num = node_tracker.find_key(node);
+	print("Node Selected: " + str(node_selected_num));
+	
