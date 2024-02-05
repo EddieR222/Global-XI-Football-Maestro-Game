@@ -98,3 +98,7 @@ func sort_items():
 
 
 
+
+
+func _on_focus_entered():
+	print("FOCUS ENTERED")
