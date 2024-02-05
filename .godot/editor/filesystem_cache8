@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1707105291
+::res://::1707162298
 ::res://Images/::1706994569
 icon.svg::CompressedTexture2D::5423449936511656178::1706994520::1706994569::1::::<><>::
 main_menu.jpg::CompressedTexture2D::5700266824544363140::1706994520::1706994520::1::::<><>::
@@ -39,19 +39,19 @@ TextureButton.gd::GDScript::-1::1706994520::0::1::::<>TextureButton<>::
 ::res://Scenes/Main Menu/::1706994520
 main_menu.gd::GDScript::-1::1706994520::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706994520::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/World Editor/::1707094822
-GraphEdit.gd::GDScript::-1::1707094435::0::1::::<>GraphEdit<>::
+::res://Scenes/World Editor/::1707106327
+GraphEdit.gd::GDScript::-1::1707106290::0::1::::<>GraphEdit<>::
 World Editor.gd::GDScript::-1::1707093807::0::1::::<>Control<>::
-World Editor.tscn::PackedScene::1217744872715804559::1707094822::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
-::res://Scenes/World Editor/Confederation Editors/::1707094438
+World Editor.tscn::PackedScene::1217744872715804559::1707106327::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
+::res://Scenes/World Editor/Confederation Editors/::1707105975
 Confederation Editor.gd::GDScript::-1::1707085619::0::1::::<>GraphNode<>::
-Confederation Editor.tscn::PackedScene::4377020352998335848::1707094438::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
+Confederation Editor.tscn::PackedScene::4377020352998335848::1707105975::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
 ItemList.gd::GDScript::-1::1706994520::0::1::::<>ItemList<>::
-::res://Scenes/World Editor/League Editor/::1707094438
-League Editor.tscn::PackedScene::507481753769897923::1707094438::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-LeagueNode.tscn::PackedScene::8628539737815509014::1707094438::0::1::::<><>::
-::res://Scenes/World Editor/Territory Editors/::1707094438
+::res://Scenes/World Editor/League Editor/::1707105975
+League Editor.tscn::PackedScene::507481753769897923::1707105975::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
+LeagueNode.tscn::PackedScene::8628539737815509014::1707105975::0::1::::<><>::
+::res://Scenes/World Editor/Territory Editors/::1707105975
 Territory Editor.gd::GDScript::-1::1707078589::0::1::::<>GraphNode<>::
-Territory Editor.tscn::PackedScene::8422911629128742764::1707094438::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
+Territory Editor.tscn::PackedScene::8422911629128742764::1707105975::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
 ::res://Textures/::1706994520
 main_menu.tres::Theme::320751974886637368::1706994520::0::1::::<><>::
