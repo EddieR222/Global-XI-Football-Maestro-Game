@@ -85,10 +85,7 @@ func connect_signals_from_confed_node(node: GraphNode) -> void:
 	# Here we connect the edit territory button to this scene
 	var edit_terr_button: Button = node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
 	edit_terr_button.pressed.connect(_on_edit_territory_pressed);
-	
-	# Here we connect the node selection to this scene
-	#node.node_selected.connect(_on_node_selected_lol);
-	
+
 	# Here we connect the line Edit text to this scene
 	var confed_name_edit: LineEdit = node.get_node("HBoxContainer2/LineEdit");
 	confed_name_edit.text_submitted.connect(_on_confed_name_changed);
@@ -163,22 +160,6 @@ func _on_add_confed_node_pressed():
 	#Enable Slots for all added nodes
 	enable_slots(new_node)
 	
-
-	
-func _on_node_selected_lol():
-	# First we need to find which node is selected by checking their selected variable
-	for index in range(node_tracker.size()):
-		var curr_node: GraphNode = node_tracker[index]
-		if curr_node.selected == true:
-			node_selected_num = index;
-			print("Node Selected: " + str(node_selected_num))
-			return
-	
-	# If we reach here, then no node is selected and we set node_selected_num to -1 to relfect that
-	node_selected_num = -1;
-	
-
-
 func _on_delete_node_pressed():
 	match node_selected_num:
 		-1:
@@ -198,13 +179,9 @@ func _on_delete_node_pressed():
 	# Now we correct the dictionary to keep consitent linear keys 
 	compress_node_tracker(node_selected_num);
 	
-	
-	
 """ 
 The following function handles 
 """
-	
-	
 func _on_edit_territory_pressed():
 	#First we check that the territory edit isn't currently open, if it is open
 	# then we do nothing as the user needs to close previous instance by pressing the 
@@ -278,22 +255,29 @@ func print_territory(t: Territory):
 	print(t.CoTerritory_Name);
 	print(t.Code);
 	
-	
-	
 func enable_slots(node: GraphNode):
 	node.set_slot(0, true, 0, Color(1,1,1,1), true, 0, Color(0,1,0,1), null, null, true)
 	
 	return
 	
-
-
-
+	
+# This function handles connections between Confederation Nodes 
+# TODO See if this can handle logic for both Confed Level and Country Sync across Confed
 func _on_connection_request(from_node, from_port, to_node, to_port):
+	print(from_node);
+	print(to_node);
+	print(from_port);
+	print(to_port);
+	
+	
+	#find_node(from_node)
 	connect_node(from_node, from_port, to_node, to_port);
 	
-
-
+	# Here we will establish the connected nodes into the next level
+	
+	
+	
+	
 func _on_node_selected(node: Node):
 	node_selected_num = node_tracker.find_key(node);
-	print("Node Selected: " + str(node_selected_num));
 	
