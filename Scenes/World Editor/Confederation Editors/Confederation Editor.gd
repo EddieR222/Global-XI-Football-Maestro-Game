@@ -1,8 +1,14 @@
 extends GraphNode
 
 @export var selected_index: int;
+@export var confed_id: int;
+@export var confed_name: String;
 var territory_list: Dictionary;
 @export var total_territory_num: int;
+@export var confed_level: int;
+
+
+signal graphnode_selected(confed_id: int);
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +34,13 @@ func set_selected_territory(t: Territory) -> void:
 func get_territory_dict() -> Dictionary:
 	return territory_list;
 	
+func set_confed_level(level: int):
+	print("Level Received: " + str(level))
+	confed_level = level;
+	
+	var level_label: Label= get_node("HBoxContainer2/Label");
+	level_label.text = "Level: " + str(confed_level);
+	
 """
 These functions handle signls from within scene
 """
@@ -41,16 +54,17 @@ func _on_add_territory_pressed():
 	var default_territory: Territory = Territory.new();
 	default_territory.Territory_Name = "Territory"
 	territory_list[index] = default_territory;
+	
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);
 
 
 func _on_delete_territory_pressed():
+	# Make Confirmation Popup Visisble
 	$ConfirmationDialog.visible = 1;
-
-
-#func _on_confirmation_dialog_confirmed() -> void:
-	#
-	#delete_and_organize(selected_index);
 	
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);
 
 
 func delete_and_organize() -> void:
@@ -100,5 +114,30 @@ func sort_items():
 
 
 
-func _on_focus_entered():
-	print("FOCUS ENTERED")
+
+
+
+#func _on_gui_input(event):
+	#print("GUI EVENT")
+	#print(event)
+	
+
+
+func _on_edit_territory_pressed():
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);
+
+
+func _on_item_list_item_selected(index):
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);
+
+
+func _on_line_edit_text_changed(new_text):
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);
+
+
+func _on_gui_input(event):
+	# Emit signal as button press counts as GraphNode selected
+	graphnode_selected.emit(confed_id);

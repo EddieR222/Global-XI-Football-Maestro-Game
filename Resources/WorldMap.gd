@@ -26,6 +26,8 @@ func get_children_confederation(region_id: int) -> Array[Confederation]:
 			
 	return children
 	
+
+	
 	
 
 			

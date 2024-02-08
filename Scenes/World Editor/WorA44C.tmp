@@ -68,8 +68,7 @@ text = "Delete Selected Node"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
-snapping_distance = 100
-zoom_min = 0.1
+scroll_offset = Vector2(-768, -389)
 show_zoom_label = true
 script = ExtResource("3_hpr62")
 

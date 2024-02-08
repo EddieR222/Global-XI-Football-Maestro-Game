@@ -7,8 +7,8 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 
 @export var world_map: WorldMap = WorldMap.new()
 @export var node_tracker: Dictionary; 
-@export var node_selected_num: int;
-@export var node_open_edit: int;
+@export var node_selected_num: int = -1
+@export var node_open_edit: int = -1
 
 
 
@@ -21,31 +21,8 @@ Preload Nodes that we will instantiate later
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	# Here we want to set up the Global Nodes. This is the base level for all confederation as this is the 
-	# world node that contains all other confederations and nations
-	var world_confed_node: GraphNode = confed_node.instantiate();
-	add_child(world_confed_node);
-	world_confed_node.position_offset.x = get_viewport().get_mouse_position().x
-	
-	
-	var line_edit: LineEdit = world_confed_node.get_node("HBoxContainer2/LineEdit")
-	line_edit.text = "World"
-	line_edit.editable = false;
-	var label: Label = world_confed_node.get_node("HBoxContainer2/Label")
-	label.text = "Level: 0";
-	enable_slots(world_confed_node)
-	
-	# Now we connect buttons to here
-	connect_signals_from_confed_node(world_confed_node);
-	
-	# Now we make the confederation info for this node which will be stored in WorldMap;
-	var world_confed_info = Confederation.new(); 
-	world_confed_info.Level = 0;
-	world_confed_info.Owner_ID = 0;
-	world_confed_info.ID = 0;
-	world_confed_info.Name = "World"
-	world_map.Confederation_Dict[0] = world_confed_info;
-	
+	# We want to establish the world node and ensure it has the right properties
+	var world_confed_node: GraphNode = establish_world_node();
 	
 	# We also have to instantiate the country editor, there will only be one in the entire document and it will follow 
 	# the confederation node that activated it.
@@ -55,8 +32,6 @@ func _ready():
 	
 	# Now we connect the territory edit node to the correct signals here
 	connect_signals_from_territory_node(terr_edit_node);
-	
-	
 	
 	#Finally we add these nodes to the nodes tracker to be able to manpulate them later
 	node_tracker[0] = world_confed_node
@@ -68,8 +43,48 @@ func _process(delta):
 	#This means that is the territory editor is visible, we move it to edge of node that opened it
 	if node_tracker[1].visible:
 		node_tracker[1].position = node_tracker[node_open_edit].position + Vector2(node_tracker[0].size.x, 0) * zoom;
-
-
+		
+func establish_world_node() -> GraphNode:
+	#First we simply instantiate the Node into the scene tree
+	var world_confed_node: GraphNode = confed_node.instantiate();
+	add_child(world_confed_node);
+	world_confed_node.position_offset.x = get_viewport().get_mouse_position().x
+	
+	# Now we name this Node as "World" and ensure this isn't changeable
+	var line_edit: LineEdit = world_confed_node.get_node("HBoxContainer2/LineEdit")
+	line_edit.text = "World"
+	line_edit.editable = false;
+	
+	# Now we Edit the Level Number Label to show this node is the base node: "Level: 0"
+	var label: Label = world_confed_node.get_node("HBoxContainer2/Label")
+	label.text = "Level: 0";
+	
+	# Now we enable the slots, simialr to other nodes but this one can't have connections OUT of but only IN
+	world_confed_node.set_slot(0, true, 0, Color(0,1,0,1), false, 0,  Color(1,0,0,1), null, null, true)
+	
+	
+	
+	# Here we connect all needed signals
+	connect_signals_from_confed_node(world_confed_node);
+	
+	
+	# Now we make the confederation info for this node which will be stored in WorldMap;
+	var world_confed_info = Confederation.new(); 
+	world_confed_info.Level = 0;
+	world_confed_info.Owner_ID = 0;
+	world_confed_info.ID = 0;
+	world_confed_info.Name = "World"
+	world_map.Confederation_Dict[0] = world_confed_info;
+	
+	# Update the info into GraphNode info
+	world_confed_node.confed_level = 0;
+	world_confed_node.confed_id = 0
+	world_confed_node.confed_name = "World"
+	
+	
+	# Finally return the world node
+	return world_confed_node
+	
 func compress_node_tracker(deleted_key: int):
 	# Here we simply want to compress the dictionary so all nodes are in numerical order
 	var index: int = deleted_key;
@@ -88,7 +103,41 @@ func compress_node_tracker(deleted_key: int):
 		idx += 1;
 	world_map.Confederation_Dict.erase(idx);
 	
+	
+"""
+The following function can be used to propagate the countries up the confederation tree
+"""	
+func propagate_country_list(node: GraphNode):
+	# Get the list of territories
+	var confed: Confederation = world_map.Confederation_Dict[node.confed_id];
+	var territories: Dictionary = node.territory_list;
+	
+	# Now we place each territory into the owner node's territory list
+	var owner_id: int = confed.Owner_ID;
+	var curr_id: int = confed.ID;
+	
+	while owner_id != 0 or curr_id != 0:
+		var owner_confed: Confederation = world_map.Confederation_Dict[owner_id];
+		var owner_node: GraphNode = node_tracker[owner_id];
+		for terr: Territory in territories.values():
+			var itemlist: ItemList = owner_node.get_node("HBoxContainer/ItemList");
+			itemlist.add_item(terr.Territory_Name, null, true);
+			var new_index: int = owner_node.territory_list.size(); 
+			owner_node.territory_list[new_index] = terr;
+		world_map.Confederation_Dict[owner_id].Territory_List = owner_node.territory_list;
+		confed = owner_confed
+		curr_id = owner_id
+		owner_id = owner_confed.Owner_ID
+		owner_node.reflect_territory_changes();
+	
+	
+	
+	
 func connect_signals_from_confed_node(node: GraphNode) -> void:
+	# Here we connect the mouse_entered signal so selection is based on the player mouse entering the node area
+	# This allows buttons or text typing to alert the selection and not mandate the user from having to select the node itself
+	node.graphnode_selected.connect(_on_node_entered);
+	
 	# Here we connect the edit territory button to this scene
 	var edit_terr_button: Button = node.get_node("HBoxContainer/MarginContainer/VBoxContainer/Edit Territory")
 	edit_terr_button.pressed.connect(_on_edit_territory_pressed);
@@ -130,6 +179,7 @@ func save_territory() -> void:
 	
 	# Now we need to display the changes in ItemList
 	node_tracker[node_open_edit].reflect_territory_changes();
+	propagate_country_list(node_tracker[node_open_edit]);
 	
 func load_territory(selected_index: int ) -> void:
 	# First we grab the territory info
@@ -139,9 +189,6 @@ func load_territory(selected_index: int ) -> void:
 	# Now we call the group in territory edit node in order to display this information
 	node_tracker[1].load_previous_territory_info(selected_terr);
 	
-
-
-
 """
 The following are Signal Handlers that pertain to the addition and deletion of confederations nodes
 """
@@ -154,7 +201,7 @@ func _on_add_confed_node_pressed():
 	add_child(new_node);
 	new_node.position_offset.x = get_viewport().get_mouse_position().x
 	
-	# Now we connect this confederation node's "Edit Button" to this script. 
+	# Now we connect all needed signals 
 	connect_signals_from_confed_node(new_node);
 		
 	# Now we add this node to the node_tracker so we can track it
@@ -162,11 +209,14 @@ func _on_add_confed_node_pressed():
 	
 	# We also want to save this confederation data into the world_map
 	var new_confed: Confederation = Confederation.new();
-	new_confed.ID = node_tracker.size();
+	new_confed.ID = node_tracker.size() - 1;
 	new_confed.Level = 1;
-	world_map.Confederation_Dict[node_tracker.size()] = new_confed
+	new_confed.Name = "New Confederation"
+	world_map.Confederation_Dict[node_tracker.size()-1] = new_confed
+	new_node.confed_id = node_tracker.size() - 1;
+	new_node.confed_name = "New Confederation"
+	new_node.confed_level = 1;
 
-	
 	# Make it by deault level 1
 	var label: Label = new_node.get_node("HBoxContainer2/Label")
 	label.text = "Level: 1";
@@ -202,18 +252,23 @@ func _on_edit_territory_pressed():
 	# "Done" button
 	if node_tracker[1].visible == true:
 		return
-	if not node_tracker[node_open_edit].territory_list.has(node_tracker[node_open_edit].selected_index):
-		return	
-	if node_open_edit != node_selected_num:
+	
+	# Now we check if node_open_edit is equal to -1, if yes, then we know that we are allowed to open the edit territory scene again
+	if node_open_edit != -1 and node_open_edit != node_selected_num:
 		return
-	
-	
-	# This makes the territory editor visible
-	node_tracker[1].visible = true;
-	
+		
+		
 	# Set open_node_edit as the currently selected node
 	node_open_edit = node_selected_num;
 	
+	
+	if not node_tracker[node_open_edit].territory_list.has(node_tracker[node_open_edit].selected_index):
+		return	
+	
+	# This makes the territory editor visible
+	node_tracker[1].visible = true;
+
+
 	# Now we set its position to the right side of the Confederation Node that opened it
 	node_tracker[1].position = node_tracker[node_open_edit].position + Vector2(node_tracker[node_open_edit].size.x, 0);
 	
@@ -223,11 +278,15 @@ func _on_edit_territory_pressed():
 	
 # This function changes the name of the confederation when the uses changes the input in the LineEdit for the confederation Node
 func _on_confed_name_changed(new_name: String) -> void:
+	# First we get the confederation ID to track which node we will be changing
+	var confederation = 0;
 	world_map.Confederation_Dict[node_selected_num].Name = new_name;
+	
 	
 
 """
-This function saves the territory information and closes the Edit Territory Editor
+This function runs when the done button is pressed
+It saves the territory information and closes the Edit Territory Editor
 """
 func _on_done_button_pressed():
 	#Save territory info to required resources such as confed_node and world_map
@@ -236,34 +295,29 @@ func _on_done_button_pressed():
 	# Now we make the edit territory node invisible
 	node_tracker[1].visible = false;
 	
+	# Now we set node_open_edit to -1 to show that node_tracker isn't open and we are allowed to changed
+	node_open_edit = -1
+	
 """
 This function switches the country info displayed on the Edit Territory Editor depending on which country the user selected.
 Before switching, this functions saves the territory info being displayed and loads the next selected one 
 """
 func _on_territory_selected(index: int) -> void:
 	#First we need to check if current node selected has terr edit open
-	if node_open_edit != node_selected_num:
-		print("Wrong node, no effect")
-		return
 	
-	#Now we also have to check if edit territory is open
-	if node_tracker[1].visible == false:
-		print("Edit Territory Not Visible")
-		return
-		
-	if node_tracker[node_open_edit].selected_index == -1:
-		return
-		
+	if node_tracker[1].visible == true and node_open_edit == node_selected_num:
 	# Now we know that the edit territory node is visible and we selected a territory
 	# from the confed node that opened the territory node.
-	#First we need to save current input from territory edit node
-	save_territory();
-	
-	# Now we change the selected_index in the confed node
-	node_tracker[node_open_edit].selected_index = index;
-	
-	#Finally, we load the selected territory info onto the edit territory node
-	load_territory(index);
+		#First we need to save current input from territory edit node
+		save_territory();
+		
+		# Now we change the selected_index in the confed node
+		node_tracker[node_open_edit].selected_index = index;
+		
+		#Finally, we load the selected territory info onto the edit territory node
+		load_territory(index);
+	else:
+		node_tracker[node_selected_num].selected_index = index;	
 	
 """
 This function runs when the user clicks "Delete Territory - " Button and current has a counry selected
@@ -273,7 +327,7 @@ func _on_deleted_confirmed():
 	node_tracker[1].visible = false;
 	
 	# Calls the method specific to the node to delete the territory from it's list and organize its list (similar to compress and organize) 
-	node_tracker[node_open_edit].delete_and_organize();
+	node_tracker[node_selected_num].delete_and_organize();
 	
 	
 func print_territory(t: Territory):
@@ -288,32 +342,60 @@ func print_territory(t: Territory):
 The function below is used to enable slots for the confederation nodes. This allows connection between nodes
 """
 func enable_slots(node: GraphNode):
-	node.set_slot(0, true, 0, Color(1,1,1,1), true, 0, Color(0,1,0,1), null, null, true)
-	
+	node.set_slot(0, true, 0, Color(0,1,0,1), true, 0,  Color(1,0,0,1), null, null, true)
 	return
 	
 	
 # This function handles connections between Confederation Nodes 
 # TODO See if this can handle logic for both Confed Level and Country Sync across Confed
 func _on_connection_request(from_node, from_port, to_node, to_port):
-	print(from_node);
-	print(to_node);
-	print(from_port);
-	print(to_port);
-	
-	
-	#find_node(from_node)
+	# find_node(from_node)
 	connect_node(from_node, from_port, to_node, to_port);
 	
-	# Here we will establish the connected nodes into the next level
+	print(from_node + "->" + to_node)
 	
 	
+	# Here we get the nodes in order to calculate different things
+	var curr_node_path: NodePath = NodePath(from_node);
+	var owner_node_path: NodePath = NodePath(to_node);
+	var curr_node: GraphNode = get_node(curr_node_path);
+	var owner_node: GraphNode = get_node(owner_node_path);
 	
 	
-func _on_node_selected(node: Node):
-	node_selected_num = node_tracker.find_key(node);
+	print(str(curr_node.confed_name) + "->" + str(owner_node.confed_name))
 	
+	#  Now we get the level that the from_node should be
+	var owner_level = owner_node.confed_level
+	if owner_level == 10:
+		#TODO: Have some way to notify the user of this
+		print("Can't Continue")
+		return
+	curr_node.set_confed_level(owner_level + 1);
+	
+	# Update Owner ID in Confed Node
+	world_map.Confederation_Dict[curr_node.confed_id].Level = owner_level + 1;
+	world_map.Confederation_Dict[curr_node.confed_id].Owner_ID = owner_node.confed_id;
+	
+	# Now we put the territory list into the owner confederation
+	propagate_country_list(curr_node);
 
+"""
+The two functions belows essentially decide and change the needed values when a GraphNode is selected or entered.
+"""
+func _on_node_entered(confed_id: int):
+	# Update Node_Selected_NUm
+	node_selected_num = confed_id
+	
+	# Unselect every GraphNode in list
+	for node: GraphNode in node_tracker.values():
+		node.selected = false
+	
+		
+	# Finally set new entered node as selected
+	node_tracker[node_selected_num].selected = true
+
+func _on_node_selected(node: GraphNode):
+	node_selected_num = node_tracker.find_key(node)
 
 func _on_disconnection_request(from_node, from_port, to_node, to_port):
 	disconnect_node(from_node, from_port, to_node, to_port);
