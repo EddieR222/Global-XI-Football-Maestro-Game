@@ -320,7 +320,7 @@ func _on_territory_selected(index: int) -> void:
 		node_tracker[node_selected_num].selected_index = index;	
 	
 """
-This function runs when the user clicks "Delete Territory - " Button and current has a counry selected
+This function runs when the user clicks "Delete Territory - " Button and currently has a counry selected
 """
 func _on_deleted_confirmed():
 	# Makes the Edit Territory Editor Invisible
@@ -347,8 +347,15 @@ func enable_slots(node: GraphNode):
 	
 	
 # This function handles connections between Confederation Nodes 
-# TODO See if this can handle logic for both Confed Level and Country Sync across Confed
+
 func _on_connection_request(from_node, from_port, to_node, to_port):
+	# This ensures a player doesn't try to connect a node to itself (which doesn't make sense)
+	if from_node == to_node:
+		return
+		
+	
+	
+	
 	# find_node(from_node)
 	connect_node(from_node, from_port, to_node, to_port);
 	
