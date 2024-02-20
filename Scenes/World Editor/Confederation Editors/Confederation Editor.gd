@@ -79,6 +79,7 @@ func delete_and_organize() -> void:
 	
 	# Now we simply deleted it from ItemList which automatically shifts everything down
 	$HBoxContainer/ItemList.remove_item(index);
+	selected_index = -1;
 	
 	reflect_territory_changes();
 	

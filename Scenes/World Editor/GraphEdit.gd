@@ -206,6 +206,9 @@ func _on_edit_territory_pressed():
 	if node_open_edit != -1 and node_open_edit != node_selected_num:
 		return
 		
+	# Now if no territory is even selected, we return
+	if node_open_edit != -1 or world_map.graph_nodes[node_open_edit].selected_index == -1:
+		return		
 		
 	# Set open_node_edit as the currently selected node
 	node_open_edit = node_selected_num;
