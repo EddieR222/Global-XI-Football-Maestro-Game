@@ -22,16 +22,6 @@ func add_node(new_node: GraphNode) -> void:
 	
 	
 func add_edge(a: GraphNode, b: GraphNode) -> int:
-	# First we check to see if a connection makes sense
-	
-	# If the user is attempting to connect the same confed to itself, we return -1
-	if a == b:
-		return -1;
-			
-	# Now we check if connecting would create a cycle
-	if are_connected(b, a):
-		return -1;
-	
 	graph_edges[a.confed.ID] = b.confed.ID;
 	# Now we should have the the GNodes of both A and B
 	return 0;
@@ -51,7 +41,7 @@ func delete_node(a: GraphNode) -> void:
 	
 		
 	#compress_node_tracker(a.id)
-	pass
+	
 	
 	
 func delete_edge(a: GraphNode, b: GraphNode) -> void:
@@ -151,6 +141,8 @@ func shortest_path(a: GraphNode, b: GraphNode) -> Array:
 	
 	
 func propagate_country_list(node: GraphNode) -> void:
+	if node.confed.Owner_ID == -1:
+		return
 	# First we need to get the territory list found in current GNode
 	var confed: Confederation = node.confed;
 	var territory_list: Dictionary = confed.Territory_List;

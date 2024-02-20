@@ -228,8 +228,7 @@ func _on_edit_territory_pressed():
 # This function changes the name of the confederation when the uses changes the input in the LineEdit for the confederation Node
 func _on_confed_name_changed(new_name: String) -> void:
 	# First we get the confederation ID to track which node we will be changing
-	var confederation = 0;
-	world_map.Confederation_Dict[node_selected_num].Name = new_name;
+	world_map.graph_nodes[node_selected_num].confed.Name = new_name;
 	
 	
 
