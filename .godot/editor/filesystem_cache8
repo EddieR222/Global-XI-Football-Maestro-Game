@@ -1,313 +1,311 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1708465962
-::res://Game Database/::1706252038
-::res://Game Database/Country Files/::1705883795
-::res://Images/::1708465952
-icon.svg::CompressedTexture2D::5423449936511656178::1702155814::1708459437::1::::<><>::
-main_menu.jpg::CompressedTexture2D::5700266824544363140::1704023311::1705806971::1::::<><>::
-start_up_background.jpg::CompressedTexture2D::5194900076173832497::1702156635::1705806975::1::::<><>::
-::res://Images/country_flags/::1708467191
-Afghanistan.png::CompressedTexture2D::2990946929228077053::1708465952::1708465963::1::::<><>::
-Aland_Island.png::CompressedTexture2D::8058461509796127820::1708465952::1708465963::1::::<><>::
-Albania.png::CompressedTexture2D::6314968582148126294::1708465952::1708465963::1::::<><>::
-Algeria.png::CompressedTexture2D::8944171060964089784::1708465952::1708465963::1::::<><>::
-American_Samoa.png::CompressedTexture2D::8579963257015157395::1708465952::1708465963::1::::<><>::
-Andorra.png::CompressedTexture2D::2764212067935432176::1708465952::1708465963::1::::<><>::
-Angola.png::CompressedTexture2D::3614622626326161122::1708465952::1708465963::1::::<><>::
-Anguilla.png::CompressedTexture2D::880879470885651794::1708465952::1708465963::1::::<><>::
-Antarctica.png::CompressedTexture2D::5231351601706723285::1708465952::1708465963::1::::<><>::
-Antigua_and_Barbuda.png::CompressedTexture2D::546601733731032243::1708465952::1708465963::1::::<><>::
-Argentina.png::CompressedTexture2D::8898681997417656655::1708465952::1708465963::1::::<><>::
-Armenia.png::CompressedTexture2D::2710202324950324280::1708465952::1708465963::1::::<><>::
-Aruba.png::CompressedTexture2D::4968265232023730558::1708465952::1708465963::1::::<><>::
-Ascension_Island.png::CompressedTexture2D::8665395250760557843::1708465952::1708465963::1::::<><>::
-Australia.png::CompressedTexture2D::3036670060338954566::1708465952::1708465963::1::::<><>::
-Austria.png::CompressedTexture2D::7589588277331797697::1708465952::1708465963::1::::<><>::
-Azerbaijan.png::CompressedTexture2D::5397856975545137733::1708465952::1708465963::1::::<><>::
-Bahamas.png::CompressedTexture2D::8496847912954470058::1708465952::1708465963::1::::<><>::
-Bahrain.png::CompressedTexture2D::523289070351311962::1708465952::1708465963::1::::<><>::
-Bangladesh.png::CompressedTexture2D::4107395059493018551::1708465952::1708465963::1::::<><>::
-Barbados.png::CompressedTexture2D::7323633149911742458::1708465952::1708465963::1::::<><>::
-Belarus.png::CompressedTexture2D::3353380446429630207::1708465952::1708465963::1::::<><>::
-Belgium.png::CompressedTexture2D::4237133716972947560::1708465952::1708465963::1::::<><>::
-Belize.png::CompressedTexture2D::8687731241248827126::1708465952::1708465963::1::::<><>::
-Benin.png::CompressedTexture2D::6371716138690451758::1708465952::1708465963::1::::<><>::
-Bermuda.png::CompressedTexture2D::6020535954586549133::1708465952::1708465963::1::::<><>::
-Bhutan.png::CompressedTexture2D::7478268259633191875::1708465952::1708465963::1::::<><>::
-Bolivia.png::CompressedTexture2D::4687486467806284698::1708465952::1708465963::1::::<><>::
-Bonarie.png::CompressedTexture2D::7707532860776296780::1708465952::1708465963::1::::<><>::
-Bosnia_and_Herzegovina.png::CompressedTexture2D::8962038900558115267::1708465952::1708465963::1::::<><>::
-Botswana.png::CompressedTexture2D::3591484598911561474::1708465952::1708465963::1::::<><>::
-Brazil.png::CompressedTexture2D::3085679797967732541::1708465952::1708465963::1::::<><>::
-British_Virgin_Islands.png::CompressedTexture2D::3301652448255664182::1708465952::1708465963::1::::<><>::
-Brunei.png::CompressedTexture2D::3527861473302878947::1708465952::1708465963::1::::<><>::
-Bulgaria.png::CompressedTexture2D::1385251212104397492::1708465952::1708465963::1::::<><>::
-Burkina_Faso.png::CompressedTexture2D::5613928216757095766::1708465952::1708465963::1::::<><>::
-Burundi.png::CompressedTexture2D::6278404218493538680::1708465952::1708465963::1::::<><>::
-Cambodia.png::CompressedTexture2D::928711646653429902::1708465952::1708465963::1::::<><>::
-Cameroon.png::CompressedTexture2D::583269002453906834::1708465952::1708465963::1::::<><>::
-Canada.png::CompressedTexture2D::6355295468435396398::1708465952::1708465963::1::::<><>::
-Cape_Verde.png::CompressedTexture2D::7938924150327150476::1708465952::1708465963::1::::<><>::
-Cayman_Islands.png::CompressedTexture2D::492306000446710919::1708465952::1708465963::1::::<><>::
-Central_African_Republic.png::CompressedTexture2D::4767360585586902513::1708465952::1708465963::1::::<><>::
-Chad.png::CompressedTexture2D::4922697755805933644::1708465952::1708465963::1::::<><>::
-Chile.png::CompressedTexture2D::134951680203346747::1708465952::1708465963::1::::<><>::
-China.png::CompressedTexture2D::2499747506767018242::1708465952::1708465963::1::::<><>::
-Christmas_Island.png::CompressedTexture2D::5551023370547347243::1708465952::1708465963::1::::<><>::
-Cocos_(Keeling)_Islands.png::CompressedTexture2D::8261190761314902763::1708465952::1708465963::1::::<><>::
-Colombia.png::CompressedTexture2D::1805095953905250580::1708465952::1708465963::1::::<><>::
-Comoros.png::CompressedTexture2D::5297603934702043800::1708465952::1708465963::1::::<><>::
-Congo.png::CompressedTexture2D::6387499175948535038::1708465952::1708465963::1::::<><>::
-Cook_Islands.png::CompressedTexture2D::3098890212927855426::1708465952::1708465963::1::::<><>::
-Costa_Rica.png::CompressedTexture2D::7609419886067005061::1708465952::1708465963::1::::<><>::
-Croatia.png::CompressedTexture2D::4058671407315186657::1708465952::1708465963::1::::<><>::
-Cuba.png::CompressedTexture2D::3430139502556500122::1708465952::1708465963::1::::<><>::
-Curacao.png::CompressedTexture2D::3692279656460606308::1708465952::1708465963::1::::<><>::
-Cyprus.png::CompressedTexture2D::8995849683132525581::1708465952::1708465963::1::::<><>::
-Czech_Republic.png::CompressedTexture2D::9207032062948487362::1708465952::1708465963::1::::<><>::
-Denmark.png::CompressedTexture2D::72248314080967675::1708465952::1708465963::1::::<><>::
-Djibouti.png::CompressedTexture2D::4614176405761866987::1708465952::1708465963::1::::<><>::
-Dominica.png::CompressedTexture2D::7043137751906454559::1708465952::1708465963::1::::<><>::
-Dominican_Republic.png::CompressedTexture2D::3282832891177911285::1708465952::1708465963::1::::<><>::
-DR_Congo.png::CompressedTexture2D::4099274508734318062::1708465952::1708465963::1::::<><>::
-East_Timor.png::CompressedTexture2D::3727999578093213249::1708465952::1708465963::1::::<><>::
-Ecuador.png::CompressedTexture2D::2096649405377966480::1708465952::1708465963::1::::<><>::
-Egypt.png::CompressedTexture2D::948767663275431420::1708465952::1708465963::1::::<><>::
-El_Salvador.png::CompressedTexture2D::7442919604898596242::1708465952::1708465963::1::::<><>::
-England.png::CompressedTexture2D::4061750465119292623::1708465952::1708465963::1::::<><>::
-Equatorial_Guinea.png::CompressedTexture2D::1199353209676733072::1708465952::1708465963::1::::<><>::
-Eritrea.png::CompressedTexture2D::1894222246095192876::1708465952::1708465963::1::::<><>::
-Estonia.png::CompressedTexture2D::8335052570636554074::1708465952::1708465963::1::::<><>::
-Eswatini.png::CompressedTexture2D::4793097324983329104::1708465952::1708465963::1::::<><>::
-Ethiopia.png::CompressedTexture2D::1261710452146601274::1708465952::1708465963::1::::<><>::
-Falkland_Islands.png::CompressedTexture2D::4019608866402374811::1708465952::1708465963::1::::<><>::
-Faroe_Islands.png::CompressedTexture2D::8663147347731024486::1708465952::1708465963::1::::<><>::
-Federated States of Micronesia.png::CompressedTexture2D::6714151059608238401::1708465952::1708465963::1::::<><>::
-Fiji.png::CompressedTexture2D::1051771629901920253::1708465952::1708465963::1::::<><>::
-Finland.png::CompressedTexture2D::7745756278493743942::1708465952::1708465963::1::::<><>::
-France.png::CompressedTexture2D::3881395526819005922::1708465952::1708465963::1::::<><>::
-French_Guiana.png::CompressedTexture2D::7497557942853002424::1708465952::1708465963::1::::<><>::
-French_Polynesia.png::CompressedTexture2D::4683217312736805843::1708465952::1708465963::1::::<><>::
-Gabon.png::CompressedTexture2D::3495128458940481216::1708465952::1708465963::1::::<><>::
-Gambia.png::CompressedTexture2D::5282166361046497165::1708465952::1708465963::1::::<><>::
-Georgia.png::CompressedTexture2D::2103373221458802729::1708465952::1708465963::1::::<><>::
-Germany.png::CompressedTexture2D::7024087001490091940::1708465952::1708465963::1::::<><>::
-Ghana.png::CompressedTexture2D::8907843574019213058::1708465952::1708465963::1::::<><>::
-Gibraltar.png::CompressedTexture2D::7400360505966910934::1708465952::1708465963::1::::<><>::
-Greece.png::CompressedTexture2D::8760622023516537802::1708465952::1708465963::1::::<><>::
-Greenland.png::CompressedTexture2D::3154444681293595966::1708465952::1708465963::1::::<><>::
-Grenada.png::CompressedTexture2D::3147198077860537452::1708465952::1708465963::1::::<><>::
-Guadeloupe.png::CompressedTexture2D::1557700743780615484::1708466318::1708466321::1::::<><>::
-Guam.png::CompressedTexture2D::7055958940916692589::1708465952::1708465963::1::::<><>::
-Guatemala.png::CompressedTexture2D::2591368703410470861::1708465952::1708465963::1::::<><>::
-Guernsey.png::CompressedTexture2D::1279170032930047561::1708465952::1708465963::1::::<><>::
-Guinea.png::CompressedTexture2D::8376084285891902674::1708465952::1708465963::1::::<><>::
-Guinea_Bissau.png::CompressedTexture2D::5146643186840701596::1708465952::1708465963::1::::<><>::
-Guyana.png::CompressedTexture2D::8491681775665600317::1708465952::1708465963::1::::<><>::
-Haiti.png::CompressedTexture2D::5557310228025253681::1708465952::1708465963::1::::<><>::
-Hawaii.png::CompressedTexture2D::8741048501637412931::1708465952::1708465963::1::::<><>::
-Honduras.png::CompressedTexture2D::2016893669485984688::1708465952::1708465963::1::::<><>::
-Hong_Kong.png::CompressedTexture2D::4745851001885645956::1708465952::1708465963::1::::<><>::
-Hungary.png::CompressedTexture2D::3864956974729052339::1708465952::1708465963::1::::<><>::
-Iceland.png::CompressedTexture2D::5262021813575956182::1708465952::1708465963::1::::<><>::
-India.png::CompressedTexture2D::7493830127685053148::1708465952::1708465963::1::::<><>::
-Indonesia.png::CompressedTexture2D::5767683080643722661::1708465952::1708465963::1::::<><>::
-Iran.png::CompressedTexture2D::1052878593114606960::1708465952::1708465963::1::::<><>::
-Iraq.png::CompressedTexture2D::7206760059068917635::1708465952::1708465963::1::::<><>::
-Ireland.png::CompressedTexture2D::7158339902510648025::1708465952::1708465963::1::::<><>::
-Isle_of_Man.png::CompressedTexture2D::6142922045700379208::1708465952::1708465963::1::::<><>::
-Isle_of_Wight.png::CompressedTexture2D::5535828922811156862::1708465952::1708465963::1::::<><>::
-Isreal.png::CompressedTexture2D::1805536490000796693::1708465952::1708465963::1::::<><>::
-Italy.png::CompressedTexture2D::3245971216498118837::1708465952::1708465963::1::::<><>::
-Ivory_Coast.png::CompressedTexture2D::3155505655510879979::1708465952::1708465963::1::::<><>::
-Jamaica.png::CompressedTexture2D::5346692821339763105::1708466391::1708466393::1::::<><>::
-Japan.png::CompressedTexture2D::7971061112821819788::1708465952::1708465963::1::::<><>::
-Jersey.png::CompressedTexture2D::1400136867898222282::1708465952::1708465963::1::::<><>::
-Jordan.png::CompressedTexture2D::7318564362265352741::1708465952::1708465963::1::::<><>::
-Kazakhstan.png::CompressedTexture2D::1785414443794958693::1708465952::1708465963::1::::<><>::
-Kenya.png::CompressedTexture2D::8622607296523250502::1708465952::1708465963::1::::<><>::
-Kiribati.png::CompressedTexture2D::1882727627473125221::1708465952::1708465963::1::::<><>::
-Kosovo.png::CompressedTexture2D::4740527049238130::1708465952::1708465963::1::::<><>::
-Kuwait.png::CompressedTexture2D::5795177694296659116::1708465952::1708465963::1::::<><>::
-Kyrgyzstan.png::CompressedTexture2D::5955197891251566192::1708465952::1708465963::1::::<><>::
-Laos.png::CompressedTexture2D::1477341939556367397::1708465952::1708465963::1::::<><>::
-Latvia.png::CompressedTexture2D::4443975456530829686::1708465952::1708465963::1::::<><>::
-Lebanon.png::CompressedTexture2D::16377801519032025::1708465952::1708465963::1::::<><>::
-Lesotho.png::CompressedTexture2D::8321785917930483399::1708465952::1708465963::1::::<><>::
-Liberia.png::CompressedTexture2D::5895464519038363303::1708465952::1708465963::1::::<><>::
-Libya.png::CompressedTexture2D::678802253291044611::1708465952::1708465963::1::::<><>::
-Liechtenstein.png::CompressedTexture2D::8188071857255743400::1708465952::1708465963::1::::<><>::
-Lithuania.png::CompressedTexture2D::1459030248861687388::1708465952::1708465963::1::::<><>::
-Luxembourg.png::CompressedTexture2D::6855587927168548700::1708465952::1708465963::1::::<><>::
-Macau.png::CompressedTexture2D::356130374623849949::1708465952::1708465963::1::::<><>::
-Madagascar.png::CompressedTexture2D::1281321641665318271::1708465952::1708465963::1::::<><>::
-Madeira.png::CompressedTexture2D::9137043702954268198::1708465952::1708465963::1::::<><>::
-Malawi.png::CompressedTexture2D::6629520518282447993::1708465952::1708465963::1::::<><>::
-Malaysia.png::CompressedTexture2D::4087312615105853603::1708465952::1708465963::1::::<><>::
-Maldives.png::CompressedTexture2D::5700635047906844122::1708465952::1708465963::1::::<><>::
-Mali.png::CompressedTexture2D::4551258744602585453::1708465952::1708465963::1::::<><>::
-Malta.png::CompressedTexture2D::6177873094464149189::1708465952::1708465963::1::::<><>::
-Martinique.png::CompressedTexture2D::8156835230532623533::1708465952::1708465963::1::::<><>::
-Mauritania.png::CompressedTexture2D::1869818844013291672::1708465952::1708465963::1::::<><>::
-Mauritius.png::CompressedTexture2D::7669421709340242121::1708465952::1708465963::1::::<><>::
-Mayotte.png::CompressedTexture2D::2757178223911313302::1708465952::1708465963::1::::<><>::
-Mexico.png::CompressedTexture2D::8542209692353291243::1708465952::1708465963::1::::<><>::
-Moldova.png::CompressedTexture2D::7587424749895666475::1708465952::1708465963::1::::<><>::
-Monaco.png::CompressedTexture2D::1186332796642616028::1708465952::1708465963::1::::<><>::
-Mongolia.png::CompressedTexture2D::1936366181483476328::1708465952::1708465963::1::::<><>::
-Montenegro.png::CompressedTexture2D::8077200583449346823::1708465952::1708465963::1::::<><>::
-Montserrat.png::CompressedTexture2D::2723210865071476001::1708465952::1708465963::1::::<><>::
-Morocco.png::CompressedTexture2D::2384019188627489033::1708465952::1708465963::1::::<><>::
-Mozambique.png::CompressedTexture2D::2113071750453122187::1708465952::1708465963::1::::<><>::
-Myanmar.png::CompressedTexture2D::7321021864964337520::1708465952::1708465963::1::::<><>::
-Namibia.png::CompressedTexture2D::1656110563292404079::1708465952::1708465963::1::::<><>::
-Nauru.png::CompressedTexture2D::8647120986113462490::1708465952::1708465963::1::::<><>::
-Nepal.png::CompressedTexture2D::7547613207894104482::1708465952::1708465963::1::::<><>::
-Netherlands.png::CompressedTexture2D::1138581264335079446::1708465952::1708465963::1::::<><>::
-New_Caledonia.png::CompressedTexture2D::1156369764070615762::1708465952::1708465963::1::::<><>::
-New_Zealand.png::CompressedTexture2D::702343909870154346::1708465952::1708465963::1::::<><>::
-Nicaragua.png::CompressedTexture2D::5823695777379622852::1708465952::1708465963::1::::<><>::
-Niger.png::CompressedTexture2D::2879748487174741795::1708465952::1708465963::1::::<><>::
-Nigeria.png::CompressedTexture2D::5724821635743822129::1708465952::1708465963::1::::<><>::
-Niue.png::CompressedTexture2D::3303189598708212077::1708465952::1708465963::1::::<><>::
-Norfolk_Island.png::CompressedTexture2D::2568537849339988576::1708465952::1708465963::1::::<><>::
-Northern_Ireland.png::CompressedTexture2D::5998545249604330512::1708465952::1708465963::1::::<><>::
-Northern_Mariana_Islands.png::CompressedTexture2D::7704211683472929751::1708465952::1708465963::1::::<><>::
-North_Korea.png::CompressedTexture2D::791126719895950500::1708465952::1708465963::1::::<><>::
-North_Macedonia.png::CompressedTexture2D::1926766024700981159::1708465952::1708465963::1::::<><>::
-Norway.png::CompressedTexture2D::3447704480091093755::1708465952::1708465963::1::::<><>::
-Oman.png::CompressedTexture2D::431082431139248400::1708465952::1708465963::1::::<><>::
-Orkney.png::CompressedTexture2D::2028468770675574822::1708465952::1708465963::1::::<><>::
-Pakistan.png::CompressedTexture2D::7299119250481686266::1708465952::1708465963::1::::<><>::
-Palau.png::CompressedTexture2D::8521676695228471055::1708465952::1708465963::1::::<><>::
-Palestine.png::CompressedTexture2D::8749035665240483685::1708465952::1708465963::1::::<><>::
-Panama.png::CompressedTexture2D::1315411438698175040::1708465952::1708465963::1::::<><>::
-Papua_New_Guinea.png::CompressedTexture2D::643818355238213194::1708465952::1708465963::1::::<><>::
-Paraguay.png::CompressedTexture2D::59961794239371970::1708465952::1708465963::1::::<><>::
-Peru.png::CompressedTexture2D::4949032867200370767::1708465952::1708465963::1::::<><>::
-Philippines.png::CompressedTexture2D::2330955433022762799::1708465952::1708465963::1::::<><>::
-Pitcairn_Islands.png::CompressedTexture2D::591912309663617109::1708465952::1708465963::1::::<><>::
-Poland.png::CompressedTexture2D::6495160050578331065::1708465952::1708465963::1::::<><>::
-Portugal.png::CompressedTexture2D::5950137825279717558::1708465952::1708465963::1::::<><>::
-Puerto_Rico.png::CompressedTexture2D::4789495510050003875::1708465952::1708465963::1::::<><>::
-Qatar.png::CompressedTexture2D::8132254244412324696::1708465952::1708465963::1::::<><>::
-Reunion.png::CompressedTexture2D::3262524776483855700::1708465952::1708465963::1::::<><>::
-Romania.png::CompressedTexture2D::962041399961710568::1708465952::1708465963::1::::<><>::
-Russia.png::CompressedTexture2D::7507111252421234114::1708465952::1708465963::1::::<><>::
-Rwanda.png::CompressedTexture2D::2413938154816972451::1708465952::1708465963::1::::<><>::
-Saint_Barthélemy.png::CompressedTexture2D::1542403573745654499::1708465952::1708465963::1::::<><>::
-Saint_Helena.png::CompressedTexture2D::295975016216728069::1708465952::1708465963::1::::<><>::
-Saint_Kitts_and_Nevis.png::CompressedTexture2D::8528808975968349066::1708465952::1708465963::1::::<><>::
-Saint_Lucia.png::CompressedTexture2D::8513822644890791062::1708465952::1708465963::1::::<><>::
-Saint_Martin.png::CompressedTexture2D::5750043708000309269::1708465952::1708465963::1::::<><>::
-Saint_Pierre_and_Miquelon.png::CompressedTexture2D::5075457250294646251::1708465952::1708465963::1::::<><>::
-Saint_Vincent_and_the_Grenadines.png::CompressedTexture2D::2108171580999770948::1708465952::1708465963::1::::<><>::
-Samoa.png::CompressedTexture2D::226768491177185656::1708465952::1708465963::1::::<><>::
-San_Marino.png::CompressedTexture2D::4354371006323532663::1708465952::1708465963::1::::<><>::
-Saudi_Arabia.png::CompressedTexture2D::5346299022895642273::1708466610::1708466613::1::::<><>::
-Scotland.png::CompressedTexture2D::2972662845418271211::1708465952::1708465963::1::::<><>::
-Senegal.png::CompressedTexture2D::8166041088660650891::1708465952::1708465963::1::::<><>::
-Serbia.png::CompressedTexture2D::5958108122768287235::1708465952::1708465963::1::::<><>::
-Seychelles.png::CompressedTexture2D::4083028045050704849::1708465952::1708465963::1::::<><>::
-Sierra_Leone.png::CompressedTexture2D::2877606368241170906::1708465952::1708465963::1::::<><>::
-Singapore.png::CompressedTexture2D::2331552752325756489::1708465952::1708465963::1::::<><>::
-Sint_Maarten.png::CompressedTexture2D::2254904732320173595::1708465952::1708465963::1::::<><>::
-Slovakia.png::CompressedTexture2D::5364020550692292761::1708465952::1708465963::1::::<><>::
-Slovenia.png::CompressedTexture2D::6357152021205109336::1708465952::1708465963::1::::<><>::
-Soloman_Islands.png::CompressedTexture2D::4575757720866155133::1708467149::1708467153::1::::<><>::
-Somalia.png::CompressedTexture2D::4986447652786383947::1708465952::1708465963::1::::<><>::
-South_Africa.png::CompressedTexture2D::3301555547889253729::1708467192::1708467195::1::::<><>::
-South_Korea.png::CompressedTexture2D::1059660761625091417::1708465952::1708465963::1::::<><>::
-South_Sudan.png::CompressedTexture2D::8126417614979038182::1708465952::1708465963::1::::<><>::
-Spain.png::CompressedTexture2D::8969843598450375174::1708465952::1708465963::1::::<><>::
-Sri_Lanka.png::CompressedTexture2D::7016196371328099031::1708465952::1708465963::1::::<><>::
-Sudan.png::CompressedTexture2D::7661180780410719147::1708465952::1708465963::1::::<><>::
-Suriname.png::CompressedTexture2D::5805603159497058885::1708465952::1708465963::1::::<><>::
-Sweden.png::CompressedTexture2D::9159575739428950735::1708465952::1708465963::1::::<><>::
-Switzerland.png::CompressedTexture2D::7697624073589227532::1708465952::1708465963::1::::<><>::
-Syria.png::CompressedTexture2D::1669609918473977057::1708465952::1708465963::1::::<><>::
-São_Tomé_and_Príncipe.png::CompressedTexture2D::1224308053279260005::1708465952::1708465963::1::::<><>::
-Tahiti.png::CompressedTexture2D::6413664989542973741::1708465952::1708465963::1::::<><>::
-Taiwan.png::CompressedTexture2D::8418453536865025631::1708465952::1708465963::1::::<><>::
-Tajikistan.png::CompressedTexture2D::4099681854251734635::1708465952::1708465963::1::::<><>::
-Tanzania.png::CompressedTexture2D::5508627208664309419::1708465952::1708465963::1::::<><>::
-Thailand.png::CompressedTexture2D::3872844370544095054::1708465952::1708465963::1::::<><>::
-Togo.png::CompressedTexture2D::4406053188379416330::1708465952::1708465963::1::::<><>::
-Tokelau.png::CompressedTexture2D::6176251072485171832::1708465952::1708465963::1::::<><>::
-Tonga.png::CompressedTexture2D::7458655276202771870::1708465952::1708465963::1::::<><>::
-Trinidad_and_Tobago.png::CompressedTexture2D::1185689439569410067::1708465952::1708465963::1::::<><>::
-Tristan_da_Cunha.png::CompressedTexture2D::7413750444738728975::1708465952::1708465963::1::::<><>::
-Tunisia.png::CompressedTexture2D::581872550473824611::1708465952::1708465963::1::::<><>::
-Turkey.png::CompressedTexture2D::4126652699332932622::1708465952::1708465963::1::::<><>::
-Turkmenistan.png::CompressedTexture2D::4909069362618671473::1708465952::1708465963::1::::<><>::
-Turks_and_Caicos_Islands.png::CompressedTexture2D::1905705403458288551::1708465952::1708465963::1::::<><>::
-Tuvalu.png::CompressedTexture2D::1165694371045949919::1708465952::1708465963::1::::<><>::
-Uganda.png::CompressedTexture2D::596086590081232677::1708465952::1708465963::1::::<><>::
-Ukraine.png::CompressedTexture2D::5372219218155116545::1708465952::1708465963::1::::<><>::
-United_Arab_Emirates.png::CompressedTexture2D::1240192499653448527::1708465952::1708465963::1::::<><>::
-United_States_of_America.png::CompressedTexture2D::3479897061860062963::1708465952::1708465963::1::::<><>::
-United_States_Virgin_Islands.png::CompressedTexture2D::1958762002346338680::1708465952::1708465963::1::::<><>::
-Uruguay.png::CompressedTexture2D::6854789816133520324::1708465952::1708465963::1::::<><>::
-Uzbekistan.png::CompressedTexture2D::2610543093032647965::1708465952::1708465963::1::::<><>::
-Vanuatu.png::CompressedTexture2D::8318667468430468852::1708465952::1708465963::1::::<><>::
-Vatican_City.png::CompressedTexture2D::5475363965573429016::1708465952::1708465963::1::::<><>::
-Venezuela.png::CompressedTexture2D::2875450395792705613::1708465952::1708465963::1::::<><>::
-Vietnam.png::CompressedTexture2D::1862529910313837973::1708465952::1708465963::1::::<><>::
-Wales.png::CompressedTexture2D::6239367160334548628::1708465952::1708465963::1::::<><>::
-Wallis_and_Futuna.png::CompressedTexture2D::8262992838264845915::1708465952::1708465963::1::::<><>::
-Yemen.png::CompressedTexture2D::7256755374257765073::1708465952::1708465963::1::::<><>::
-Zambia.png::CompressedTexture2D::6447204762864934234::1708465952::1708465963::1::::<><>::
-Zanibar.png::CompressedTexture2D::17013190543506078::1708465952::1708465963::1::::<><>::
-Zimbabwe.png::CompressedTexture2D::1554536023576780828::1708465952::1708465963::1::::<><>::
-::res://Resources/::1708465987
-Confederation.gd::GDScript::-1::1708465987::0::1::::Confederation<>Resource<>::
-Graph.gd::GDScript::-1::1708459421::0::1::::Graph<>Resource<>::
-territory.gd::GDScript::-1::1706911631::0::1::::Territory<>Resource<>::
-territorylist.gd::GDScript::-1::1706144707::0::1::::TerritoryList<>Resource<>::
-Tournament.gd::GDScript::-1::1706911883::0::1::::<>Node<>::
-WorldMap.gd::GDScript::-1::1708465037::0::1::::WorldMap<>Resource<>::
-::res://SaverLoader/::1706265518
-TerritorySaveLoader.gd::GDScript::-1::1706265518::0::1::::TerritorySaveLoader<>Node<>::
-::res://Scenes/::1706294939
-game_mode.tscn::PackedScene::6152867077861201729::1705807022::0::1::::<><>::
-start_up.tscn::PackedScene::5474885288116163727::1705806974::0::1::::<><>::uid://cgapilsdm1ebp::::res://Images/start_up_background.jpg
-::res://Scenes/Country Editor/::1707167670
-Area Val.gd::GDScript::-1::1706231270::0::1::::<>SpinBox<>::
-Code Name Text.gd::GDScript::-1::1706221210::0::1::::<>LineEdit<>::
-Con ID.gd::GDScript::-1::1706221179::0::1::::<>SpinBox<>::
-CoT ID.gd::GDScript::-1::1707167670::0::1::::<>SpinBox<>::
-CoT Name.gd::GDScript::-1::1706221154::0::1::::<>LineEdit<>::
-country_editor.gd::GDScript::-1::1706220952::0::1::::<>Control<>::
-country_editor.tscn::PackedScene::5212704358268972504::1706398363::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/country_editor.gd<>res://SaverLoader/TerritorySaveLoader.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/FileDialog.gd<>res://Scenes/Country Editor/ItemList.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>res://Scenes/Country Editor/T ID.gd<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
-FileDialog.gd::GDScript::-1::1706229005::0::1::::<>FileDialog<>::
-FileName Edit.gd::GDScript::-1::1706229903::0::1::::<>LineEdit<>::
-First Name List.gd::GDScript::-1::1706221780::0::1::::<>TextEdit<>::
-GDP Val.gd::GDScript::-1::1706231283::0::1::::<>SpinBox<>::
-ItemList.gd::GDScript::-1::1706252239::0::1::::<>ItemList<>::
-Last Names List.gd::GDScript::-1::1706221829::0::1::::<>TextEdit<>::
-League Rating Val.gd::GDScript::-1::1706231305::0::1::::<>SpinBox<>::
-LineEdit.gd::GDScript::-1::1706229745::0::1::::<>LineEdit<>::
-Pop Val.gd::GDScript::-1::1706231258::0::1::::<>SpinBox<>::
-Rating Value.gd::GDScript::-1::1706231296::0::1::::<>SpinBox<>::
-T ID.gd::GDScript::-1::1706231105::0::1::::<>SpinBox<>::
-Territory Name Edit.gd::GDScript::-1::1706229988::0::1::::<>LineEdit<>::
-TextureButton.gd::GDScript::-1::1706256802::0::1::::<>TextureButton<>::
-::res://Scenes/Main Menu/::1706225886
-main_menu.gd::GDScript::-1::1706145495::0::1::::<>Control<>::
-main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/World Editor/::1708466027
-GraphEdit.gd::GDScript::-1::1708459610::0::1::::<>GraphEdit<>::
-World Editor.gd::GDScript::-1::1707167670::0::1::::<>Control<>::
-World Editor.tscn::PackedScene::1217744872715804559::1708466027::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
-::res://Scenes/World Editor/Confederation Editors/::1708466027
-Confederation Editor.gd::GDScript::-1::1708459421::0::1::::<>GraphNode<>::
-Confederation Editor.tscn::PackedScene::4377020352998335848::1708466027::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
-ItemList.gd::GDScript::-1::1706904026::0::1::::<>ItemList<>::
-::res://Scenes/World Editor/League Editor/::1708466027
-League Editor.tscn::PackedScene::507481753769897923::1708466027::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-LeagueNode.tscn::PackedScene::8628539737815509014::1708466027::0::1::::<><>::
-::res://Scenes/World Editor/Territory Editors/::1708466027
-Territory Editor.gd::GDScript::-1::1707178970::0::1::::<>GraphNode<>::
-Territory Editor.tscn::PackedScene::8422911629128742764::1708466027::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
-::res://Textures/::1706304055
-main_menu.tres::Theme::320751974886637368::1706304055::0::1::::<><>::
+::res://::1708517382
+::res://Images/::1708472858
+icon.svg::CompressedTexture2D::5423449936511656178::1706994520::1708472858::1::::<><>::
+main_menu.jpg::CompressedTexture2D::5700266824544363140::1706994520::1706994520::1::::<><>::
+start_up_background.jpg::CompressedTexture2D::5194900076173832497::1706994520::1706994520::1::::<><>::
+::res://Images/country_flags/::1708472822
+Afghanistan.png::CompressedTexture2D::2990946929228077053::1692855265::1708472822::1::::<><>::
+Aland_Island.png::CompressedTexture2D::8058461509796127820::1692855589::1708472822::1::::<><>::
+Albania.png::CompressedTexture2D::6314968582148126294::1692855674::1708472822::1::::<><>::
+Algeria.png::CompressedTexture2D::8944171060964089784::1692857430::1708472822::1::::<><>::
+American_Samoa.png::CompressedTexture2D::8579963257015157395::1692857695::1708472822::1::::<><>::
+Andorra.png::CompressedTexture2D::2764212067935432176::1692857907::1708472822::1::::<><>::
+Angola.png::CompressedTexture2D::3614622626326161122::1692857959::1708472822::1::::<><>::
+Anguilla.png::CompressedTexture2D::880879470885651794::1692858164::1708472822::1::::<><>::
+Antarctica.png::CompressedTexture2D::5231351601706723285::1695400111::1708472822::1::::<><>::
+Antigua_and_Barbuda.png::CompressedTexture2D::546601733731032243::1692858206::1708472822::1::::<><>::
+Argentina.png::CompressedTexture2D::8898681997417656655::1692858429::1708472822::1::::<><>::
+Armenia.png::CompressedTexture2D::2710202324950324280::1692858721::1708472822::1::::<><>::
+Aruba.png::CompressedTexture2D::4968265232023730558::1692858862::1708472822::1::::<><>::
+Ascension_Island.png::CompressedTexture2D::8665395250760557843::1692859020::1708472822::1::::<><>::
+Australia.png::CompressedTexture2D::3036670060338954566::1692859214::1708472822::1::::<><>::
+Austria.png::CompressedTexture2D::7589588277331797697::1692859420::1708472822::1::::<><>::
+Azerbaijan.png::CompressedTexture2D::5397856975545137733::1692859670::1708472822::1::::<><>::
+Bahamas.png::CompressedTexture2D::8496847912954470058::1692859786::1708472822::1::::<><>::
+Bahrain.png::CompressedTexture2D::523289070351311962::1692859947::1708472822::1::::<><>::
+Bangladesh.png::CompressedTexture2D::4107395059493018551::1692860111::1708472822::1::::<><>::
+Barbados.png::CompressedTexture2D::7323633149911742458::1692860216::1708472822::1::::<><>::
+Belarus.png::CompressedTexture2D::3353380446429630207::1692860437::1708472822::1::::<><>::
+Belgium.png::CompressedTexture2D::4237133716972947560::1695134081::1708472822::1::::<><>::
+Belize.png::CompressedTexture2D::8687731241248827126::1695134347::1708472822::1::::<><>::
+Benin.png::CompressedTexture2D::6371716138690451758::1695134816::1708472822::1::::<><>::
+Bermuda.png::CompressedTexture2D::6020535954586549133::1695135976::1708472822::1::::<><>::
+Bhutan.png::CompressedTexture2D::7478268259633191875::1695136174::1708472822::1::::<><>::
+Bolivia.png::CompressedTexture2D::4687486467806284698::1695136386::1708472822::1::::<><>::
+Bonarie.png::CompressedTexture2D::7707532860776296780::1695136652::1708472822::1::::<><>::
+Bosnia_and_Herzegovina.png::CompressedTexture2D::8962038900558115267::1695137549::1708472822::1::::<><>::
+Botswana.png::CompressedTexture2D::3591484598911561474::1695137793::1708472822::1::::<><>::
+Brazil.png::CompressedTexture2D::3085679797967732541::1695138006::1708472822::1::::<><>::
+British_Virgin_Islands.png::CompressedTexture2D::3301652448255664182::1695138291::1708472822::1::::<><>::
+Brunei.png::CompressedTexture2D::3527861473302878947::1695138436::1708472822::1::::<><>::
+Bulgaria.png::CompressedTexture2D::1385251212104397492::1695138727::1708472822::1::::<><>::
+Burkina_Faso.png::CompressedTexture2D::5613928216757095766::1695138874::1708472822::1::::<><>::
+Burundi.png::CompressedTexture2D::6278404218493538680::1695139029::1708472822::1::::<><>::
+Cambodia.png::CompressedTexture2D::928711646653429902::1695139163::1708472822::1::::<><>::
+Cameroon.png::CompressedTexture2D::583269002453906834::1695139293::1708472822::1::::<><>::
+Canada.png::CompressedTexture2D::6355295468435396398::1695139492::1708472822::1::::<><>::
+Cape_Verde.png::CompressedTexture2D::7938924150327150476::1695139735::1708472822::1::::<><>::
+Cayman_Islands.png::CompressedTexture2D::492306000446710919::1695139984::1708472822::1::::<><>::
+Central_African_Republic.png::CompressedTexture2D::4767360585586902513::1695140150::1708472822::1::::<><>::
+Chad.png::CompressedTexture2D::4922697755805933644::1695140309::1708472822::1::::<><>::
+Chile.png::CompressedTexture2D::134951680203346747::1695140512::1708472822::1::::<><>::
+China.png::CompressedTexture2D::2499747506767018242::1695140702::1708472822::1::::<><>::
+Christmas_Island.png::CompressedTexture2D::5551023370547347243::1695398535::1708472822::1::::<><>::
+Cocos_(Keeling)_Islands.png::CompressedTexture2D::8261190761314902763::1695399506::1708472822::1::::<><>::
+Colombia.png::CompressedTexture2D::1805095953905250580::1695140900::1708472822::1::::<><>::
+Comoros.png::CompressedTexture2D::5297603934702043800::1695141912::1708472822::1::::<><>::
+Congo.png::CompressedTexture2D::6387499175948535038::1695142101::1708472822::1::::<><>::
+Cook_Islands.png::CompressedTexture2D::3098890212927855426::1695142356::1708472822::1::::<><>::
+Costa_Rica.png::CompressedTexture2D::7609419886067005061::1695142588::1708472822::1::::<><>::
+Croatia.png::CompressedTexture2D::4058671407315186657::1695142793::1708472822::1::::<><>::
+Cuba.png::CompressedTexture2D::3430139502556500122::1695142957::1708472822::1::::<><>::
+Curacao.png::CompressedTexture2D::3692279656460606308::1695143122::1708472822::1::::<><>::
+Cyprus.png::CompressedTexture2D::8995849683132525581::1695143346::1708472822::1::::<><>::
+Czech_Republic.png::CompressedTexture2D::9207032062948487362::1695143988::1708472822::1::::<><>::
+Denmark.png::CompressedTexture2D::72248314080967675::1695144195::1708472822::1::::<><>::
+Djibouti.png::CompressedTexture2D::4614176405761866987::1695144356::1708472822::1::::<><>::
+Dominica.png::CompressedTexture2D::7043137751906454559::1695144511::1708472822::1::::<><>::
+Dominican_Republic.png::CompressedTexture2D::3282832891177911285::1695144653::1708472822::1::::<><>::
+DR_Congo.png::CompressedTexture2D::4099274508734318062::1695144809::1708472822::1::::<><>::
+East_Timor.png::CompressedTexture2D::3727999578093213249::1695342756::1708472822::1::::<><>::
+Ecuador.png::CompressedTexture2D::2096649405377966480::1695144993::1708472822::1::::<><>::
+Egypt.png::CompressedTexture2D::948767663275431420::1695145134::1708472822::1::::<><>::
+El_Salvador.png::CompressedTexture2D::7442919604898596242::1695145332::1708472822::1::::<><>::
+England.png::CompressedTexture2D::4061750465119292623::1695145475::1708472822::1::::<><>::
+Equatorial_Guinea.png::CompressedTexture2D::1199353209676733072::1695145689::1708472822::1::::<><>::
+Eritrea.png::CompressedTexture2D::1894222246095192876::1695146958::1708472822::1::::<><>::
+Estonia.png::CompressedTexture2D::8335052570636554074::1695164957::1708472822::1::::<><>::
+Eswatini.png::CompressedTexture2D::4793097324983329104::1695165128::1708472822::1::::<><>::
+Ethiopia.png::CompressedTexture2D::1261710452146601274::1695165314::1708472822::1::::<><>::
+Falkland_Islands.png::CompressedTexture2D::4019608866402374811::1695398052::1708472822::1::::<><>::
+Faroe_Islands.png::CompressedTexture2D::8663147347731024486::1695165525::1708472822::1::::<><>::
+Federated States of Micronesia.png::CompressedTexture2D::6714151059608238401::1698521305::1708472822::1::::<><>::
+Fiji.png::CompressedTexture2D::1051771629901920253::1695165773::1708472822::1::::<><>::
+Finland.png::CompressedTexture2D::7745756278493743942::1695166218::1708472822::1::::<><>::
+France.png::CompressedTexture2D::3881395526819005922::1695166499::1708472822::1::::<><>::
+French_Guiana.png::CompressedTexture2D::7497557942853002424::1695167031::1708472822::1::::<><>::
+French_Polynesia.png::CompressedTexture2D::4683217312736805843::1695340911::1708472822::1::::<><>::
+Gabon.png::CompressedTexture2D::3495128458940481216::1695167056::1708472822::1::::<><>::
+Gambia.png::CompressedTexture2D::5282166361046497165::1695167276::1708472822::1::::<><>::
+Georgia.png::CompressedTexture2D::2103373221458802729::1695167420::1708472822::1::::<><>::
+Germany.png::CompressedTexture2D::7024087001490091940::1695167674::1708472822::1::::<><>::
+Ghana.png::CompressedTexture2D::8907843574019213058::1695167971::1708472822::1::::<><>::
+Gibraltar.png::CompressedTexture2D::7400360505966910934::1695180074::1708472822::1::::<><>::
+Greece.png::CompressedTexture2D::8760622023516537802::1695180430::1708472822::1::::<><>::
+Greenland.png::CompressedTexture2D::3154444681293595966::1695180717::1708472822::1::::<><>::
+Grenada.png::CompressedTexture2D::3147198077860537452::1695180906::1708472822::1::::<><>::
+Guadeloupe.png::CompressedTexture2D::1557700743780615484::1708472822::1708472822::1::::<><>::
+Guam.png::CompressedTexture2D::7055958940916692589::1695181490::1708472822::1::::<><>::
+Guatemala.png::CompressedTexture2D::2591368703410470861::1695222192::1708472822::1::::<><>::
+Guernsey.png::CompressedTexture2D::1279170032930047561::1695358223::1708472822::1::::<><>::
+Guinea.png::CompressedTexture2D::8376084285891902674::1695222378::1708472822::1::::<><>::
+Guinea_Bissau.png::CompressedTexture2D::5146643186840701596::1695222552::1708472822::1::::<><>::
+Guyana.png::CompressedTexture2D::8491681775665600317::1695222731::1708472822::1::::<><>::
+Haiti.png::CompressedTexture2D::5557310228025253681::1695223364::1708472822::1::::<><>::
+Hawaii.png::CompressedTexture2D::8741048501637412931::1695223803::1708472822::1::::<><>::
+Honduras.png::CompressedTexture2D::2016893669485984688::1695224049::1708472822::1::::<><>::
+Hong_Kong.png::CompressedTexture2D::4745851001885645956::1695224341::1708472822::1::::<><>::
+Hungary.png::CompressedTexture2D::3864956974729052339::1695224528::1708472822::1::::<><>::
+Iceland.png::CompressedTexture2D::5262021813575956182::1695168442::1708472822::1::::<><>::
+India.png::CompressedTexture2D::7493830127685053148::1695224694::1708472822::1::::<><>::
+Indonesia.png::CompressedTexture2D::5767683080643722661::1695224991::1708472822::1::::<><>::
+Iran.png::CompressedTexture2D::1052878593114606960::1695225200::1708472822::1::::<><>::
+Iraq.png::CompressedTexture2D::7206760059068917635::1695225356::1708472822::1::::<><>::
+Ireland.png::CompressedTexture2D::7158339902510648025::1695225523::1708472822::1::::<><>::
+Isle_of_Man.png::CompressedTexture2D::6142922045700379208::1695234337::1708472822::1::::<><>::
+Isle_of_Wight.png::CompressedTexture2D::5535828922811156862::1695234976::1708472822::1::::<><>::
+Isreal.png::CompressedTexture2D::1805536490000796693::1695235272::1708472822::1::::<><>::
+Italy.png::CompressedTexture2D::3245971216498118837::1695235458::1708472822::1::::<><>::
+Ivory_Coast.png::CompressedTexture2D::3155505655510879979::1695235659::1708472822::1::::<><>::
+Jamaica.png::CompressedTexture2D::5346692821339763105::1708472822::1708472822::1::::<><>::
+Japan.png::CompressedTexture2D::7971061112821819788::1695236079::1708472822::1::::<><>::
+Jersey.png::CompressedTexture2D::1400136867898222282::1695357994::1708472822::1::::<><>::
+Jordan.png::CompressedTexture2D::7318564362265352741::1695236960::1708472822::1::::<><>::
+Kazakhstan.png::CompressedTexture2D::1785414443794958693::1695237102::1708472822::1::::<><>::
+Kenya.png::CompressedTexture2D::8622607296523250502::1695237277::1708472822::1::::<><>::
+Kiribati.png::CompressedTexture2D::1882727627473125221::1695237491::1708472822::1::::<><>::
+Kosovo.png::CompressedTexture2D::4740527049238130::1695237653::1708472822::1::::<><>::
+Kuwait.png::CompressedTexture2D::5795177694296659116::1695237914::1708472822::1::::<><>::
+Kyrgyzstan.png::CompressedTexture2D::5955197891251566192::1695238201::1708472822::1::::<><>::
+Laos.png::CompressedTexture2D::1477341939556367397::1695238445::1708472822::1::::<><>::
+Latvia.png::CompressedTexture2D::4443975456530829686::1695238669::1708472822::1::::<><>::
+Lebanon.png::CompressedTexture2D::16377801519032025::1695238855::1708472822::1::::<><>::
+Lesotho.png::CompressedTexture2D::8321785917930483399::1695239188::1708472822::1::::<><>::
+Liberia.png::CompressedTexture2D::5895464519038363303::1695239316::1708472822::1::::<><>::
+Libya.png::CompressedTexture2D::678802253291044611::1695244868::1708472822::1::::<><>::
+Liechtenstein.png::CompressedTexture2D::8188071857255743400::1695245062::1708472822::1::::<><>::
+Lithuania.png::CompressedTexture2D::1459030248861687388::1695245864::1708472822::1::::<><>::
+Luxembourg.png::CompressedTexture2D::6855587927168548700::1695246052::1708472822::1::::<><>::
+Macau.png::CompressedTexture2D::356130374623849949::1695246238::1708472822::1::::<><>::
+Madagascar.png::CompressedTexture2D::1281321641665318271::1695246601::1708472822::1::::<><>::
+Madeira.png::CompressedTexture2D::9137043702954268198::1695246990::1708472822::1::::<><>::
+Malawi.png::CompressedTexture2D::6629520518282447993::1695247794::1708472822::1::::<><>::
+Malaysia.png::CompressedTexture2D::4087312615105853603::1695248042::1708472822::1::::<><>::
+Maldives.png::CompressedTexture2D::5700635047906844122::1695248475::1708472822::1::::<><>::
+Mali.png::CompressedTexture2D::4551258744602585453::1695248662::1708472822::1::::<><>::
+Malta.png::CompressedTexture2D::6177873094464149189::1695248835::1708472822::1::::<><>::
+Martinique.png::CompressedTexture2D::8156835230532623533::1695250734::1708472822::1::::<><>::
+Mauritania.png::CompressedTexture2D::1869818844013291672::1695251018::1708472822::1::::<><>::
+Mauritius.png::CompressedTexture2D::7669421709340242121::1695251297::1708472822::1::::<><>::
+Mayotte.png::CompressedTexture2D::2757178223911313302::1695251523::1708472822::1::::<><>::
+Mexico.png::CompressedTexture2D::8542209692353291243::1695251721::1708472822::1::::<><>::
+Moldova.png::CompressedTexture2D::7587424749895666475::1695252216::1708472822::1::::<><>::
+Monaco.png::CompressedTexture2D::1186332796642616028::1695252611::1708472822::1::::<><>::
+Mongolia.png::CompressedTexture2D::1936366181483476328::1695253069::1708472822::1::::<><>::
+Montenegro.png::CompressedTexture2D::8077200583449346823::1695254142::1708472822::1::::<><>::
+Montserrat.png::CompressedTexture2D::2723210865071476001::1695254790::1708472822::1::::<><>::
+Morocco.png::CompressedTexture2D::2384019188627489033::1695255339::1708472822::1::::<><>::
+Mozambique.png::CompressedTexture2D::2113071750453122187::1695255555::1708472822::1::::<><>::
+Myanmar.png::CompressedTexture2D::7321021864964337520::1695255739::1708472822::1::::<><>::
+Namibia.png::CompressedTexture2D::1656110563292404079::1695255954::1708472822::1::::<><>::
+Nauru.png::CompressedTexture2D::8647120986113462490::1695399845::1708472822::1::::<><>::
+Nepal.png::CompressedTexture2D::7547613207894104482::1695256149::1708472822::1::::<><>::
+Netherlands.png::CompressedTexture2D::1138581264335079446::1695256428::1708472822::1::::<><>::
+New_Caledonia.png::CompressedTexture2D::1156369764070615762::1695256685::1708472822::1::::<><>::
+New_Zealand.png::CompressedTexture2D::702343909870154346::1695256889::1708472822::1::::<><>::
+Nicaragua.png::CompressedTexture2D::5823695777379622852::1695260395::1708472822::1::::<><>::
+Niger.png::CompressedTexture2D::2879748487174741795::1695260777::1708472822::1::::<><>::
+Nigeria.png::CompressedTexture2D::5724821635743822129::1695260987::1708472822::1::::<><>::
+Niue.png::CompressedTexture2D::3303189598708212077::1695398917::1708472822::1::::<><>::
+Norfolk_Island.png::CompressedTexture2D::2568537849339988576::1695398305::1708472822::1::::<><>::
+Northern_Ireland.png::CompressedTexture2D::5998545249604330512::1695261412::1708472822::1::::<><>::
+Northern_Mariana_Islands.png::CompressedTexture2D::7704211683472929751::1695261685::1708472822::1::::<><>::
+North_Korea.png::CompressedTexture2D::791126719895950500::1698716763::1708472822::1::::<><>::
+North_Macedonia.png::CompressedTexture2D::1926766024700981159::1695261200::1708472822::1::::<><>::
+Norway.png::CompressedTexture2D::3447704480091093755::1695262056::1708472822::1::::<><>::
+Oman.png::CompressedTexture2D::431082431139248400::1695262228::1708472822::1::::<><>::
+Orkney.png::CompressedTexture2D::2028468770675574822::1695262424::1708472822::1::::<><>::
+Pakistan.png::CompressedTexture2D::7299119250481686266::1695262725::1708472822::1::::<><>::
+Palau.png::CompressedTexture2D::8521676695228471055::1695262901::1708472822::1::::<><>::
+Palestine.png::CompressedTexture2D::8749035665240483685::1695263047::1708472822::1::::<><>::
+Panama.png::CompressedTexture2D::1315411438698175040::1695263247::1708472822::1::::<><>::
+Papua_New_Guinea.png::CompressedTexture2D::643818355238213194::1695263401::1708472822::1::::<><>::
+Paraguay.png::CompressedTexture2D::59961794239371970::1695263825::1708472822::1::::<><>::
+Peru.png::CompressedTexture2D::4949032867200370767::1695264012::1708472822::1::::<><>::
+Philippines.png::CompressedTexture2D::2330955433022762799::1695264219::1708472822::1::::<><>::
+Pitcairn_Islands.png::CompressedTexture2D::591912309663617109::1695399644::1708472822::1::::<><>::
+Poland.png::CompressedTexture2D::6495160050578331065::1695264413::1708472822::1::::<><>::
+Portugal.png::CompressedTexture2D::5950137825279717558::1695264564::1708472822::1::::<><>::
+Puerto_Rico.png::CompressedTexture2D::4789495510050003875::1695264947::1708472822::1::::<><>::
+Qatar.png::CompressedTexture2D::8132254244412324696::1695265079::1708472822::1::::<><>::
+Reunion.png::CompressedTexture2D::3262524776483855700::1695265262::1708472822::1::::<><>::
+Romania.png::CompressedTexture2D::962041399961710568::1695265506::1708472822::1::::<><>::
+Russia.png::CompressedTexture2D::7507111252421234114::1695265654::1708472822::1::::<><>::
+Rwanda.png::CompressedTexture2D::2413938154816972451::1695265807::1708472822::1::::<><>::
+Saint_Barthélemy.png::CompressedTexture2D::1542403573745654499::1695273991::1708472822::1::::<><>::
+Saint_Helena.png::CompressedTexture2D::295975016216728069::1695270650::1708472822::1::::<><>::
+Saint_Kitts_and_Nevis.png::CompressedTexture2D::8528808975968349066::1695270965::1708472822::1::::<><>::
+Saint_Lucia.png::CompressedTexture2D::8513822644890791062::1695273617::1708472822::1::::<><>::
+Saint_Martin.png::CompressedTexture2D::5750043708000309269::1698863139::1708472822::1::::<><>::
+Saint_Pierre_and_Miquelon.png::CompressedTexture2D::5075457250294646251::1695396382::1708472822::1::::<><>::
+Saint_Vincent_and_the_Grenadines.png::CompressedTexture2D::2108171580999770948::1695273786::1708472822::1::::<><>::
+Samoa.png::CompressedTexture2D::226768491177185656::1695274230::1708472822::1::::<><>::
+San_Marino.png::CompressedTexture2D::4354371006323532663::1695274416::1708472822::1::::<><>::
+Saudi_Arabia.png::CompressedTexture2D::5346299022895642273::1708472822::1708472822::1::::<><>::
+Scotland.png::CompressedTexture2D::2972662845418271211::1695275331::1708472822::1::::<><>::
+Senegal.png::CompressedTexture2D::8166041088660650891::1695275550::1708472822::1::::<><>::
+Serbia.png::CompressedTexture2D::5958108122768287235::1695280904::1708472822::1::::<><>::
+Seychelles.png::CompressedTexture2D::4083028045050704849::1695281170::1708472822::1::::<><>::
+Sierra_Leone.png::CompressedTexture2D::2877606368241170906::1695281343::1708472822::1::::<><>::
+Singapore.png::CompressedTexture2D::2331552752325756489::1695281507::1708472822::1::::<><>::
+Sint_Maarten.png::CompressedTexture2D::2254904732320173595::1695281656::1708472822::1::::<><>::
+Slovakia.png::CompressedTexture2D::5364020550692292761::1695281871::1708472822::1::::<><>::
+Slovenia.png::CompressedTexture2D::6357152021205109336::1695282042::1708472822::1::::<><>::
+Soloman_Islands.png::CompressedTexture2D::4575757720866155133::1708472822::1708472822::1::::<><>::
+Somalia.png::CompressedTexture2D::4986447652786383947::1695282400::1708472822::1::::<><>::
+South_Africa.png::CompressedTexture2D::3301555547889253729::1708472822::1708472822::1::::<><>::
+South_Korea.png::CompressedTexture2D::1059660761625091417::1695282861::1708472822::1::::<><>::
+South_Sudan.png::CompressedTexture2D::8126417614979038182::1695283030::1708472822::1::::<><>::
+Spain.png::CompressedTexture2D::8969843598450375174::1695283245::1708472822::1::::<><>::
+Sri_Lanka.png::CompressedTexture2D::7016196371328099031::1695320814::1708472822::1::::<><>::
+Sudan.png::CompressedTexture2D::7661180780410719147::1695321190::1708472822::1::::<><>::
+Suriname.png::CompressedTexture2D::5805603159497058885::1695321364::1708472822::1::::<><>::
+Sweden.png::CompressedTexture2D::9159575739428950735::1695321542::1708472822::1::::<><>::
+Switzerland.png::CompressedTexture2D::7697624073589227532::1695340140::1708472822::1::::<><>::
+Syria.png::CompressedTexture2D::1669609918473977057::1695340420::1708472822::1::::<><>::
+São_Tomé_and_Príncipe.png::CompressedTexture2D::1224308053279260005::1695274826::1708472822::1::::<><>::
+Tahiti.png::CompressedTexture2D::6413664989542973741::1695340724::1708472822::1::::<><>::
+Taiwan.png::CompressedTexture2D::8418453536865025631::1695341307::1708472822::1::::<><>::
+Tajikistan.png::CompressedTexture2D::4099681854251734635::1695341631::1708472822::1::::<><>::
+Tanzania.png::CompressedTexture2D::5508627208664309419::1695342333::1708472822::1::::<><>::
+Thailand.png::CompressedTexture2D::3872844370544095054::1695342549::1708472822::1::::<><>::
+Togo.png::CompressedTexture2D::4406053188379416330::1695343023::1708472822::1::::<><>::
+Tokelau.png::CompressedTexture2D::6176251072485171832::1695398742::1708472822::1::::<><>::
+Tonga.png::CompressedTexture2D::7458655276202771870::1695343301::1708472822::1::::<><>::
+Trinidad_and_Tobago.png::CompressedTexture2D::1185689439569410067::1695343444::1708472822::1::::<><>::
+Tristan_da_Cunha.png::CompressedTexture2D::7413750444738728975::1695396906::1708472822::1::::<><>::
+Tunisia.png::CompressedTexture2D::581872550473824611::1695343921::1708472822::1::::<><>::
+Turkey.png::CompressedTexture2D::4126652699332932622::1695344141::1708472822::1::::<><>::
+Turkmenistan.png::CompressedTexture2D::4909069362618671473::1695344277::1708472822::1::::<><>::
+Turks_and_Caicos_Islands.png::CompressedTexture2D::1905705403458288551::1695344414::1708472822::1::::<><>::
+Tuvalu.png::CompressedTexture2D::1165694371045949919::1695344626::1708472822::1::::<><>::
+Uganda.png::CompressedTexture2D::596086590081232677::1695344860::1708472822::1::::<><>::
+Ukraine.png::CompressedTexture2D::5372219218155116545::1695345262::1708472822::1::::<><>::
+United_Arab_Emirates.png::CompressedTexture2D::1240192499653448527::1695345555::1708472822::1::::<><>::
+United_States_of_America.png::CompressedTexture2D::3479897061860062963::1695345778::1708472822::1::::<><>::
+United_States_Virgin_Islands.png::CompressedTexture2D::1958762002346338680::1695346815::1708472822::1::::<><>::
+Uruguay.png::CompressedTexture2D::6854789816133520324::1695345939::1708472822::1::::<><>::
+Uzbekistan.png::CompressedTexture2D::2610543093032647965::1695347021::1708472822::1::::<><>::
+Vanuatu.png::CompressedTexture2D::8318667468430468852::1695347205::1708472822::1::::<><>::
+Vatican_City.png::CompressedTexture2D::5475363965573429016::1695347374::1708472822::1::::<><>::
+Venezuela.png::CompressedTexture2D::2875450395792705613::1695347532::1708472822::1::::<><>::
+Vietnam.png::CompressedTexture2D::1862529910313837973::1695347823::1708472822::1::::<><>::
+Wales.png::CompressedTexture2D::6239367160334548628::1695348113::1708472822::1::::<><>::
+Wallis_and_Futuna.png::CompressedTexture2D::8262992838264845915::1695358444::1708472822::1::::<><>::
+Yemen.png::CompressedTexture2D::7256755374257765073::1695348394::1708472822::1::::<><>::
+Zambia.png::CompressedTexture2D::6447204762864934234::1695348530::1708472822::1::::<><>::
+Zanibar.png::CompressedTexture2D::17013190543506078::1695348722::1708472822::1::::<><>::
+Zimbabwe.png::CompressedTexture2D::1554536023576780828::1695348928::1708472822::1::::<><>::
+::res://Resources/::1708472822
+Confederation.gd::GDScript::-1::1708472822::0::1::::Confederation<>Resource<>::
+Graph.gd::GDScript::-1::1708116882::0::1::::Graph<>Resource<>::
+territory.gd::GDScript::-1::1706994520::0::1::::Territory<>Resource<>::
+territorylist.gd::GDScript::-1::1706994520::0::1::::TerritoryList<>Resource<>::
+Tournament.gd::GDScript::-1::1706994520::0::1::::<>Node<>::
+WorldMap.gd::GDScript::-1::1708465936::0::1::::WorldMap<>Resource<>::
+::res://SaverLoader/::1706994520
+TerritorySaveLoader.gd::GDScript::-1::1706994520::0::1::::TerritorySaveLoader<>Node<>::
+::res://Scenes/::1706994520
+game_mode.tscn::PackedScene::6152867077861201729::1706994520::0::1::::<><>::
+start_up.tscn::PackedScene::5474885288116163727::1706994520::0::1::::<><>::uid://cgapilsdm1ebp::::res://Images/start_up_background.jpg
+::res://Scenes/Country Editor/::1707084278
+Area Val.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+Code Name Text.gd::GDScript::-1::1706994520::0::1::::<>LineEdit<>::
+Con ID.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+CoT ID.gd::GDScript::-1::1707076504::0::1::::<>SpinBox<>::
+CoT Name.gd::GDScript::-1::1706994520::0::1::::<>LineEdit<>::
+country_editor.gd::GDScript::-1::1706994520::0::1::::<>Control<>::
+country_editor.tscn::PackedScene::5212704358268972504::1707084278::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/country_editor.gd<>res://SaverLoader/TerritorySaveLoader.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/FileDialog.gd<>res://Scenes/Country Editor/ItemList.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>res://Scenes/Country Editor/T ID.gd<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
+FileDialog.gd::GDScript::-1::1706994520::0::1::::<>FileDialog<>::
+FileName Edit.gd::GDScript::-1::1706994520::0::1::::<>LineEdit<>::
+First Name List.gd::GDScript::-1::1706994520::0::1::::<>TextEdit<>::
+GDP Val.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+ItemList.gd::GDScript::-1::1706994520::0::1::::<>ItemList<>::
+Last Names List.gd::GDScript::-1::1706994520::0::1::::<>TextEdit<>::
+League Rating Val.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+LineEdit.gd::GDScript::-1::1706994520::0::1::::<>LineEdit<>::
+Pop Val.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+Rating Value.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+T ID.gd::GDScript::-1::1706994520::0::1::::<>SpinBox<>::
+Territory Name Edit.gd::GDScript::-1::1706994520::0::1::::<>LineEdit<>::
+TextureButton.gd::GDScript::-1::1706994520::0::1::::<>TextureButton<>::
+::res://Scenes/Main Menu/::1706994520
+main_menu.gd::GDScript::-1::1706994520::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::9010644990611671047::1706994520::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
+::res://Scenes/World Editor/::1708473306
+GraphEdit.gd::GDScript::-1::1708473228::0::1::::<>GraphEdit<>::
+World Editor.gd::GDScript::-1::1707093807::0::1::::<>Control<>::
+World Editor.tscn::PackedScene::1217744872715804559::1708473306::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
+::res://Scenes/World Editor/Confederation Editors/::1708472822
+Confederation Editor.gd::GDScript::-1::1708472822::0::1::::<>GraphNode<>::
+Confederation Editor.tscn::PackedScene::4377020352998335848::1708381910::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
+ItemList.gd::GDScript::-1::1706994520::0::1::::<>ItemList<>::
+::res://Scenes/World Editor/League Editor/::1708465936
+League Editor.tscn::PackedScene::507481753769897923::1708465936::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
+LeagueNode.tscn::PackedScene::8628539737815509014::1708381910::0::1::::<><>::
+::res://Scenes/World Editor/Territory Editors/::1708381910
+Territory Editor.gd::GDScript::-1::1707078589::0::1::::<>GraphNode<>::
+Territory Editor.tscn::PackedScene::8422911629128742764::1708381910::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cjjfos4gtmqba::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
+::res://Textures/::1706994520
+main_menu.tres::Theme::320751974886637368::1706994520::0::1::::<><>::

@@ -269,7 +269,6 @@ func _on_territory_selected(index: int) -> void:
 		load_territory(index);
 	else:
 		world_map.graph_nodes[node_selected_num].selected_index = index;	
-	
 """
 This function runs when the user clicks "Delete Territory - " Button and currently has a counry selected
 """
