@@ -1,7 +1,7 @@
 class_name WorldMap extends Resource
 
 @export var graph_nodes: Dictionary
-@export var graph_edges: Dictionary 
+#@export var graph_edges: Dictionary 
  
 
 """
@@ -17,12 +17,10 @@ func add_node(new_node: GraphNode) -> void:
 	# Now we place it into the graph_nodes dictionary
 	graph_nodes[new_node.confed.ID] = new_node;
 
-	# Now we set up the connection list in graph_edges, no connections for now tho
-	graph_edges[new_node.confed.ID] = [];
 	
 	
 func add_edge(a: GraphNode, b: GraphNode) -> int:
-	graph_edges[a.confed.ID] = b.confed.ID;
+	b.confed.Owner_ID 
 	# Now we should have the the GNodes of both A and B
 	return 0;
 		
@@ -33,8 +31,11 @@ Functions below are for the deletion of nodes and edges, even clearing all nodes
 
 func delete_node(a: GraphNode) -> void:
 	# First we want to delete any connections it may have
-	for connections: Array in graph_edges.values():
-		connections.erase(a.confed.ID);
+	for node: GraphNode in graph_nodes.values():
+		if node == graph_nodes[1]:
+			continue
+		if node.confed.Owner_ID == a.confed.ID:
+			node.confed.ID = -1;
 	
 	# Second, we want to delete the node from the graph_nodes
 	graph_nodes.erase(a.confed.ID)
@@ -45,14 +46,18 @@ func delete_node(a: GraphNode) -> void:
 	
 	
 func delete_edge(a: GraphNode, b: GraphNode) -> void:
-	pass
+	a.confed.Owner_ID = -1;
+
 	
 func clear() -> void:
 	graph_nodes.clear();
-	graph_edges.clear();
 	
 func clear_edges() -> void:
-	graph_edges.clear();
+	for node: GraphNode in graph_nodes.values():
+		if node == graph_nodes[1]:
+			continue
+		if node.confed.Level != 0:
+			node.confed.Owner_ID = -1;
 	
 	
 """
@@ -60,11 +65,9 @@ Functions below are for quick checks, all return boolean values
 """
 func has_edge(a: GraphNode, b: GraphNode) -> bool:
 	# Since this graph is directed, it should be a -> b
-	var connections: Array = graph_edges[a.confed.ID];
-	for id in connections:
-		if id == b.confed.ID:
-			return true;
-	return false;
+	if a.confed.Owner_ID == b.confed.ID:
+		return true;
+	return false
 	
 func has_node(a: GraphNode) -> bool:
 	if a in graph_nodes.values():
@@ -79,8 +82,11 @@ Functions below are to get simple information such as size, level, etcs
 """
 func get_edge_count() -> int:
 	var edge_count: int  = 0;
-	for connection_list: Array in graph_edges.values():
-		edge_count += connection_list.size();
+	for node: GraphNode in graph_nodes.values():
+		if node == graph_nodes[1]:
+			continue
+		if node.confed.Level != 0 and node.confed.Owner_ID != 1:
+			edge_count += 1;
 	return edge_count; 
 
 func get_node_count() -> int:
@@ -118,40 +124,54 @@ to do with traversing the graph
 """
 func are_connected(a: GraphNode, b:GraphNode) -> bool:
 	# This function simply sees if two nodes are connected
-	var visited: Array;
-	var queue: Array;
-	queue.push_back(a.confed.ID);
-	visited.push_back(a.confed.ID);
-	var curr_node: int;
+	var curr_node: GraphNode;
+	curr_node = a;
 	
-	while not queue.is_empty():
-		#Get node in front
-		curr_node = queue.pop_front();
-		#Get curr_node connected children and add them to lists
-		var children = graph_edges[curr_node];
-		for child: int in children:
-			if child == b.ID:
-				return true;
-			visited.push_back(child);
-			queue.push_back(child);
+	
+	while curr_node.confed.Level != 0 or curr_node.confed.Owner_ID != 0:
+		# Reach end of edges, even if not world node, we exit
+		if curr_node.confed.Owner_ID == -1:
+			break
+		
+		# If next node is b, we return true since they are connected	
+		if curr_node.confed.Owner_ID == b.confed.ID:
+			return true
+			
+		# Iter	
+		curr_node = graph_nodes[curr_node.confed.Owner_ID];
 	return false;
+		
+			
+		
+		
+			
+		
+		
+	
 	
 func shortest_path(a: GraphNode, b: GraphNode) -> Array:
 	return [];
 	
 	
 func propagate_country_list(node: GraphNode) -> void:
+	# First, we simply check if there even are any higher level nodes
 	if node.confed.Owner_ID == -1:
-		return
-	# First we need to get the territory list found in current GNode
-	var confed: Confederation = node.confed;
-	var territory_list: Dictionary = confed.Territory_List;
-	# Now we place each territory into the owner node's territory list
-	var owner_id: int = confed.Owner_ID;
-	var curr_id: int = confed.ID;
+		return #Nothing to do, so return
+	if node.confed.Level == 0 and node.confed.Owner_ID == 0:
+		return # World Node, return
+		
 	
-	while owner_id != 0 or curr_id != 0:
-		var owner_node: GraphNode = graph_nodes[owner_id];
+	# Set current node as given node
+	var curr_node: GraphNode = node;
+	
+	while curr_node.confed.Level != 0 or curr_node.confed.Owner_ID != 0:
+		# First, we simply check if there even are any higher level nodes
+		if curr_node.confed.Owner_ID == -1:
+			return #Nothing to do, so return
+		
+		var territory_list: Dictionary = curr_node.confed.Territory_List;
+		var owner_node: GraphNode = graph_nodes[curr_node.confed.Owner_ID];
+		
 		for terr: Territory in territory_list.values():
 			# Get ItemList of GraphNode in order to add items to it 
 			# for each new territory added
@@ -167,10 +187,9 @@ func propagate_country_list(node: GraphNode) -> void:
 			
 			# Finally, we store it into owner node territory list
 			owner_node.confed.Territory_List[new_index] = terr;
-		graph_nodes[owner_id].confed.Territory_List = owner_node.confed.Territory_List;
-		curr_id = owner_id
-		owner_id = owner_node.confed.Owner_ID;
+		# Once we added countries, we simply reflect changes and update curr_node	
 		owner_node.reflect_territory_changes();
+		curr_node = owner_node;
 		
 func update_world_map() -> void:
 	#TODO: Write this function, basically iterates through all nodes (except world and terr edit)
@@ -182,7 +201,7 @@ func compress_node_tracker(deleted_key: int):
 	# Here we simply want to compress the dictionary so all nodes are in numerical order
 	var index: int = deleted_key;
 	while index + 1 in graph_nodes.keys():
-		var temp_node: GraphNode = graph_edges[index + 1].graphnode;
+		var temp_node: GraphNode = graph_nodes[index + 1];
 		graph_nodes[index] = temp_node;
 		index += 1;
 	graph_nodes.erase(index); 

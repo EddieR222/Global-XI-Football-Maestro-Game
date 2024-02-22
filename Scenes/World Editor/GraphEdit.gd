@@ -3,7 +3,13 @@ extends GraphEdit
 const CONFED_NODE : String = "res://Scenes/World Editor/Confederation Editors/Confederation Editor.tscn";
 const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Territory Editor.tscn";
 
-
+"""
+All known issues still:
+	- Load File Systems hasn't been checked or really implemented
+	- Deleting Confed Nodes works but we need to rid connections as well as they currently just stay on screen
+	- Deleting Territory inherited from lower level node doesn't carry up! Feature? 
+		or Just Notify User to delete Lowest insertion of it to fully delete it completely
+"""
 
 @export var world_map: WorldMap = WorldMap.new() 
 @export var node_selected_num: int = -1
@@ -35,8 +41,7 @@ func _ready():
 	#Finally we add these nodes to the nodes tracker to be able to manpulate them later
 	world_map.graph_nodes[0] = world_confed_node;
 	world_map.graph_nodes[1] = terr_edit_node;
-	world_map.graph_edges[0] = [];
-	world_map.graph_edges[1] = [];
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,25 +82,6 @@ func establish_world_node() -> GraphNode:
 	
 	# Finally return the world node
 	return world_confed_node
-	
-#func compress_node_tracker(deleted_key: int):
-	## Here we simply want to compress the dictionary so all nodes are in numerical order
-	#var index: int = deleted_key;
-	#while index + 1 in node_tracker:
-		#var temp_node: GraphNode = node_tracker[index + 1];
-		#node_tracker[index] = temp_node;
-		#index += 1;
-	#node_tracker.erase(index); 
-	#
-	## Here we also want to compress the dictionary in world_map
-	#var idx: int = deleted_key;
-	#while idx + 1 in world_map.Confederation_Dict:
-		#var temp_confed: Confederation = world_map.Confederation_Dict[idx + 1];
-		#temp_confed.ID = idx
-		#world_map.Confederation_Dict[idx] = temp_confed;
-		#idx += 1;
-	#world_map.Confederation_Dict.erase(idx);
-	#
 
 func connect_signals_from_confed_node(node: GraphNode) -> void:
 	# Here we connect the mouse_entered signal so selection is based on the player mouse entering the node area
@@ -118,7 +104,6 @@ func connect_signals_from_confed_node(node: GraphNode) -> void:
 	var delete_confirmation = node.get_node("ConfirmationDialog")
 	delete_confirmation.confirmed.connect(_on_deleted_confirmed);
 	
-
 func connect_signals_from_territory_node(node: GraphNode) -> void:
 	# Here we connect the "Done" button from territory node
 	var done_button: Button = node.get_node("VBoxContainer2/Done");
@@ -189,8 +174,9 @@ func _on_delete_node_pressed():
 		1:
 			print("Can not delete Territory Editor Node, please select another to delete")
 	
-	var g_node = world_map.get_Gnode(node_selected_num);
-	world_map.delete_node(g_node);	
+	var node: GraphNode = world_map.graph_nodes[node_selected_num];
+	world_map.delete_node(node);
+	node.queue_free();
 	
 """ 
 The following function handles 
@@ -203,12 +189,16 @@ func _on_edit_territory_pressed():
 		return
 	
 	# Now we check if node_open_edit is equal to -1, if yes, then we know that we are allowed to open the edit territory scene again
-	if node_open_edit != -1 and node_open_edit != node_selected_num:
-		return
-		
-	# Now if no territory is even selected, we return
-	if node_open_edit != -1 or world_map.graph_nodes[node_open_edit].selected_index == -1:
-		return		
+	if node_open_edit == -1: 
+		# Here, we know no current node has territory edit open
+		if world_map.graph_nodes[node_selected_num].selected_index == -1:
+			return
+	else:
+		# Here, we know some node has territory edit open
+		if node_open_edit != node_selected_num:
+			return
+		if world_map.graph_nodes[node_open_edit].selected_index == -1:
+			return 
 		
 	# Set open_node_edit as the currently selected node
 	node_open_edit = node_selected_num;
@@ -305,7 +295,8 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 		#We are connecting already connected node, we need to ensure it doesn't connect down
 		if owner_node.confed.Level >= curr_node.confed.Level:
 			return
-		
+	if curr_node.confed.Owner_ID != -1:
+		return
 	
 	
 	# Connect the nodes

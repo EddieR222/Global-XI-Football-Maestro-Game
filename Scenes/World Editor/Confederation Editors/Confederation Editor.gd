@@ -1,6 +1,6 @@
 extends GraphNode
 
-@export var selected_index: int;
+@export var selected_index: int = -1;
 @export var confed: Confederation;
 
 
@@ -106,18 +106,6 @@ The function below will alphabetize and reorganize the dictionary
 
 func sort_items():
 	pass
-
-
-
-
-
-
-
-
-#func _on_gui_input(event):
-	#print("GUI EVENT")
-	#print(event)
-	
 
 
 func _on_edit_territory_pressed():
