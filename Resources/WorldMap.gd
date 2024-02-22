@@ -1,8 +1,7 @@
 class_name WorldMap extends Resource
 
 @export var graph_nodes: Dictionary
-#@export var graph_edges: Dictionary 
- 
+
 
 """
 All functions below are for adding nodes and edges

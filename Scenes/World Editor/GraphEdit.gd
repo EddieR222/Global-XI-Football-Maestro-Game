@@ -15,7 +15,7 @@ All known issues still:
 @export var node_selected_num: int = -1
 @export var node_open_edit: int = -1
 
-
+ 
 
 """
 Preload Nodes that we will instantiate later 

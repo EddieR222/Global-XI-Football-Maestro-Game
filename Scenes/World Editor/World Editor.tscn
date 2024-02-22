@@ -92,3 +92,4 @@ use_native_dialog = true
 [connection signal="connection_request" from="VBoxContainer/Confed Edit" to="VBoxContainer/Confed Edit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="VBoxContainer/Confed Edit" to="VBoxContainer/Confed Edit" method="_on_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/Confed Edit" to="VBoxContainer/Confed Edit" method="_on_node_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

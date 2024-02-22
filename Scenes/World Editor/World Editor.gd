@@ -21,9 +21,14 @@ func _on_load_file_pressed():
 	$FileDialog.visible = true;
 	
 
+func _on_file_dialog_file_selected(path):
+	var world_map : WorldMap = ResourceLoader.load(path);
 	
+	$"VBoxContainer/Confed Edit".world_map = world_map;
 	
-	
-
-
-
+	for node: GraphNode in world_map.graph_nodes.values():
+		var confed: Confederation = node.confed;
+		for terr: Territory in confed.Territory_List.values():
+			print(terr.Territory_Name);
+		
+		
