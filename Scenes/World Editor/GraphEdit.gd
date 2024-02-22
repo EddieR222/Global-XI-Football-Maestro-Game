@@ -5,15 +5,17 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 
 """
 All known issues still:
-	- Load File Systems hasn't been checked or really implemented
-	- Deleting Confed Nodes works but we need to rid connections as well as they currently just stay on screen
+	- Load File Systems has now been fixed, however we still need to be able to convert it back into graphs
+	- Connections now also delete along with node deleted, but to connections stay on screen but disappear once node is moved. Weird Glitch??
 	- Deleting Territory inherited from lower level node doesn't carry up! Feature? 
 		or Just Notify User to delete Lowest insertion of it to fully delete it completely
+	- Deleting Node doesn't update levels for children node, need to fix
 """
 
-@export var world_map: WorldMap = WorldMap.new() 
+@export var world_map: Graph = Graph.new() 
 @export var node_selected_num: int = -1
 @export var node_open_edit: int = -1
+@export var Filename: String = ""
 
  
 
@@ -41,7 +43,6 @@ func _ready():
 	#Finally we add these nodes to the nodes tracker to be able to manpulate them later
 	world_map.graph_nodes[0] = world_confed_node;
 	world_map.graph_nodes[1] = terr_edit_node;
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -175,6 +176,7 @@ func _on_delete_node_pressed():
 			print("Can not delete Territory Editor Node, please select another to delete")
 	
 	var node: GraphNode = world_map.graph_nodes[node_selected_num];
+	clear_nodes_connections(node.name)
 	world_map.delete_node(node);
 	node.queue_free();
 	
@@ -317,7 +319,26 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 	
 	# Now we put the territory list into the owner confederation
 	world_map.propagate_country_list(curr_node);
+	
+	
+func _on_disconnection_request(from_node, from_port, to_node, to_port):
+	disconnect_node(from_node, from_port, to_node, to_port);
 
+
+func clear_nodes_connections(from_node: StringName):
+	# First we get all connections
+	var connections: Array = get_connection_list();
+	
+	# Now we iterate and delete all connections
+	for connection: Dictionary in connections:
+		if connection["from_node"] == from_node:
+			# Here we know this connection is connected to another node
+			_on_disconnection_request(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"]);
+			continue
+		if connection["to_node"] == from_node:
+			_on_disconnection_request(connection["to_node"], connection["to_port"], connection["from_node"], connection["from_port"]);
+			continue
+	
 """
 The two functions belows essentially decide and change the needed values when a GraphNode is selected or entered.
 """
@@ -336,5 +357,28 @@ func _on_node_entered(confed_id: int):
 func _on_node_selected(node: GraphNode):
 	node_selected_num = world_map.graph_nodes.find_key(node)
 
-func _on_disconnection_request(from_node, from_port, to_node, to_port):
-	disconnect_node(from_node, from_port, to_node, to_port);
+
+"""
+Functions below are responsible for saving and loading the WorldMap to user data. 
+"""
+func _on_save_file_pressed():
+	var save_map: WorldMap = WorldMap.new();
+	save_map.save_confederations(world_map.graph_nodes);
+	ResourceSaver.save(save_map, "user://{filename}.tres".format({"filename": Filename}));
+	
+func _on_line_edit_text_changed(new_text: String):
+	Filename = new_text;
+
+func _on_load_file_pressed():
+	$"../../FileDialog".visible = true;
+
+func _on_file_dialog_file_selected(path):
+	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
+	
+	#world_map = file_map;
+	
+	for node in file_map.Confederations.values():
+		for terr: Territory in node.Territory_List.values():
+			print(terr.Territory_Name);
+		
+		

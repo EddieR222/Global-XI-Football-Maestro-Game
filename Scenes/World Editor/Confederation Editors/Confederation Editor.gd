@@ -2,20 +2,10 @@ extends GraphNode
 
 @export var selected_index: int = -1;
 @export var confed: Confederation;
+#@export var tot_terr_count: int;
 
 
 signal graphnode_selected(confed_id: int);
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 	
 """
 This function allows another scene to get the territory info that is currently selected
@@ -49,6 +39,12 @@ func _on_add_territory_pressed():
 	# For the item in the ItemList, we add a territory to the territory dictionary
 	var default_territory: Territory = Territory.new();
 	default_territory.Territory_Name = "Territory"
+	
+	# Here we want to set the Territory ID as the next value
+	var node: GraphEdit = get_node("../Confed Edit");
+	var graph: Graph = node.world_map;
+
+	
 	confed.Territory_List[index] = default_territory;
 	
 	# Emit signal as button press counts as GraphNode selected

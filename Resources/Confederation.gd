@@ -1,8 +1,8 @@
 
-class_name Confederation extends Resource
+class_name Confederation extends Node
 
 
-@export var graph_node: StringName;
+
 
 
 @export var Name: String;

@@ -1,5 +1,5 @@
 class_name Territory
-extends Resource
+extends Node
 
 
 # Identifying Information
