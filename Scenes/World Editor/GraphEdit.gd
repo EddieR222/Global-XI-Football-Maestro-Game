@@ -9,7 +9,6 @@ All known issues still:
 	- Connections now also delete along with node deleted, but to connections stay on screen but disappear once node is moved. Weird Glitch??
 	- Deleting Territory inherited from lower level node doesn't carry up! Feature? 
 		or Just Notify User to delete Lowest insertion of it to fully delete it completely
-	- Deleting Node doesn't update levels for children node, need to fix
 """
 
 @export var world_map: Graph = Graph.new() 
@@ -74,7 +73,7 @@ func establish_world_node() -> GraphNode:
 	# Now we make the confederation info for this node which will be stored in WorldMap;
 	var world_confed_info = Confederation.new(); 
 	world_confed_info.Level = 0;
-	world_confed_info.Owner_ID = 0;
+	world_confed_info.Owner_ID = -1;
 	world_confed_info.ID = 0;
 	world_confed_info.Name = "World"
 	
@@ -128,6 +127,9 @@ func save_territory() -> void:
 	world_map.graph_nodes[node_open_edit].reflect_territory_changes();
 	world_map.propagate_country_list(world_map.graph_nodes[node_open_edit]);
 	
+	#Now organize territories
+	world_map.organize_all_territories();
+	
 func load_territory(selected_index: int ) -> void:
 	# First we grab the territory info
 	var terr_list: Dictionary = world_map.get_node_territory_list(node_open_edit);
@@ -164,6 +166,9 @@ func _on_add_confed_node_pressed():
 	#Enable Slots for all added nodes
 	enable_slots(new_node)
 	
+	#Fixed all levels
+	world_map.organize_levels();
+	
 func _on_delete_node_pressed():
 	match node_selected_num:
 		-1:
@@ -178,6 +183,7 @@ func _on_delete_node_pressed():
 	var node: GraphNode = world_map.graph_nodes[node_selected_num];
 	clear_nodes_connections(node.name)
 	world_map.delete_node(node);
+	world_map.organize_levels();
 	node.queue_free();
 	
 """ 
@@ -204,17 +210,9 @@ func _on_edit_territory_pressed():
 		
 	# Set open_node_edit as the currently selected node
 	node_open_edit = node_selected_num;
-	
-	#var terr_list: Dictionary = world_map.get_node_territory_list(node_open_edit);
-	#if not terr_list.has(world_map.graph_nodes[node_open_edit].selected_index):
-		#return	
-	
+
 	# This makes the territory editor visible
 	world_map.toggle_terr_edit_visiblity();
-
-
-	# Now we set its position to the right side of the Confederation Node that opened it
-	#node_tracker[1].position = node_tracker[node_open_edit].position + Vector2(node_tracker[node_open_edit].size.x, 0);
 	
 	# Now we need to display the previously saved territory information
 	var previous_terr: Territory = world_map.graph_nodes[node_open_edit].get_selected_territory();
@@ -240,6 +238,9 @@ func _on_done_button_pressed():
 	
 	# Now we set node_open_edit to -1 to show that node_tracker isn't open and we are allowed to changed
 	node_open_edit = -1
+	
+	#Now organize territories
+	world_map.organize_all_territories();
 	
 """
 This function switches the country info displayed on the Edit Territory Editor depending on which country the user selected.
@@ -317,8 +318,14 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 	world_map.graph_nodes[curr_node.confed.ID].confed.Level = owner_level + 1;
 	world_map.graph_nodes[curr_node.confed.ID].confed.Owner_ID = owner_node.confed.ID;
 	
+	#Add curr_node to owner_node's children
+	world_map.graph_nodes[owner_node.confed.ID].confed.Children_ID.push_back(curr_node.confed.ID)
+	
 	# Now we put the territory list into the owner confederation
 	world_map.propagate_country_list(curr_node);
+	
+	# Organize all territories
+	world_map.organize_all_territories();
 	
 	
 func _on_disconnection_request(from_node, from_port, to_node, to_port):

@@ -41,9 +41,11 @@ func _on_add_territory_pressed():
 	default_territory.Territory_Name = "Territory"
 	
 	# Here we want to set the Territory ID as the next value
-	var node: GraphEdit = get_node("../Confed Edit");
-	var graph: Graph = node.world_map;
-
+	var node : GraphEdit = get_node("../../Confed Edit");
+	var current_terr_num : int = node.world_map.get_territory_num();
+	print("Terr ID: " + str(current_terr_num))
+	default_territory.Territory_ID = current_terr_num;
+	
 	
 	confed.Territory_List[index] = default_territory;
 	
@@ -60,13 +62,9 @@ func _on_delete_territory_pressed():
 
 
 func delete_and_organize() -> void:
-	# First we need to delete the territory from the dictionary
-	var index:int  = selected_index;
-	confed.Territory_List.erase(index);
-	
 	# Now we organize the list to keep it linear since thats how items will be 
 	# after a item is deleted
-	var curr_index: int = index;
+	var curr_index: int = selected_index;
 	while curr_index + 1 in confed.Territory_List.keys():
 		var temp_terr: Territory = confed.Territory_List[curr_index + 1];
 		confed.Territory_List[curr_index] = temp_terr;
@@ -74,7 +72,7 @@ func delete_and_organize() -> void:
 	confed.Territory_List.erase(curr_index); 
 	
 	# Now we simply deleted it from ItemList which automatically shifts everything down
-	$HBoxContainer/ItemList.remove_item(index);
+	$HBoxContainer/ItemList.remove_item(selected_index);
 	selected_index = -1;
 	
 	reflect_territory_changes();

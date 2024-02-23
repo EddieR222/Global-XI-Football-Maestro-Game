@@ -10,6 +10,7 @@ class_name Confederation extends Node
 @export var Level: int;
 @export var Territory_List: Dictionary;
 @export var Owner_ID: int;
+@export var Children_ID: Array[int];
 @export var Confed_Tournaments: Dictionary;
 
 
