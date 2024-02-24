@@ -22,17 +22,17 @@ func load_previous_territory_info(t: Territory) -> void:
 func _on_texture_button_pressed():
 	$VBoxContainer2/HBoxContainer/FileDialog.visible = 1;
 
-func _on_territory_name_edit_text_submitted(new_text: String) -> void:
+func _on_territory_name_edit_text_changed(new_text):
 	territory.Territory_Name = new_text
 	
 func _on_CoT_ID_value_changed(value: float):
 	territory.CoTerritory_ID = int(value);
 
-func _on_COT_name_text_submitted(new_text: String):
+func _on_co_t_name_text_changed(new_text: String):
 	territory.CoTerritory_Name = new_text
-	
-func _on_code_name_text_text_submitted(new_text: String):
-	territory.Code = new_text
+
+func _on_code_name_text_text_changed(new_text: String):
+	territory.Code = new_text	
 
 func _on_pop_val_value_changed(value: float):
 	territory.Population = value
@@ -89,10 +89,3 @@ func get_territory() -> Territory:
 	
 
 
-
-
-
-
-
-
-	

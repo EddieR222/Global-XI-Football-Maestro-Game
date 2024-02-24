@@ -39,10 +39,17 @@ func _on_add_territory_pressed():
 	# For the item in the ItemList, we add a territory to the territory dictionary
 	var default_territory: Territory = Territory.new();
 	default_territory.Territory_Name = "Territory"
+	default_territory.CoTerritory_ID = 0;
+	default_territory.Area = 0;
+	default_territory.Population = 0;
+	default_territory.Code = ""
+	default_territory.GDP = 0;
+	default_territory.Rating = 0;
+	default_territory.League_Elo = 0;
 	
 	# Here we want to set the Territory ID as the next value
 	var node : GraphEdit = get_node("../../Confed Edit");
-	var current_terr_num : int = node.world_map.get_territory_num();
+	var current_terr_num : int = node.world_map.get_territory_num() + 1;
 	print("Terr ID: " + str(current_terr_num))
 	default_territory.Territory_ID = current_terr_num;
 	
@@ -97,11 +104,6 @@ func reflect_territory_changes():
 """
 The function below will alphabetize and reorganize the dictionary
 """
-
-func sort_items():
-	pass
-
-
 func _on_edit_territory_pressed():
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);

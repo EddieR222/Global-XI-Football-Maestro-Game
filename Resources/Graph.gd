@@ -1,6 +1,7 @@
 class_name Graph extends Resource
 
 @export var graph_nodes: Dictionary
+@export var territory_directary: Dictionary;
 
 
 """
@@ -121,14 +122,8 @@ func get_node(index: int) -> GraphNode:
 	return graph_nodes[index];
 	
 func get_territory_num() -> int:
-	var terrtories : Array = [];
-	for node: GraphNode in graph_nodes.values():
-		if node == graph_nodes[1]:
-			continue
-		for terr: Territory in node.confed.Territory_List.values():
-			if terr.Territory_ID not in terrtories:
-				terrtories.push_back(terr.Territory_ID);
-	return terrtories.size();
+	organize_all_territories();
+	return territory_directary.size();
 
 	
 """
@@ -209,6 +204,21 @@ func update_graph() -> void:
 	
 	pass	
 	
+	
+func propagate_territory_id_change(old_id: int, new_id: int) -> void:
+	for node: GraphNode in graph_nodes.values():
+		if node == graph_nodes[1]:
+			continue
+			
+		var t_list: Dictionary = node.get_territory_dict();
+		
+		for terr: Territory in t_list.values():
+			if terr.Territory_ID == old_id:
+				terr.Territory_ID = new_id;
+			if terr.CoTerritory_ID == old_id:
+				terr.CoTerritory_ID = new_id;
+	
+	
 func compress_node_tracker(deleted_key: int):
 	# Here we simply want to compress the dictionary so all nodes are in numerical order
 	var index: int = deleted_key;
@@ -272,11 +282,33 @@ func organize_confeds(deleted_key: int) -> void:
 	
 func organize_all_territories() -> void:
 	#Here we will iterate through all GraphNodes in the graph_nodes
+	var entire_terr_list: Dictionary;
+	var entire_terr_arr: Array = [];
 	for node: GraphNode in graph_nodes.values():
 		if node == graph_nodes[1]:
 			continue
 		
 		organize_specific_territories(node);
+		var t_list: Dictionary = node.get_territory_dict();
+		
+		for terr: Territory in t_list.values():
+			if terr not in entire_terr_arr:
+				entire_terr_arr.push_back(terr);
+				
+	entire_terr_arr.sort_custom(func(a, b): return a.Territory_Name < b.Territory_Name);
+	
+	var new_id: int = 1
+	for terr: Territory in entire_terr_arr:
+		var old_id: int = terr.Territory_ID;
+		entire_terr_list[new_id] = terr
+		propagate_territory_id_change(new_id, -1)
+		propagate_territory_id_change(old_id, new_id)
+		propagate_territory_id_change(-1, old_id)
+		terr.Territory_ID = new_id
+		entire_terr_list[new_id] = terr
+		new_id += 1;	
+		
+	territory_directary = entire_terr_list;
 		
 func organize_specific_territories(node: GraphNode) -> void:
 	var terr_list: Dictionary = node.confed.Territory_List.duplicate();
@@ -335,7 +367,4 @@ func organize_levels() -> void:
 			continue;			
 
 
-
-
-	
 

@@ -101,7 +101,7 @@ file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer" groups=["T_Info"]]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "ID: 0"
@@ -137,7 +137,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme = ExtResource("5_b6u1a")
-text = "CoTerritory ID
+text = "CoTerritory Name
+
 "
 horizontal_alignment = 1
 
@@ -308,11 +309,11 @@ text = "Done"
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="text_submitted" from="VBoxContainer2/HBoxContainer/MarginContainer/Territory Name Edit" to="." method="_on_territory_name_edit_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer2/HBoxContainer/MarginContainer/Territory Name Edit" to="." method="_on_territory_name_edit_text_changed"]
 [connection signal="file_selected" from="VBoxContainer2/HBoxContainer/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="value_changed" from="VBoxContainer2/GridContainer/CoT ID" to="." method="_on_CoT_ID_value_changed"]
-[connection signal="text_submitted" from="VBoxContainer2/GridContainer/CoT Name" to="." method="_on_COT_name_text_submitted"]
-[connection signal="text_submitted" from="VBoxContainer2/GridContainer/Code Name Text" to="." method="_on_code_name_text_text_submitted"]
+[connection signal="text_changed" from="VBoxContainer2/GridContainer/CoT Name" to="." method="_on_co_t_name_text_changed"]
+[connection signal="text_changed" from="VBoxContainer2/GridContainer/Code Name Text" to="." method="_on_code_name_text_text_changed"]
 [connection signal="value_changed" from="VBoxContainer2/GridContainer/Pop Val" to="." method="_on_pop_val_value_changed"]
 [connection signal="value_changed" from="VBoxContainer2/GridContainer/Area Val" to="." method="_on_area_val_value_changed"]
 [connection signal="value_changed" from="VBoxContainer2/GridContainer/GDP Val" to="." method="_on_gdp_val_value_changed"]
