@@ -179,13 +179,27 @@ func _on_delete_node_pressed():
 			return
 		1:
 			print("Can not delete Territory Editor Node, please select another to delete")
-	
+			
+	$"../../ConfirmationDialog".visible = true;
+
+func _on_confirmation_dialog_confirmed():
 	var node: GraphNode = world_map.graph_nodes[node_selected_num];
+	
+	# We need to delete all the territories that exist in the node
+	var territory_list: Dictionary = node.get_territory_dict();
+	for terr: Territory in territory_list.values():
+		if world_map.has_lower_dependence(terr, node):
+			world_map.propagate_country_deletion(terr, node);
+		else:
+			# If no dependence, delete and propragte deletion
+			world_map.propagate_country_deletion(terr, node);
+			node.delete_and_organize();
+	
 	clear_nodes_connections(node.name)
 	world_map.delete_node(node);
 	world_map.organize_levels();
+	world_map.organize_all_territories();
 	node.queue_free();
-	
 """ 
 The following function handles 
 """
@@ -400,3 +414,6 @@ func _on_file_dialog_file_selected(path):
 			print(terr.Territory_Name);
 		
 		
+
+
+

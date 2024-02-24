@@ -78,7 +78,7 @@ script = ExtResource("3_hpr62")
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 2
-size = Vector2i(275, 159)
+size = Vector2i(312, 159)
 ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0
@@ -92,6 +92,14 @@ dialog_text = "               You cannot delete a territory if it is Inherited.
 Please delete it from highest level that contains the territory. 
                                              Thank you!"
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 2
+size = Vector2i(375, 158)
+dialog_text = "              Deleting A Confederation Node,
+ Deletes all Counties Inside This Confederation 
+             (except for Inheritied Countries). 
+                  Do you still wish to delete?"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Load File" to="VBoxContainer/Confed Edit" method="_on_load_file_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Save File" to="VBoxContainer/Confed Edit" method="_on_save_file_pressed"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/LineEdit" to="VBoxContainer/Confed Edit" method="_on_line_edit_text_changed"]
@@ -101,3 +109,4 @@ Please delete it from highest level that contains the territory.
 [connection signal="disconnection_request" from="VBoxContainer/Confed Edit" to="VBoxContainer/Confed Edit" method="_on_disconnection_request"]
 [connection signal="node_selected" from="VBoxContainer/Confed Edit" to="VBoxContainer/Confed Edit" method="_on_node_selected"]
 [connection signal="file_selected" from="FileDialog" to="VBoxContainer/Confed Edit" method="_on_file_dialog_file_selected"]
+[connection signal="confirmed" from="ConfirmationDialog" to="VBoxContainer/Confed Edit" method="_on_confirmation_dialog_confirmed"]
