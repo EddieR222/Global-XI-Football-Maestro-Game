@@ -77,20 +77,12 @@ script = ExtResource("3_hpr62")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
-initial_position = 2
-size = Vector2i(275, 159)
+initial_position = 1
 ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0
 access = 1
 use_native_dialog = true
-
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
-initial_position = 2
-size = Vector2i(487, 132)
-dialog_text = "               You cannot delete a territory if it is Inherited. 
-Please delete it from highest level that contains the territory. 
-                                             Thank you!"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Load File" to="VBoxContainer/Confed Edit" method="_on_load_file_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Save File" to="VBoxContainer/Confed Edit" method="_on_save_file_pressed"]

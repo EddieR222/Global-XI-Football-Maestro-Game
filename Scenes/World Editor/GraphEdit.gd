@@ -7,8 +7,6 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 All known issues still:
 	- Load File Systems has now been fixed, however we still need to be able to convert it back into graphs
 	- Connections now also delete along with node deleted, but to connections stay on screen but disappear once node is moved. Weird Glitch??
-	- Deleting Territory inherited from lower level node doesn't carry up! Feature? 
-		or Just Notify User to delete Lowest insertion of it to fully delete it completely
 """
 
 @export var world_map: Graph = Graph.new() 
@@ -48,6 +46,9 @@ func _process(delta):
 	#This means that is the territory editor is visible, we move it to edge of node that opened it
 	if world_map.is_terr_edit_visible():
 		world_map.graph_nodes[1].position = world_map.graph_nodes[node_open_edit].position + Vector2(world_map.graph_nodes[node_open_edit].size.x, 0) * zoom;
+		
+	if $"../../FileDialog".visible == true:
+		$"../../FileDialog".size = Vector2(275, 160)
 		
 func establish_world_node() -> GraphNode:
 	#First we simply instantiate the Node into the scene tree
@@ -270,7 +271,18 @@ func _on_deleted_confirmed():
 	world_map.graph_nodes[1].visible = false;
 	
 	# Calls the method specific to the node to delete the territory from it's list and organize its list (similar to compress and organize) 
+	var curr_node: GraphNode = world_map.graph_nodes[node_selected_num]
+	
+	# IF Territory has lower dependences, then dont delete
+	if world_map.has_lower_dependence(curr_node.get_selected_territory(), curr_node):
+		$"../../AcceptDialog".visible = true;
+		return
+	
+	# If no dependence, delete and propragte deletion
+	world_map.propagate_country_deletion(curr_node.get_selected_territory(), curr_node);
 	world_map.graph_nodes[node_selected_num].delete_and_organize();
+	
+	
 		
 """
 The function below is used to enable slots for the confederation nodes. This allows connection between nodes

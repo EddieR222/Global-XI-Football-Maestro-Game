@@ -77,6 +77,25 @@ func has_node(a: GraphNode) -> bool:
 		return true;
 	else:
 		return false;
+		
+func has_lower_dependence(terr: Territory, node: GraphNode) -> bool:
+	var children_nodes: Array = node.confed.Children_ID;
+	
+	# If node doesn't have any children, we for sure know it has not lower dependencies so we return false
+	if children_nodes.is_empty():
+		return false
+	
+	for child: int in children_nodes:
+		var child_node: GraphNode = graph_nodes[child];
+		
+		var territory_list = child_node.get_territory_dict();
+		
+		for territory:Territory in territory_list.values():
+			if territory.Territory_ID == terr.Territory_ID:
+				return true
+	
+	
+	return false;
 
 
 
@@ -186,6 +205,30 @@ func propagate_country_list(node: GraphNode) -> void:
 			owner_node.confed.Territory_List[new_index] = terr;
 		# Once we added countries, we simply reflect changes and update curr_node	
 		owner_node.reflect_territory_changes();
+		curr_node = owner_node;
+
+func propagate_country_deletion(terr: Territory, node: GraphNode) -> void:
+	# First, we simply check if there even are any higher level nodes
+	if node.confed.Owner_ID == -1:
+		return #Nothing to do, so return
+	# Set current node as given node
+	var curr_node: GraphNode = node;
+	
+	while curr_node: #or curr_node.confed.Owner_ID != 0:
+		if curr_node.confed.Owner_ID == -1:
+			break
+		var owner_node: GraphNode = graph_nodes[curr_node.confed.Owner_ID];
+	
+		# If territory is already in owner territory list, skip to avoid duplicating territories
+		if terr in owner_node.confed.Territory_List.values():
+			var key_to_delete: int = owner_node.confed.Territory_List.find_key(terr);
+			owner_node.confed.Territory_List.erase(key_to_delete)
+			var itemlist: ItemList = owner_node.get_node("HBoxContainer/ItemList");
+			itemlist.remove_item(key_to_delete)
+			organize_specific_territories(owner_node);
+			# Now we simply deleted it from ItemList which automatically shifts everything down
+		# Once we added countries, we simply reflect changes and update curr_node	
+		
 		curr_node = owner_node;
 		
 func update_graph() -> void:
