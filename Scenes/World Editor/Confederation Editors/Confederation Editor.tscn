@@ -98,8 +98,10 @@ text_overrun_behavior = 3
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 initial_position = 2
-size = Vector2i(1796, 124)
-dialog_text = "Deleting A Country Will Also Delete All Teams and Tournaments Of The Country As Well, Do You Still Wish To Delete?"
+size = Vector2i(771, 220)
+dialog_text = "           Deleting A Country Will Also Delete All 
+Teams and Tournaments Of The Country As Well, 
+                   Do You Still Wish To Delete?"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="text_changed" from="HBoxContainer2/LineEdit" to="." method="_on_line_edit_text_changed"]

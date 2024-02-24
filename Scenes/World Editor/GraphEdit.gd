@@ -6,7 +6,6 @@ const TERRITORY_NODE : String = "res://Scenes/World Editor/Territory Editors/Ter
 """
 All known issues still:
 	- Load File Systems has now been fixed, however we still need to be able to convert it back into graphs
-	- Connections now also delete along with node deleted, but to connections stay on screen but disappear once node is moved. Weird Glitch??
 """
 
 @export var world_map: Graph = Graph.new() 
