@@ -1,5 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1708813519
+::res://::1708821914
+::res://Database/::1708821914
 ::res://Images/::1708581164
 icon.svg::CompressedTexture2D::5005012556432720634::1702155814::1708581144::1::::<><>::
 main_menu.jpg::CompressedTexture2D::6923708401058514228::1704023311::1708581144::1::::<><>::
@@ -293,12 +294,12 @@ TextureButton.gd::GDScript::-1::1708811956::0::1::::<>TextureButton<>::
 ::res://Scenes/Main Menu/::1708811956
 main_menu.gd::GDScript::-1::1708811956::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/Team Editor/::1708812033
-Team Editor.tscn::PackedScene::5428947114430059492::1708812033::0::1::::<><>::
-::res://Scenes/World Editor/::1708813500
-GraphEdit.gd::GDScript::-1::1708813494::0::1::::<>GraphEdit<>::
+::res://Scenes/Team Editor/::1708821829
+Team Editor.tscn::PackedScene::5428947114430059492::1708821829::0::1::::<><>::
+::res://Scenes/World Editor/::1708821829
+GraphEdit.gd::GDScript::-1::1708813708::0::1::::<>GraphEdit<>::
 World Editor.gd::GDScript::-1::1708811957::0::1::::<>Control<>::
-World Editor.tscn::PackedScene::1217744872715804559::1708813500::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
+World Editor.tscn::PackedScene::1217744872715804559::1708821829::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
 ::res://Scenes/World Editor/Confederation Editors/::1708811956
 Confederation Editor.gd::GDScript::-1::1708811955::0::1::::<>GraphNode<>::
 Confederation Editor.tscn::PackedScene::4377020352998335848::1708810909::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
