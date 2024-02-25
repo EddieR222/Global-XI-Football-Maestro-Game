@@ -38,10 +38,10 @@ func _ready():
 	world_map.graph_nodes[1] = terr_edit_node;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	##This means that is the territory editor is visible, we move it to edge of node that opened it
-	#if world_map.is_terr_edit_visible():
-		#world_map.graph_nodes[1].position = world_map.graph_nodes[node_open_edit].position + Vector2(world_map.graph_nodes[node_open_edit].size.x, 0) * zoom;
+func _process(delta):
+	#This means that is the territory editor is visible, we move it to edge of node that opened it
+	if world_map.is_terr_edit_visible():
+		world_map.graph_nodes[1].position = world_map.graph_nodes[node_open_edit].position + Vector2(world_map.graph_nodes[node_open_edit].size.x, 0) * zoom;
 		#
 	#if $"../../FileDialog".visible == true:
 		#$"../../FileDialog".size = Vector2(275, 160)

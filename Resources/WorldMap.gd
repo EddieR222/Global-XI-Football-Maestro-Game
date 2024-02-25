@@ -7,6 +7,6 @@ func save_confederations(graph: Dictionary):
 	for node: GraphNode in graph.values():
 		if node == graph[1]:
 			continue
-		Confederations[node.confed.ID] = node.confed.duplicate();
+		Confederations[node.confed.ID] = node.confed;
 		
 	

@@ -1,7 +1,7 @@
 extends GraphNode
 
 @export var selected_index: int = -1;
-@export var confed: Confederation;
+var confed: Confederation;
 signal graphnode_selected(confed_id: int);
 """
 This function allows another scene to get the territory info that is currently selected
@@ -22,6 +22,36 @@ func set_confed_level(level: int):
 	
 	var level_label: Label= get_node("HBoxContainer2/Label");
 	level_label.text = "Level: " + str(confed.Level);
+	
+func set_confed(new_confed: Confederation) -> void:
+	# First we set the confed 
+	confed = new_confed;
+	
+	# Now we set the Line Edit to Reflect Confe Name
+	var confed_name_edit: LineEdit = get_node("HBoxContainer2/LineEdit");
+	confed_name_edit.text = confed.Name;
+	
+	# Now we set the confed level to what we had saved
+	set_confed_level(new_confed.Level)
+	
+	# Now we simply add and item for each territory in territory list, clear if needed
+	var item_list: ItemList = get_node("HBoxContainer/ItemList")
+	item_list.clear();
+	for terr: Territory in new_confed.Territory_List.values():
+		# Get Territory Name
+		var terr_name = terr.Territory_Name;
+		# Get Territory Flag or Icon
+		var texture_normal
+		var flag = terr.Flag;
+		if flag != null:
+			flag.decompress();
+			texture_normal = ImageTexture.create_from_image(flag);
+		else:
+			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			texture_normal = default_icon;
+		item_list.add_item(terr_name, texture_normal, true);
+	
+	
 	
 """
 These functions handle signls from within scene
@@ -111,7 +141,7 @@ func _on_item_list_item_selected(index):
 
 
 func _on_line_edit_text_changed(new_text):
-	
+	confed.Name = new_text;
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
 

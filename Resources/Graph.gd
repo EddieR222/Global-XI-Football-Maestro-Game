@@ -187,15 +187,21 @@ func propagate_country_list(node: GraphNode) -> void:
 		
 		var territory_list: Dictionary = curr_node.confed.Territory_List;
 		var owner_node: GraphNode = graph_nodes[curr_node.confed.Owner_ID];
-		
+		var skip: bool = false
 		for terr: Territory in territory_list.values():
 			# Get ItemList of GraphNode in order to add items to it 
 			# for each new territory added
 			var itemlist: ItemList = owner_node.get_node("HBoxContainer/ItemList");
 			
 			# If territory is already in owner territory list, skip to avoid duplicating territories
-			if terr in owner_node.confed.Territory_List.values():
-				continue;
+			for t: Territory in owner_node.confed.Territory_List.values():
+				if t.Territory_ID == terr.Territory_ID:
+					owner_node.confed.Territory_List[owner_node.confed.Territory_List.find_key(t)] = terr
+					skip = true
+					continue
+			if skip:
+				skip = false;
+				continue
 				
 			# Now we can add item 
 			itemlist.add_item(terr.Territory_Name, null, true);
@@ -328,6 +334,13 @@ func in_entire_list(terr: Territory, entire_list: Array) -> bool:
 		if terr.Territory_ID == t.Territory_ID:
 			return true;
 			
+	return false;
+	
+func in_entire_dict(terr: Territory, entire_dict: Dictionary) -> bool:
+	for t: Territory in entire_dict.values():
+		if t.Territory_ID == terr.Territory_ID:
+			t = terr
+			return true
 	return false;
 	
 	

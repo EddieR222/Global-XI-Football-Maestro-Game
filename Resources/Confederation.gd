@@ -1,9 +1,4 @@
-
-class_name Confederation extends Node
-
-
-
-
+class_name Confederation extends Resource
 
 @export var Name: String;
 @export var ID: int;

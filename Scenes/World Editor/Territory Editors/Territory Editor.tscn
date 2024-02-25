@@ -87,7 +87,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Territory"
 alignment = 1
-max_length = 30
+max_length = 50
 clear_button_enabled = true
 script = ExtResource("4_mpt5v")
 
@@ -99,6 +99,7 @@ ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0
 access = 2
+show_hidden_files = true
 use_native_dialog = true
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer" groups=["T_Info"]]
