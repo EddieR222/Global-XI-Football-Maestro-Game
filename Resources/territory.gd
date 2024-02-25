@@ -27,10 +27,10 @@ extends Resource
 @export var Rating: float;
 @export var League_Elo: float;
 
-
+@export var test: int
 # Tournaments in Country	
 @export var Tournaments: Dictionary
 
-#Teams
+# Teams
 @export var Teams: Dictionary
 

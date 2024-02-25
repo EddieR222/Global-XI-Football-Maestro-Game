@@ -186,4 +186,3 @@ dialog_text = "Are you sure you want to delete?"
 [connection signal="pressed" from="VBoxContainer/Editor Bar/VBoxContainer/HBoxContainer/Delete Team" to="." method="_on_delete_team_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Editor Bar/VBoxContainer/Team List" to="." method="_on_team_list_item_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
-[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
