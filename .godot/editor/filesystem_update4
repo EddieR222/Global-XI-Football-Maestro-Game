@@ -1,2 +1,4 @@
 res://Scenes/World Editor/World Editor.tscn
 res://Scenes/Team Editor/Team Editor.tscn
+res://Resources/territory.gd
+res://Scenes/World Editor/GraphEdit.gd

@@ -148,7 +148,7 @@ func _on_add_confed_node_pressed():
 	# Get Node from preloaded scene, and add to tree
 	var new_node: GraphNode = confed_node.instantiate(); 
 	add_child(new_node);
-	new_node.position_offset.x = get_viewport().get_mouse_position().x
+	new_node.position_offset = get_viewport().get_mouse_position()
 	
 	# Now we connect all needed signals 
 	connect_signals_from_confed_node(new_node);

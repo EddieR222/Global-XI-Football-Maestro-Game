@@ -29,4 +29,8 @@ extends Node
 
 
 # Tournaments in Country	
+@export var Tournaments: Dictionary
+
+#Teams
+@export var Teams: Dictionary
 
