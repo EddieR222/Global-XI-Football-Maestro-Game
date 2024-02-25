@@ -11,10 +11,7 @@ All known issues still:
 @export var world_map: Graph = Graph.new() 
 @export var node_selected_num: int = -1
 @export var node_open_edit: int = -1
-@export var Filename: String = ""
-
  
-
 """
 Preload Nodes that we will instantiate later 
 """
@@ -41,13 +38,13 @@ func _ready():
 	world_map.graph_nodes[1] = terr_edit_node;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#This means that is the territory editor is visible, we move it to edge of node that opened it
-	if world_map.is_terr_edit_visible():
-		world_map.graph_nodes[1].position = world_map.graph_nodes[node_open_edit].position + Vector2(world_map.graph_nodes[node_open_edit].size.x, 0) * zoom;
-		
-	if $"../../FileDialog".visible == true:
-		$"../../FileDialog".size = Vector2(275, 160)
+#func _process(delta):
+	##This means that is the territory editor is visible, we move it to edge of node that opened it
+	#if world_map.is_terr_edit_visible():
+		#world_map.graph_nodes[1].position = world_map.graph_nodes[node_open_edit].position + Vector2(world_map.graph_nodes[node_open_edit].size.x, 0) * zoom;
+		#
+	#if $"../../FileDialog".visible == true:
+		#$"../../FileDialog".size = Vector2(275, 160)
 		
 func establish_world_node() -> GraphNode:
 	#First we simply instantiate the Node into the scene tree
@@ -193,7 +190,7 @@ func _on_confirmation_dialog_confirmed():
 		else:
 			# If no dependence, delete and propragte deletion
 			world_map.propagate_country_deletion(terr, node);
-			node.delete_and_organize();
+			#node.delete_and_organize();
 	
 	clear_nodes_connections(node.name)
 	world_map.delete_node(node);
@@ -312,6 +309,7 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 	# This ensures a player doesn't try to connect a node to itself (which doesn't make sense)
 	if from_node == to_node:
 		return
+	
 		
 	# Next we need to ensure a node doesn't connect to a lower level node, essentially not create a cycle
 	var curr_node_path: NodePath = NodePath(from_node);
@@ -388,32 +386,5 @@ func _on_node_entered(confed_id: int):
 
 func _on_node_selected(node: GraphNode):
 	node_selected_num = world_map.graph_nodes.find_key(node)
-
-
-"""
-Functions below are responsible for saving and loading the WorldMap to user data. 
-"""
-func _on_save_file_pressed():
-	var save_map: WorldMap = WorldMap.new();
-	save_map.save_confederations(world_map.graph_nodes);
-	ResourceSaver.save(save_map, "user://{filename}.tres".format({"filename": Filename}));
-	
-func _on_line_edit_text_changed(new_text: String):
-	Filename = new_text;
-
-func _on_load_file_pressed():
-	$"../../FileDialog".visible = true;
-
-func _on_file_dialog_file_selected(path):
-	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
-	
-	#world_map = file_map;
-	
-	for node in file_map.Confederations.values():
-		for terr: Territory in node.Territory_List.values():
-			print(terr.Territory_Name);
-		
-		
-
 
 

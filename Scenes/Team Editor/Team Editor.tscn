@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cjl273pvm5ydo"]
+[gd_scene load_steps=2 format=3 uid="uid://cjl273pvm5ydo"]
+
+[ext_resource type="Script" path="res://Scenes/Team Editor/Team Editor.gd" id="1_v8esq"]
 
 [node name="TeamEditor" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v8esq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -16,3 +19,76 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0627451, 0.0823529, 0.0941176, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title Bar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Load File" type="Button" parent="VBoxContainer/Title Bar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "   File  "
+flat = true
+
+[node name="Save File" type="Button" parent="VBoxContainer/Title Bar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "  Save   "
+flat = true
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Title Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filename"
+alignment = 1
+
+[node name="Add Confed Node" type="Button" parent="VBoxContainer/Title Bar"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Add New Confederation"
+
+[node name="Delete Node" type="Button" parent="VBoxContainer/Title Bar"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Delete Selected Node"
+
+[node name="Editor Bar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="Country List" type="ItemList" parent="VBoxContainer/Editor Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+fixed_icon_size = Vector2i(75, 25)
+
+[node name="Team Edit Area" type="GridContainer" parent="VBoxContainer/Editor Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Team List" type="ItemList" parent="VBoxContainer/Editor Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 1
+
+[connection signal="pressed" from="VBoxContainer/Title Bar/Load File" to="." method="_on_load_file_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

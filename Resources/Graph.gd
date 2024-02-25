@@ -323,6 +323,14 @@ func organize_confeds(deleted_key: int) -> void:
 	#Finally, erase last index as this is a duplicate
 	graph_nodes.erase(index); 
 	
+func in_entire_list(terr: Territory, entire_list: Array) -> bool:
+	for t: Territory in entire_list:
+		if terr.Territory_ID == t.Territory_ID:
+			return true;
+			
+	return false;
+	
+	
 func organize_all_territories() -> void:
 	#Here we will iterate through all GraphNodes in the graph_nodes
 	var entire_terr_list: Dictionary;
@@ -334,8 +342,9 @@ func organize_all_territories() -> void:
 		organize_specific_territories(node);
 		var t_list: Dictionary = node.get_territory_dict();
 		
+
 		for terr: Territory in t_list.values():
-			if terr not in entire_terr_arr:
+			if not in_entire_list(terr, entire_terr_arr):
 				entire_terr_arr.push_back(terr);
 				
 	entire_terr_arr.sort_custom(func(a, b): return a.Territory_Name < b.Territory_Name);

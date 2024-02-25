@@ -2,11 +2,7 @@ extends GraphNode
 
 @export var selected_index: int = -1;
 @export var confed: Confederation;
-#@export var tot_terr_count: int;
-
-
 signal graphnode_selected(confed_id: int);
-	
 """
 This function allows another scene to get the territory info that is currently selected
 """
@@ -115,6 +111,7 @@ func _on_item_list_item_selected(index):
 
 
 func _on_line_edit_text_changed(new_text):
+	
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
 
