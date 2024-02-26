@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
 ::res://::1708855434
 ::res://Database/::1708821921
-::res://Database/World Maps/::1708821932
-World_Map.tres::Resource/Resource::-1::1708821932::0::1::::<><>::res://Resources/WorldMap.gd
+::res://Database/World Maps/::1708859748
+World Map Final.res::Resource/WorldMap::-1::1708859642::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/territory.gd
 ::res://Images/::1708848073
 icon.svg::CompressedTexture2D::5005012556432720634::1702155814::1708848073::1::::<><>::
 main_menu.jpg::CompressedTexture2D::6923708401058514228::1704023311::1708581144::1::::<><>::
@@ -260,11 +260,13 @@ Yemen.png::CompressedTexture2D::4820176071832298207::1708581154::1708581165::1::
 Zambia.png::CompressedTexture2D::1998685405704103537::1708581154::1708581165::1::::<><>::
 Zanibar.png::CompressedTexture2D::3963879997028338127::1708581154::1708581165::1::::<><>::
 Zimbabwe.png::CompressedTexture2D::6044695711844158437::1708581154::1708581165::1::::<><>::
-::res://Resources/::1708855045
+::res://Resources/::1708902515
 Confederation.gd::GDScript::-1::1708855037::0::1::::Confederation<>Resource<>::
 Graph.gd::GDScript::-1::1708851898::0::1::::Graph<>Resource<>::
 League_Graph.gd::GDScript::-1::1708811956::0::1::::League_Graph<>RefCounted<>::
-territory.gd::GDScript::-1::1708855045::0::1::::Territory<>Resource<>::
+Stadium.gd::GDScript::-1::1708890514::0::1::::Stadium<>Resource<>::
+Team.gd::GDScript::-1::1708896244::0::1::::Team<>Resource<>::
+territory.gd::GDScript::-1::1708902515::0::1::::Territory<>Resource<>::
 Tournament.gd::GDScript::-1::1708811957::0::1::::<>Node<>::
 WorldMap.gd::GDScript::-1::1708854128::0::1::::WorldMap<>Resource<>::
 ::res://Scenes/::1708811994
@@ -294,23 +296,25 @@ TextureButton.gd::GDScript::-1::1708811956::0::1::::<>TextureButton<>::
 ::res://Scenes/Main Menu/::1708811956
 main_menu.gd::GDScript::-1::1708811956::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/Team Editor/::1708855425
-Team Editor.gd::GDScript::-1::1708848028::0::1::::<>Control<>::
-Team Editor.tscn::PackedScene::5428947114430059492::1708855425::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd
-::res://Scenes/World Editor/::1708855426
+::res://Scenes/Team Editor/::1708917040
+Logo.gd::GDScript::-1::1708917022::0::1::::<>TextureButton<>::
+Team Editor.gd::GDScript::-1::1708917004::0::1::::<>Control<>::
+Team Editor.tscn::PackedScene::5428947114430059492::1708917004::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg
+::res://Scenes/Team Editor/Misc Scripts/::1708917040
+::res://Scenes/World Editor/::1708909921
 GraphEdit.gd::GDScript::-1::1708849479::0::1::::<>GraphEdit<>::
 World Editor.gd::GDScript::-1::1708855345::0::1::::<>Control<>::
-World Editor.tscn::PackedScene::1217744872715804559::1708855426::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
-::res://Scenes/World Editor/Confederation Editors/::1708855426
+World Editor.tscn::PackedScene::1217744872715804559::1708909921::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
+::res://Scenes/World Editor/Confederation Editors/::1708909921
 Confederation Editor.gd::GDScript::-1::1708855416::0::1::::<>GraphNode<>::
-Confederation Editor.tscn::PackedScene::4377020352998335848::1708855426::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
+Confederation Editor.tscn::PackedScene::4377020352998335848::1708909921::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
 ItemList.gd::GDScript::-1::1708811956::0::1::::<>ItemList<>::
 ::res://Scenes/World Editor/League Editor/::1708811963
 League Editor.tscn::PackedScene::507481753769897923::1708811963::0::1::::<><>::
 LeagueNode.tscn::PackedScene::8628539737815509014::1708811064::0::1::::<><>::
-::res://Scenes/World Editor/Territory Editors/::1708855426
+::res://Scenes/World Editor/Territory Editors/::1708860050
 Label.gd::GDScript::-1::1708811956::0::1::::<>Label<>::
 Territory Editor.gd::GDScript::-1::1708811956::0::1::::<>GraphNode<>::
-Territory Editor.tscn::PackedScene::8422911629128742764::1708855426::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/World Editor/Territory Editors/Label.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
+Territory Editor.tscn::PackedScene::8422911629128742764::1708860050::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/World Editor/Territory Editors/Label.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
 ::res://Textures/::1706304055
 main_menu.tres::Theme::320751974886637368::1706304055::0::1::::<><>::

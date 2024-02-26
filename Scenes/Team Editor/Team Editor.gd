@@ -90,13 +90,20 @@ func load_territory_teams(terr: Territory) -> void:
 The function below are to change the index when the user selects a new territory or team
 """
 func _on_country_list_item_selected(index: int) -> void:
+	
+	# Get Selected Territory and display them to Item List/Save them locally
 	var selected_terr: Territory = terr_list[index];
 	load_territory_teams(selected_terr);
 	terr_index = index
+	
+	
 
 
 func _on_team_list_item_selected(index: int) -> void:
-	pass # Replace with function body.
+	#We need to display the territory selected
+	team_index = index
+	
+	#Call Group to display territory
 
 
 """
@@ -154,4 +161,9 @@ func _on_delete_team_pressed():
 	$ConfirmationDialog.visible = true
 
 func _on_confirmation_dialog_confirmed():
+	pass
+
+
+""" Functions for Logo, Team Name, and Team ID"""
+func _on_logo_pressed():
 	pass

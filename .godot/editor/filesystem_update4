@@ -6,3 +6,6 @@ res://Scenes/Team Editor/Team Editor.gd
 res://Resources/Team.gd
 res://Resources/Stadium.gd
 res://Resources/territory.gd
+res://Scenes/Team Editor/Misc Scripts/Logo.gd
+res://Scenes/Team Editor/Misc Scripts/Team Name.gd
+res://Scenes/Team Editor/Misc Scripts/Team ID.gd
