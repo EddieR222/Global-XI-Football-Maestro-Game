@@ -10,6 +10,9 @@ var team_list: Dictionary
 """ Team Info """
 var all_teams: Dictionary;
 
+""" File Name """
+var FileName : String; 
+
 """
 The following Functions Handle the Saving and Loading of Files
 """
@@ -18,7 +21,14 @@ func _on_load_file_pressed():
 	$FileDialog.visible = true
 	
 func _on_file_dialog_file_selected(path: String):
+	# Load the data saved in Disk
 	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
+	
+	#Change the FileName to display what the name of file was, so user can automatically
+	#save changes easily
+	FileName = path.get_file().get_basename();
+	var file_name_edit: LineEdit = get_node("VBoxContainer/Title Bar/LineEdit");
+	file_name_edit.text = FileName
 	
 	var item_list: ItemList = get_node("VBoxContainer/Editor Bar/Country List");
 	
