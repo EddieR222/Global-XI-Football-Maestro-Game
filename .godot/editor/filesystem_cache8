@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1708855434
+::res://::1709151809
 ::res://Database/::1708821921
 ::res://Database/World Maps/::1708859748
-World Map Final.res::Resource/WorldMap::-1::1708859642::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/territory.gd
+World Map Final.res::Resource/Resource::-1::1708859642::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/territory.gd
 ::res://Images/::1708848073
 icon.svg::CompressedTexture2D::5005012556432720634::1702155814::1708848073::1::::<><>::
 main_menu.jpg::CompressedTexture2D::6923708401058514228::1704023311::1708581144::1::::<><>::
@@ -296,11 +296,13 @@ TextureButton.gd::GDScript::-1::1708811956::0::1::::<>TextureButton<>::
 ::res://Scenes/Main Menu/::1708811956
 main_menu.gd::GDScript::-1::1708811956::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/Team Editor/::1708917040
-Logo.gd::GDScript::-1::1708917022::0::1::::<>TextureButton<>::
-Team Editor.gd::GDScript::-1::1708917004::0::1::::<>Control<>::
-Team Editor.tscn::PackedScene::5428947114430059492::1708917004::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg
-::res://Scenes/Team Editor/Misc Scripts/::1708917040
+::res://Scenes/Team Editor/::1708917481
+Team Editor.gd::GDScript::-1::1708917477::0::1::::<>Control<>::
+Team Editor.tscn::PackedScene::5428947114430059492::1708917481::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Team Editor/Misc Scripts/Logo.gd<>res://Scenes/Team Editor/Misc Scripts/Team Name.gd<>res://Scenes/Team Editor/Misc Scripts/Team ID.gd
+::res://Scenes/Team Editor/Misc Scripts/::1708917373
+Logo.gd::GDScript::-1::1708917268::0::1::::<>TextureButton<>::
+Team ID.gd::GDScript::-1::1708917373::0::1::::<>Label<>::
+Team Name.gd::GDScript::-1::1708917334::0::1::::<>LineEdit<>::
 ::res://Scenes/World Editor/::1708909921
 GraphEdit.gd::GDScript::-1::1708849479::0::1::::<>GraphEdit<>::
 World Editor.gd::GDScript::-1::1708855345::0::1::::<>Control<>::
