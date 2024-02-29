@@ -18,7 +18,7 @@ class_name Team extends Resource
 @export var Rating: int;
 @export var League_Name: String;
 @export var League_ID: int;
-@export var Stadium_Name: Stadium;
+@export var Stadium_: Stadium;
 @export var Stadium_ID: int;
  
 """ Club History """

@@ -10,12 +10,19 @@ var team_list: Dictionary
 """ Team Info """
 var all_teams: Dictionary;
 
-""" File Name """
+""" File Saving and Loading Info """
 var FileName : String; 
+var world_map: WorldMap
 
 """
 The following Functions Handle the Saving and Loading of Files
 """
+
+func _on_save_file_pressed():
+	world_map.Territory_List = terr_list
+			
+	# Finally, save it to file
+	ResourceSaver.save(world_map, "user://{filename}.res".format({"filename": FileName}));
 
 func _on_load_file_pressed():
 	get_node("World Map File Dialog").visible = true
@@ -23,6 +30,7 @@ func _on_load_file_pressed():
 func _on_file_dialog_file_selected(path: String):
 	# Load the data saved in Disk
 	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
+	world_map = file_map;
 	
 	#Change the FileName to display what the name of file was, so user can automatically
 	#save changes easily
@@ -56,6 +64,10 @@ func _on_file_dialog_file_selected(path: String):
 			var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
 			# Add to dictionary to keep track
 			terr_list[terr_index] = terr;
+
+func _on_line_edit_text_changed(new_text: String):
+	FileName = new_text
+	
 
 """
 These functions deal with the ItemList for Teams
@@ -209,17 +221,24 @@ func _on_add_team_pressed() -> void:
 	team.ID = all_teams.size();
 	all_teams[team.ID] = team;
 	
-	##Alphabetize Team List
-	organize_country_teams(terr_index);
-	organize_team_ids();
-	
 	#Add it to itemlist
 	var item_list: ItemList = get_node("VBoxContainer/Editor Bar/VBoxContainer/Team List");
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = item_list.add_item(team.Name, default_icon, true);
-	
+
 	#Add it to local dictionary to keep track of it
 	team_list[index] = team;
+	
+	#Save it to database locally
+	var saving_terr: Territory = terr_list[terr_index];
+	saving_terr.Teams = team_list
+	
+	#Alphabetize Team List
+	organize_country_teams(terr_index);
+	organize_team_ids();
+	
+	#Reflect Changes
+	reflect_team_changes();
 	
 func _on_delete_team_pressed():
 	get_node("Delete Team Confirmation").visible = true
@@ -228,19 +247,24 @@ func _on_confirmation_dialog_confirmed():
 	# No team or territory selected means we won't delete any team, return early
 	if team_index == -1 or terr_index == -1:
 		return
-		
+	
+	# Delete the node and organize	
 	delete_and_organize();
 	
-	organize_country_teams(terr_index);
+	#Save to local database
+	var saving_terr: Territory = terr_list[terr_index];
+	saving_terr.Teams = team_list
+	
+	#Organize Team Ids
 	organize_team_ids();
+	
 	
 	reflect_team_changes();
 
-""" Functions for Logo, Team Name, and Team ID"""
+""" Functions for Team Info Inputs"""
 func _on_logo_pressed():
 	$"Logo File Dialog".visible = true;
-
-func _on_logo_file_dialog_file_selected(path):
+func _on_logo_file_dialog_file_selected(path) -> void:
 	# Load Image of Team Logo
 	var logo: Image = Image.load_from_file(path);
 	logo.resize(150, 150, 2);
@@ -253,12 +277,25 @@ func _on_logo_file_dialog_file_selected(path):
 	logo.compress(Image.COMPRESS_BPTC);
 	team_list[team_index].Logo = logo;
 	
+	#Save to local Database
+	var saving_terr: Territory = terr_list[terr_index];
+	saving_terr.Teams = team_list
+	
 	# Now we want to reflect team changes
 	reflect_team_changes();
-
 func _on_team_name_text_changed(new_text: String) -> void:
 	# Save New Team Name
 	team_list[team_index].Name = new_text
 
+	#Save to local Database
+	var saving_terr: Territory = terr_list[terr_index];
+	saving_terr.Teams = team_list
+
+
 	reflect_team_changes();
-	
+func _on_name_code_input_text_changed(new_text: String) -> void:
+	team_list[team_index].Name_Code = new_text
+func _on_city_input_text_changed(new_text: String) -> void:
+	team_list[team_index].City = new_text
+func _on_spin_box_value_changed(value: int) -> void:
+	team_list[team_index].Rating = value
