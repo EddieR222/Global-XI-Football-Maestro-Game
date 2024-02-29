@@ -7,3 +7,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0823529, 0.0941176, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Load File" type="Button" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "   File  "
+flat = true
+
+[node name="Save File" type="Button" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "  Save   "
+flat = true
+
+[node name="FileNameEdit" type="LineEdit" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filename"
+alignment = 1
+
+[node name="AddLeagueStage" type="MenuButton" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+text = "Add League Stage"
+item_count = 3
+popup/item_0/text = "Group Stage"
+popup/item_0/id = 0
+popup/item_1/text = "League Stage"
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/id = 2
+
+[node name="Add Confed Node" type="Button" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Add New Confederation"
+
+[node name="Delete Node" type="Button" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Delete Selected Node"
+
+[node name="EditorBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/EditorBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+fixed_icon_size = Vector2i(75, 75)
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/EditorBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
