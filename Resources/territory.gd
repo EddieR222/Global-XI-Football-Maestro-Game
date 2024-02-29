@@ -29,6 +29,7 @@ extends Resource
 
 @export var test: int
 # Tournaments in Country	
+@export var Leagues: Dictionary
 @export var Tournaments: Dictionary
 
 # Teams

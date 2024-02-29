@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dbrka8appw0wv"]
+[gd_scene load_steps=2 format=3 uid="uid://dbrka8appw0wv"]
+
+[ext_resource type="Script" path="res://Scenes/League Editor/League Editor.gd" id="1_k6jpy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k6jpy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,28 +63,91 @@ popup/item_1/id = 1
 popup/item_2/text = ""
 popup/item_2/id = 2
 
-[node name="Add Confed Node" type="Button" parent="VBoxContainer/TitleBar"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-text = "Add New Confederation"
-
 [node name="Delete Node" type="Button" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Delete Selected Node"
 
-[node name="EditorBar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="EditorBar" type="HSplitContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
+size_flags_stretch_ratio = 10.0
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/EditorBar"]
+[node name="NationList" type="ItemList" parent="VBoxContainer/EditorBar"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-fixed_icon_size = Vector2i(75, 75)
+fixed_icon_size = Vector2i(50, 25)
 
-[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/EditorBar"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/EditorBar"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+current_tab = 1
+
+[node name="Tournament Editor" type="GraphEdit" parent="VBoxContainer/EditorBar/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
+scroll_offset = Vector2(-411, -555)
+
+[node name="Territory Tournaments" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
+layout_mode = 2
+
+[node name="League Manage" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Add League Level"
+
+[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Delete League Level"
+
+[node name="Label" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Include Domestic Cup"
+
+[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Remove Domestic Cup"
+
+[node name="Torunament Manage" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadWorldMap" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 1
+use_native_dialog = true
+
+[connection signal="pressed" from="VBoxContainer/TitleBar/Load File" to="." method="_on_load_file_pressed"]
+[connection signal="file_selected" from="LoadWorldMap" to="." method="_on_load_world_map_file_selected"]

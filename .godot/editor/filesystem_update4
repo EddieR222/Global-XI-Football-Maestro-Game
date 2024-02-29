@@ -1,6 +1,8 @@
+res://Scenes/League Editor/League Editor.tscn
+res://Scenes/League Editor/League Editor.gd
 res://Scenes/Team Editor/Team Editor.tscn
-res://Scenes/Team Editor/Team Editor.gd
 res://Scenes/World Editor/World Editor.tscn
 res://Scenes/World Editor/Confederation Editors/Confederation Editor.tscn
 res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
-res://Scenes/League Editor/League Editor.tscn
+res://Resources/Territory.gd
+res://control.tscn
