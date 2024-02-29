@@ -12,7 +12,7 @@ var all_teams: Dictionary;
 
 """ File Saving and Loading Info """
 var FileName : String; 
-var world_map: WorldMap;
+var world_map: WorldMap
 
 """
 The following Functions Handle the Saving and Loading of Files
@@ -64,6 +64,8 @@ func _on_file_dialog_file_selected(path: String):
 			var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
 			# Add to dictionary to keep track
 			terr_list[terr_index] = terr;
+			
+	#automatic_team_upload();
 
 func _on_line_edit_text_changed(new_text: String):
 	FileName = new_text
@@ -301,9 +303,67 @@ func _on_spin_box_value_changed(value: int) -> void:
 	team_list[team_index].Rating = value
 
 
-
-
-func automatic_loading() -> void:
+func automatic_team_upload() -> void:
+	#First we must load in the SQL Database
+	var database = SQLite.new();
+	database.path = "C:/Rust_Projects/FootballProject/Team Breakdown.db"
+	database.open_db();	
 	
 	
-	pass
+	# Now we need to get each row
+	var result = database.select_rows("team_data", "", ["*"]);
+	var dict_index = 0;
+	for team_info: Dictionary in result:
+		# For each team_infp, we need to create a team
+		var team: Team = Team.new();
+		
+		# Now we need to add the team info from the sql database
+		team.Name = team_info["Team_Name"];
+		
+		var nation: String = team_info["Nation"];
+		var this_terr;
+		for terr: Territory in terr_list.values():
+			if terr.Territory_Name == nation:
+				team.Territory_Name = terr.Territory_Name
+				team.Territory_ID = terr.Territory_ID
+				this_terr = terr;
+		
+		# Now we add team logo if we have it
+		var index = team_info["index"];
+		var path = "C:/Rust_Projects/Team_Logos/" + str(index) + ".png";
+		
+		if FileAccess.file_exists(path):
+			var logo: Image = Image.load_from_file(path);
+			if logo != null:
+				logo.resize(150, 150, 2);
+				logo.compress(Image.COMPRESS_BPTC);
+				team.Logo = logo;
+		
+		#Finally, we add it to respective country list
+		if this_terr != null:
+			var curr_index = terr_list.find_key(this_terr);
+			terr_list[curr_index].Teams[dict_index] = team;
+			
+		dict_index += 1;
+			
+	
+	organize_team_ids();
+	
+	#Now we want to organize each countries team lists
+	for fix_index: int in terr_list.keys():
+		# Get Territory 
+		var selected_terr: Territory = terr_list[fix_index];
+		
+		# Now we get all teams and alphabetize them
+		var entire_team_arr = selected_terr.Teams.values();
+		entire_team_arr.sort_custom(func(a, b): return a.Name < b.Name);
+		
+		# Now we recreate the Team List
+		var entire_team_dict: Dictionary = {};
+		var new_index: int = 0;
+		for team: Team in entire_team_arr:
+			entire_team_dict[new_index] = team;
+			new_index += 1;
+			
+		selected_terr.Teams = entire_team_dict; 
+		
