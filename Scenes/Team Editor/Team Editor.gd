@@ -12,7 +12,7 @@ var all_teams: Dictionary;
 
 """ File Saving and Loading Info """
 var FileName : String; 
-var world_map: WorldMap
+var world_map: WorldMap;
 
 """
 The following Functions Handle the Saving and Loading of Files
@@ -299,3 +299,11 @@ func _on_city_input_text_changed(new_text: String) -> void:
 	team_list[team_index].City = new_text
 func _on_spin_box_value_changed(value: int) -> void:
 	team_list[team_index].Rating = value
+
+
+
+
+func automatic_loading() -> void:
+	
+	
+	pass
