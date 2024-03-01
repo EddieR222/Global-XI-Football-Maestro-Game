@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1709234593
+::res://::1709329089
 ::res://addons/::1709181368
 ::res://addons/godot-sqlite/::1709181368
 gdsqlite.gdextension::GDExtension::-1::1709181368::0::1::::<><>::
@@ -10,8 +10,8 @@ plugin.cfg::TextFile::-1::1709181368::0::1::::<><>::
 ::res://addons/godot-sqlite/bin/libgdsqlite.macos.template_debug.framework/::1709181368
 ::res://addons/godot-sqlite/bin/libgdsqlite.macos.template_release.framework/::1709181368
 ::res://Database/::1708821921
-::res://Database/World Maps/::1709234593
-World Map Final.res::Resource/WorldMap::-1::1709234593::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/Territory.gd
+::res://Database/World Maps/::1709329089
+World Map Final.res::Resource/WorldMap::-1::1709329089::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/terr.gd
 ::res://Images/::1709181235
 icon.svg::CompressedTexture2D::5005012556432720634::1702155814::1709181235::1::::<><>::
 main_menu.jpg::CompressedTexture2D::6923708401058514228::1704023311::1708581144::1::::<><>::
@@ -269,14 +269,17 @@ Yemen.png::CompressedTexture2D::4820176071832298207::1708581154::1708581165::1::
 Zambia.png::CompressedTexture2D::1998685405704103537::1708581154::1708581165::1::::<><>::
 Zanibar.png::CompressedTexture2D::3963879997028338127::1708581154::1708581165::1::::<><>::
 Zimbabwe.png::CompressedTexture2D::6044695711844158437::1708581154::1708581165::1::::<><>::
-::res://Resources/::1709234612
+::res://Resources/::1709329089
 Confederation.gd::GDScript::-1::1709181214::0::1::::Confederation<>Resource<>::
 Graph.gd::GDScript::-1::1709181214::0::1::::Graph<>Resource<>::
-League_Graph.gd::GDScript::-1::1709181214::0::1::::League_Graph<>RefCounted<>::
+League_Graph.gd::GDScript::-1::1709328982::0::1::::League_Graph<>Resource<>::
+QualificationSystem.gd::GDScript::-1::1709325668::0::1::::QualificationSystem<>Resource<>::
 Stadium.gd::GDScript::-1::1709181215::0::1::::Stadium<>Resource<>::
 Team.gd::GDScript::-1::1709181215::0::1::::Team<>Resource<>::
-Territory.gd::GDScript::-1::1709234612::0::1::::Territory<>Resource<>::
-Tournament.gd::GDScript::-1::1709181215::0::1::::<>Node<>::
+TeamLeagueStats.gd::GDScript::-1::1709327016::0::1::::TeamLeagueStats<>Resource<>::
+terr.gd::GDScript::-1::1709273165::0::1::::Territory<>Resource<>::
+Tournament.gd::GDScript::-1::1709327127::0::1::::Tournament<>Resource<>::
+TournamentStage.gd::GDScript::-1::1709328895::0::1::::TournamentStage<>Resource<>::
 WorldMap.gd::GDScript::-1::1709181216::0::1::::WorldMap<>Resource<>::
 ::res://Scenes/::1709222721
 game_mode.tscn::PackedScene::6152867077861201729::1705807022::0::1::::<><>::
@@ -302,36 +305,36 @@ Rating Value.gd::GDScript::-1::1709181215::0::1::::<>SpinBox<>::
 T ID.gd::GDScript::-1::1709181215::0::1::::<>SpinBox<>::
 Territory Name Edit.gd::GDScript::-1::1709181215::0::1::::<>LineEdit<>::
 TextureButton.gd::GDScript::-1::1709181215::0::1::::<>TextureButton<>::
-::res://Scenes/League Editor/::1709234635
-League Editor.gd::GDScript::-1::1709234000::0::1::::<>Control<>::
-League Editor.tscn::PackedScene::7265154220437041893::1709234635::0::1::::<><>::res://Scenes/League Editor/League Editor.gd
+::res://Scenes/League Editor/::1709329090
+League Editor.gd::GDScript::-1::1709273084::0::1::::<>Control<>::
+League Editor.tscn::PackedScene::7265154220437041893::1709329090::0::1::::<><>::res://Scenes/League Editor/League Editor.gd
 ::res://Scenes/Main Menu/::1709181215
 main_menu.gd::GDScript::-1::1709181215::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
-::res://Scenes/Team Editor/::1709234614
+::res://Scenes/Team Editor/::1709264791
 City Input.gd::GDScript::-1::1709181213::0::1::::<>LineEdit<>::
 Name Code Input.gd::GDScript::-1::1709181215::0::1::::<>LineEdit<>::
 SpinBox.gd::GDScript::-1::1709181215::0::1::::<>SpinBox<>::
 Team Editor.gd::GDScript::-1::1709186514::0::1::::<>Control<>::
-Team Editor.tscn::PackedScene::5428947114430059492::1709234614::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Team Editor/Misc Scripts/Logo.gd<>res://Scenes/Team Editor/Misc Scripts/Team Name.gd<>res://Scenes/Team Editor/Misc Scripts/Team ID.gd<>res://Scenes/Team Editor/Name Code Input.gd<>res://Scenes/Team Editor/City Input.gd<>res://Scenes/Team Editor/SpinBox.gd
+Team Editor.tscn::PackedScene::5428947114430059492::1709264791::0::1::::<><>::res://Scenes/Team Editor/Team Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Team Editor/Misc Scripts/Logo.gd<>res://Scenes/Team Editor/Misc Scripts/Team Name.gd<>res://Scenes/Team Editor/Misc Scripts/Team ID.gd<>res://Scenes/Team Editor/Name Code Input.gd<>res://Scenes/Team Editor/City Input.gd<>res://Scenes/Team Editor/SpinBox.gd
 ::res://Scenes/Team Editor/Misc Scripts/::1709181215
 Logo.gd::GDScript::-1::1709181215::0::1::::<>TextureButton<>::
 Team ID.gd::GDScript::-1::1709181215::0::1::::<>Label<>::
 Team Name.gd::GDScript::-1::1709181215::0::1::::<>LineEdit<>::
-::res://Scenes/World Editor/::1709234614
+::res://Scenes/World Editor/::1709264671
 GraphEdit.gd::GDScript::-1::1709181214::0::1::::<>GraphEdit<>::
 World Editor.gd::GDScript::-1::1709181215::0::1::::<>Control<>::
-World Editor.tscn::PackedScene::1217744872715804559::1709234614::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
-::res://Scenes/World Editor/Confederation Editors/::1709234614
+World Editor.tscn::PackedScene::1217744872715804559::1709264671::0::1::::<><>::res://Scenes/World Editor/World Editor.gd<>res://Scenes/World Editor/GraphEdit.gd
+::res://Scenes/World Editor/Confederation Editors/::1709264671
 Confederation Editor.gd::GDScript::-1::1709181214::0::1::::<>GraphNode<>::
-Confederation Editor.tscn::PackedScene::4377020352998335848::1709234614::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
+Confederation Editor.tscn::PackedScene::4377020352998335848::1709264671::0::1::::<><>::uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
 ItemList.gd::GDScript::-1::1709181214::0::1::::<>ItemList<>::
 ::res://Scenes/World Editor/League Editor/::1708811963
 League Editor.tscn::PackedScene::507481753769897923::1708811963::0::1::::<><>::
 LeagueNode.tscn::PackedScene::8628539737815509014::1708811064::0::1::::<><>::
-::res://Scenes/World Editor/Territory Editors/::1709234614
+::res://Scenes/World Editor/Territory Editors/::1709237677
 Label.gd::GDScript::-1::1709181214::0::1::::<>Label<>::
 Territory Editor.gd::GDScript::-1::1709181215::0::1::::<>GraphNode<>::
-Territory Editor.tscn::PackedScene::8422911629128742764::1709234614::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/World Editor/Territory Editors/Label.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
+Territory Editor.tscn::PackedScene::8422911629128742764::1709237677::0::1::::<><>::res://Scenes/World Editor/Territory Editors/Territory Editor.gd<>uid://cdkp3cl6rfyra::::res://Images/icon.svg<>res://Scenes/Country Editor/TextureButton.gd<>res://Scenes/Country Editor/Territory Name Edit.gd<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres<>res://Scenes/Country Editor/CoT ID.gd<>res://Scenes/World Editor/Territory Editors/Label.gd<>res://Scenes/Country Editor/CoT Name.gd<>res://Scenes/Country Editor/Code Name Text.gd<>res://Scenes/Country Editor/Pop Val.gd<>res://Scenes/Country Editor/Area Val.gd<>res://Scenes/Country Editor/GDP Val.gd<>res://Scenes/Country Editor/First Name List.gd<>res://Scenes/Country Editor/Last Names List.gd<>res://Scenes/Country Editor/Rating Value.gd<>res://Scenes/Country Editor/League Rating Val.gd
 ::res://Textures/::1706304055
 main_menu.tres::Theme::320751974886637368::1706304055::0::1::::<><>::
