@@ -6,3 +6,9 @@ res://Scenes/World Editor/Confederation Editors/Confederation Editor.tscn
 res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
 res://Resources/Territory.gd
 res://control.tscn
+res://Resources/territory.gd
+res://Resources/Tournament.gd
+res://Resources/League_Graph.gd
+res://Resources/QualificationSystem.gd
+res://Resources/TournamentStage.gd
+res://Resources/TeamLeagueStats.gd

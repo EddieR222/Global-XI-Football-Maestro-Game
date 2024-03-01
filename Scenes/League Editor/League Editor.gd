@@ -45,7 +45,12 @@ func _on_load_world_map_file_selected(path):
 			var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
 			## Add to dictionary to keep track
 			#terr_list[terr_index] = terr;
-			
-	#automatic_team_upload();
-	
+
+
+func _on_nation_list_item_selected(index: int) -> void:
 	pass
+	
+
+
+func _on_tab_container_tab_selected(tab):
+	print(tab)

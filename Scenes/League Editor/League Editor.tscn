@@ -151,4 +151,6 @@ access = 1
 use_native_dialog = true
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Load File" to="." method="_on_load_file_pressed"]
+[connection signal="item_selected" from="VBoxContainer/EditorBar/NationList" to="." method="_on_nation_list_item_selected"]
+[connection signal="tab_selected" from="VBoxContainer/EditorBar/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="file_selected" from="LoadWorldMap" to="." method="_on_load_world_map_file_selected"]
