@@ -90,7 +90,6 @@ custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
-scroll_offset = Vector2(-411, -555)
 show_zoom_label = true
 
 [node name="Territory Tournaments" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
