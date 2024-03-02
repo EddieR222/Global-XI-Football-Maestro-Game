@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbrka8appw0wv"]
+[gd_scene load_steps=4 format=3 uid="uid://dbrka8appw0wv"]
 
 [ext_resource type="Script" path="res://Scenes/League Editor/League Editor.gd" id="1_k6jpy"]
+[ext_resource type="Script" path="res://Scenes/League Editor/Tournament Editor.gd" id="2_7mbge"]
+[ext_resource type="Texture2D" uid="uid://cdkp3cl6rfyra" path="res://Images/icon.svg" id="3_k8tbg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,20 +57,36 @@ alignment = 1
 [node name="AddLeagueStage" type="MenuButton" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
 text = "Add League Stage"
-item_count = 3
+item_count = 4
 popup/item_0/text = "Group Stage"
 popup/item_0/id = 0
 popup/item_1/text = "League Stage"
 popup/item_1/id = 1
-popup/item_2/text = ""
+popup/item_2/text = "KnockOut"
 popup/item_2/id = 2
+popup/item_3/text = "Single KncokOut"
+popup/item_3/id = 3
 
 [node name="Delete Node" type="Button" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Delete Selected Node"
 
-[node name="EditorBar" type="HSplitContainer" parent="VBoxContainer"]
+[node name="TournamentSelection" type="OptionButton" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+alignment = 1
+item_count = 1
+popup/item_0/text = "TOurnament Selected"
+popup/item_0/id = 0
+
+[node name="YearSelection" type="SpinBox" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+min_value = 1850.0
+max_value = 2100.0
+value = 1850.0
+rounded = true
+
+[node name="EditorBar" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
@@ -82,7 +100,9 @@ fixed_icon_size = Vector2i(50, 25)
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/EditorBar"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-current_tab = 1
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+current_tab = 2
 
 [node name="Tournament Editor" type="GraphEdit" parent="VBoxContainer/EditorBar/TabContainer"]
 visible = false
@@ -90,55 +110,411 @@ custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
+scroll_offset = Vector2(-6, -31)
+zoom_min = 0.05
+zoom_max = 2.0
 show_zoom_label = true
+script = ExtResource("2_7mbge")
 
-[node name="Territory Tournaments" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
+[node name="Territory League Pyramid" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
+visible = false
 layout_mode = 2
 
-[node name="League Manage" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+[node name="League Pyramid Area" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/League Pyramid Area"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/League Pyramid Area/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
 text = "Add League Level"
 
-[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/League Pyramid Area/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Delete League Level"
 
-[node name="Label" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/League Pyramid Area"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage"]
+[node name="Tournament Edit Area" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer2"]
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "Include Domestic Cup"
+size_flags_horizontal = 3
 
-[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/League Manage/VBoxContainer2"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Header"]
 layout_mode = 2
-size_flags_vertical = 3
-text = "Remove Domestic Cup"
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_k8tbg")
 
-[node name="Torunament Manage" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+[node name="League Name" type="LineEdit" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.5
+text = "Stage Name"
+alignment = 1
+max_length = 40
+
+[node name="League Tournament ID" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Tournament ID: "
+horizontal_alignment = 1
+
+[node name="Body" type="GridContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Tournament Importance" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Tournament Importance"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Host Country" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Host Country"
+horizontal_alignment = 1
+
+[node name="Host Country Input" type="LineEdit" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host Country Name"
+alignment = 1
+max_length = 50
+
+[node name="Every N Years" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Every N Years
+"
+horizontal_alignment = 1
+
+[node name="Every N Years Input" type="SpinBox" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/Body"]
+layout_mode = 2
+step = 0.25
+alignment = 1
+suffix = "Years"
+
+[node name="DatesInput" type="GridContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area"]
+layout_mode = 2
+columns = 3
+
+[node name="StartDate" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Date"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 12
+allow_reselect = true
+popup/item_0/text = "January"
+popup/item_0/id = 0
+popup/item_1/text = "February"
+popup/item_1/id = 1
+popup/item_2/text = "March"
+popup/item_2/id = 2
+popup/item_3/text = "April"
+popup/item_3/id = 3
+popup/item_4/text = "May"
+popup/item_4/id = 4
+popup/item_5/text = "June"
+popup/item_5/id = 5
+popup/item_6/text = "July"
+popup/item_6/id = 6
+popup/item_7/text = "August"
+popup/item_7/id = 7
+popup/item_8/text = "September"
+popup/item_8/id = 8
+popup/item_9/text = "October"
+popup/item_9/id = 9
+popup/item_10/text = "November"
+popup/item_10/id = 10
+popup/item_11/text = "December"
+popup/item_11/id = 11
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+allow_reselect = true
+
+[node name="EndDate" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+text = "End Date"
+horizontal_alignment = 1
+
+[node name="OptionButton5" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 12
+allow_reselect = true
+popup/item_0/text = "January"
+popup/item_0/id = 0
+popup/item_1/text = "February"
+popup/item_1/id = 1
+popup/item_2/text = "March"
+popup/item_2/id = 2
+popup/item_3/text = "April"
+popup/item_3/id = 3
+popup/item_4/text = "May"
+popup/item_4/id = 4
+popup/item_5/text = "June"
+popup/item_5/id = 5
+popup/item_6/text = "July"
+popup/item_6/id = 6
+popup/item_7/text = "August"
+popup/item_7/id = 7
+popup/item_8/text = "September"
+popup/item_8/id = 8
+popup/item_9/text = "October"
+popup/item_9/id = 9
+popup/item_10/text = "November"
+popup/item_10/id = 10
+popup/item_11/text = "December"
+popup/item_11/id = 11
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+allow_reselect = true
+
+[node name="Territory Tournaments" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
+layout_mode = 2
+
+[node name="Tournament List Area" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament List Area"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament List Area/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Add League Level"
+
+[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament List Area/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Delete League Level"
+
+[node name="Tournament List" type="ItemList" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament List Area"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="Tournament Edit Area" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_k8tbg")
+
+[node name="League Name" type="LineEdit" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.5
+text = "Stage Name"
+alignment = 1
+max_length = 40
+
+[node name="League Tournament ID" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Tournament ID: "
+horizontal_alignment = 1
+
+[node name="Body" type="GridContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Tournament Importance" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Tournament Importance"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Host Country" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Host Country"
+horizontal_alignment = 1
+
+[node name="Host Country Input" type="LineEdit" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host Country Name"
+alignment = 1
+max_length = 50
+
+[node name="Every N Years" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+text = "Every N Years
+"
+horizontal_alignment = 1
+
+[node name="Every N Years Input" type="SpinBox" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/Body"]
+layout_mode = 2
+step = 0.25
+alignment = 1
+suffix = "Years"
+
+[node name="DatesInput" type="GridContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area"]
+layout_mode = 2
+columns = 3
+
+[node name="StartDate" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Date"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 12
+allow_reselect = true
+popup/item_0/text = "January"
+popup/item_0/id = 0
+popup/item_1/text = "February"
+popup/item_1/id = 1
+popup/item_2/text = "March"
+popup/item_2/id = 2
+popup/item_3/text = "April"
+popup/item_3/id = 3
+popup/item_4/text = "May"
+popup/item_4/id = 4
+popup/item_5/text = "June"
+popup/item_5/id = 5
+popup/item_6/text = "July"
+popup/item_6/id = 6
+popup/item_7/text = "August"
+popup/item_7/id = 7
+popup/item_8/text = "September"
+popup/item_8/id = 8
+popup/item_9/text = "October"
+popup/item_9/id = 9
+popup/item_10/text = "November"
+popup/item_10/id = 10
+popup/item_11/text = "December"
+popup/item_11/id = 11
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+allow_reselect = true
+
+[node name="EndDate" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+text = "End Date"
+horizontal_alignment = 1
+
+[node name="OptionButton5" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 12
+allow_reselect = true
+popup/item_0/text = "January"
+popup/item_0/id = 0
+popup/item_1/text = "February"
+popup/item_1/id = 1
+popup/item_2/text = "March"
+popup/item_2/id = 2
+popup/item_3/text = "April"
+popup/item_3/id = 3
+popup/item_4/text = "May"
+popup/item_4/id = 4
+popup/item_5/text = "June"
+popup/item_5/id = 5
+popup/item_6/text = "July"
+popup/item_6/id = 6
+popup/item_7/text = "August"
+popup/item_7/id = 7
+popup/item_8/text = "September"
+popup/item_8/id = 8
+popup/item_9/text = "October"
+popup/item_9/id = 9
+popup/item_10/text = "November"
+popup/item_10/id = 10
+popup/item_11/text = "December"
+popup/item_11/id = 11
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/DatesInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+allow_reselect = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make Domestic Cup
+"
+
+[node name="Button2" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make Not Domestic Cup"
+
+[node name="Button3" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make SuperCup
+"
+
+[node name="Button4" type="Button" parent="VBoxContainer/EditorBar/TabContainer/Territory Tournaments/Tournament Edit Area/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Make Not Super Cup
+"
 
 [node name="LoadWorldMap" type="FileDialog" parent="."]
 title = "Open a File"
@@ -150,6 +526,4 @@ access = 1
 use_native_dialog = true
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Load File" to="." method="_on_load_file_pressed"]
-[connection signal="item_selected" from="VBoxContainer/EditorBar/NationList" to="." method="_on_nation_list_item_selected"]
-[connection signal="tab_selected" from="VBoxContainer/EditorBar/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="file_selected" from="LoadWorldMap" to="." method="_on_load_world_map_file_selected"]

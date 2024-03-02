@@ -15,3 +15,13 @@ func add_edge(a: GraphNode,b: GraphNode) -> void:
 	# Set a as previous_node in b
 	b.Stage.Previous_Stages.push_back(a.Stage.get_stage_id());
 
+
+
+
+
+""" Tournament Conversion """
+func turn_to_tournament() -> Tournament:
+	var final_tour: Tournament = Tournament.new();
+	
+	
+	return final_tour

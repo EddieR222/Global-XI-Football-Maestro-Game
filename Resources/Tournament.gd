@@ -1,5 +1,7 @@
 class_name Tournament extends Resource
 
+
+@export var Logo: Image;
 @export var Name: String
 @export var ID: int
 @export var Importance: int

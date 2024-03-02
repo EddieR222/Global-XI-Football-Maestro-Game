@@ -4,7 +4,6 @@ class_name TournamentStage extends Resource
 @export var Name: String
 @export_enum("LEAGUE:0", "GROUP_STAGE:1", "KNOCKOUT:2", "SINGLE_KNOCKOUT:3") var Stage_Type: int;
 @export var Stage_ID: int;
-@export var Tournament_ID: int;
 @export var Start_Date: Array;
 @export var End_Date: Array;
 @export var Participating_Teams: Array;

@@ -12,6 +12,7 @@ func _on_load_file_pressed():
 func _on_load_world_map_file_selected(path):
 	# Load the data saved in Disk
 	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
+	get_node("VBoxContainer/EditorBar/TabContainer/Tournament Editor").world_map = file_map;
 	
 	#Change the FileName to display what the name of file was, so user can automatically
 	#save changes easily
@@ -47,10 +48,7 @@ func _on_load_world_map_file_selected(path):
 			#terr_list[terr_index] = terr;
 
 
-func _on_nation_list_item_selected(index: int) -> void:
-	pass
-	
 
 
-func _on_tab_container_tab_selected(tab):
-	print(tab)
+
+

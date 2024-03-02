@@ -1,17 +1,17 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1709329195
+::res://::1709345154
 ::res://addons/::1709181368
 ::res://addons/godot-sqlite/::1709181368
 gdsqlite.gdextension::GDExtension::-1::1709181368::0::1::::<><>::
 godot-sqlite.gd::GDScript::-1::1709181368::0::1::::<>EditorPlugin<>::
 LICENSE.md::TextFile::-1::1709181368::0::1::::<><>::
 plugin.cfg::TextFile::-1::1709181368::0::1::::<><>::
-::res://addons/godot-sqlite/bin/::1709329192
+::res://addons/godot-sqlite/bin/::1709345041
 ::res://addons/godot-sqlite/bin/libgdsqlite.macos.template_debug.framework/::1709181368
 ::res://addons/godot-sqlite/bin/libgdsqlite.macos.template_release.framework/::1709181368
 ::res://Database/::1708821921
 ::res://Database/World Maps/::1709329134
-World Map Final.res::Resource/WorldMap::-1::1709329134::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/territory.gd
+World Map Final.res::Resource/Resource::-1::1709329134::0::1::::<><>::res://Resources/WorldMap.gd<>res://Resources/Confederation.gd<>res://Resources/territory.gd
 ::res://Images/::1709181235
 icon.svg::CompressedTexture2D::5005012556432720634::1702155814::1709181235::1::::<><>::
 main_menu.jpg::CompressedTexture2D::6923708401058514228::1704023311::1708581144::1::::<><>::
@@ -269,7 +269,7 @@ Yemen.png::CompressedTexture2D::4820176071832298207::1708581154::1708581165::1::
 Zambia.png::CompressedTexture2D::1998685405704103537::1708581154::1708581165::1::::<><>::
 Zanibar.png::CompressedTexture2D::3963879997028338127::1708581154::1708581165::1::::<><>::
 Zimbabwe.png::CompressedTexture2D::6044695711844158437::1708581154::1708581165::1::::<><>::
-::res://Resources/::1709329133
+::res://Resources/::1709346354
 Confederation.gd::GDScript::-1::1709181214::0::1::::Confederation<>Resource<>::
 Graph.gd::GDScript::-1::1709181214::0::1::::Graph<>Resource<>::
 League_Graph.gd::GDScript::-1::1709328982::0::1::::League_Graph<>Resource<>::
@@ -279,7 +279,7 @@ Team.gd::GDScript::-1::1709181215::0::1::::Team<>Resource<>::
 TeamLeagueStats.gd::GDScript::-1::1709327016::0::1::::TeamLeagueStats<>Resource<>::
 territory.gd::GDScript::-1::1709273165::0::1::::Territory<>Resource<>::
 Tournament.gd::GDScript::-1::1709327127::0::1::::Tournament<>Resource<>::
-TournamentStage.gd::GDScript::-1::1709328895::0::1::::TournamentStage<>Resource<>::
+TournamentStage.gd::GDScript::-1::1709346354::0::1::::TournamentStage<>Resource<>::
 WorldMap.gd::GDScript::-1::1709181216::0::1::::WorldMap<>Resource<>::
 ::res://Scenes/::1709222721
 game_mode.tscn::PackedScene::6152867077861201729::1705807022::0::1::::<><>::
@@ -305,9 +305,14 @@ Rating Value.gd::GDScript::-1::1709181215::0::1::::<>SpinBox<>::
 T ID.gd::GDScript::-1::1709181215::0::1::::<>SpinBox<>::
 Territory Name Edit.gd::GDScript::-1::1709181215::0::1::::<>LineEdit<>::
 TextureButton.gd::GDScript::-1::1709181215::0::1::::<>TextureButton<>::
-::res://Scenes/League Editor/::1709329164
-League Editor.gd::GDScript::-1::1709273084::0::1::::<>Control<>::
-League Editor.tscn::PackedScene::7265154220437041893::1709329164::0::1::::<><>::res://Scenes/League Editor/League Editor.gd
+::res://Scenes/League Editor/::1709349079
+League Editor.gd::GDScript::-1::1709348857::0::1::::<>Control<>::
+League Editor.tscn::PackedScene::7265154220437041893::1709349079::0::1::::<><>::res://Scenes/League Editor/League Editor.gd
+::res://Scenes/League Editor/Tournament Nodes/::1709349354
+GroupStageNode.tscn::PackedScene::5692537551898188798::1709349338::0::1::::<><>::
+KnockoutNode.tscn::PackedScene::4239750112646264504::1709349354::0::1::::<><>::
+LeagueNode.tscn::PackedScene::3358931805867857940::1709349310::0::1::::<><>::
+SingleKnockOutNode.tscn::PackedScene::5942002964185257488::1709349369::0::1::::<><>::
 ::res://Scenes/Main Menu/::1709181215
 main_menu.gd::GDScript::-1::1709181215::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::9010644990611671047::1706225886::0::1::::<><>::res://Scenes/Main Menu/main_menu.gd<>uid://cnhitdoh7wh7y::::res://Images/main_menu.jpg<>uid://etm0dk2bjjr1::::res://Textures/main_menu.tres
