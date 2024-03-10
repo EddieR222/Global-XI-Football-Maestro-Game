@@ -1,4 +1,4 @@
-# Global XI Football Maestro!!!
+# Global XI Football Maestro
 
 
 Welcome to Global XI Football Maestro!!!
@@ -23,14 +23,26 @@ By being open source, this allows everyone to help contribute to this game. If y
 
 3. **Fully Customizable**
 
-Unfortunaly, the players and teams in the game will have to be fake due to licensing. But, this allows a greater range of freedom. You, the player, will be allowed to edit and change anything about the footballing world. You can edit the territories, confederations, tournaments, teams, players, kits, stadiumns, and even the manager. I aim to make everything in this game as editable from inside the game as possible. Anything beyond that can also be changed from the code itself. I will also attempt to make this game as mod friendly as possible too in hopes everyone can create their ideal footballing world and share it with everyone.
+Unfortunately, the players and teams in the game will have to be fake due to licensing. But, this allows a greater range of freedom. You, the player, will be allowed to edit and change anything about the footballing world. You can edit the territories, confederations, tournaments, teams, players, kits, stadiums, and even the manager. I aim to make everything in this game as editable from inside the game as possible. Anything beyond that can also be changed from the code itself. I will also attempt to make this game as mod friendly as possible too in hopes everyone can create their ideal footballing world and share it with everyone.
 
 4. **World Inclusive**
 
-This game aims to feature at least the top flight league from every territory on earth (if they have one of course). There will also be league pyramids for countries that have them. The league pyramid depth for England is 8 and the average league pyramid depth of all territories is 2.5. These league depths can of course be expanded upon by the user if desired. My hope is that by including all territories around the world, everyone can feel represented in this game. I also wish to showcase and explore the passion and beautiful of football from all corners of the world. 
+This game aims to feature at least the top flight league from every territory on earth (if they have one of course). There will also be league pyramids for countries that have them. The league pyramid depth for England is 8 and the average league pyramid depth of all territories is 2.5. These league depths can of course be expanded upon by the user if desired. My hope is that by including all territories around the world, everyone can feel represented in this game. I also wish to showcase and explore the passion and beauty of football from all corners of the world. 
 
 5. **Single Player**
 
-This game, upon first release, is planned to be a single player player expeerience. There are plans for future updates to allows for 1v1 multiplayer but first release will fully focus on single player experience. My hope is that one day there can be multiplayer manager modes where each player controls one team or 11 v 11 multiplayer football matches. This is still to be decided but please expect the first release to be single player only for now.
+This game, upon first release, is planned to be a single player player experience. There are plans for future updates to allow for 1v1 multiplayer but the first release will fully focus on single player experience. My hope is that one day there can be multiplayer manager modes where each player controls one team or 11 v 11 multiplayer football matches. This is still to be decided but please expect the first release to be single player only for now.
 
-7. 
+
+There are also plans to create new game modes for this game beyond just a manager. 
+For one, there is a plan to include a football federation mode. Here the player will be in charge of not only the national team of a country but also the entire league pyramid of a territory. Make your national team the best in the world and attempt to become the best league pyramid in the world. You must allocate funds and make changes to the leagues to help all teams in the league pyramid become better.  
+
+Another mode will be confederation president. Play as the president of an entire confederation. Here you will be in control of several territories league systems. You can improve confederation wide tournaments, increase profit to better provide the leagues with money, and help the entire confederation become the best in the world. For example, you can make the CAF confederation the best and improve football in all of Africa. Maybe choose the OFC and make Oceania the most powerful footballing confederation. This mode is for people who wish to make multiple territories improve in football and also change the dynamics of the footballing world. 
+
+More game modes to be announced....
+
+
+The game will be written in Godot 4.2 (as of now) and using the GDScript language (for now). The game will be released on PC and Mobile upon initial release. Release date is still to be decided but it can be made earlier the more people help to contribute!!
+
+If you wish to see this game come to reality faster, please help contribute to this game! **Thank you!**
+
