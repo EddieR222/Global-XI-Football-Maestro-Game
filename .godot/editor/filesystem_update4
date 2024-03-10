@@ -1,16 +1,5 @@
 res://Scenes/League Editor/League Editor.tscn
-res://Scenes/League Editor/Tournament Nodes/LeagueNode.tscn
-res://Scenes/League Editor/Tournament Nodes/GroupStageNode.tscn
-res://Scenes/League Editor/Tournament Nodes/KnockoutNode.tscn
-res://Scenes/League Editor/Tournament Nodes/SingleKnockOutNode.tscn
 res://Scenes/World Editor/World Editor.tscn
 res://Scenes/Team Editor/Team Editor.tscn
-res://Scenes/League Editor/Tournament Editor.gd
-res://Resources/territory.gd
-res://Resources/Confederation.gd
-res://Scenes/League Editor/TextureButton.gd
-res://Scenes/League Editor/League Name.gd
-res://Scenes/League Editor/League Tournament ID.gd
-res://Scenes/League Editor/League Editor.gd
 res://Scenes/World Editor/League Editor/LeagueNode.tscn
 res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
