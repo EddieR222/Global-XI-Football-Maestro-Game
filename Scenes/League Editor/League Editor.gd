@@ -24,7 +24,7 @@ func _on_load_world_map_file_selected(path: String) -> void:
 	file_name_edit.text = FileName
 	
 	var item_list: ItemList = get_node("VBoxContainer/EditorBar/NationList");
-	
+	var nation_list: Dictionary;
 	
 	
 	# First we need to add all confederations as options
@@ -34,12 +34,13 @@ func _on_load_world_map_file_selected(path: String) -> void:
 	for confed: Confederation in file_map.Confederations.values():
 		var confed_name = confed.Name;
 		var index: int = item_list.add_item(confed_name, null, true);
+		nation_list[index] = confed;
 
 	# Now we add all the territories
 	unselectable_item = item_list.add_item("Territories", null, false);
 	item_list.set_item_custom_bg_color(unselectable_item, Color(0.486, 0.416, 0.4));
-	
-	for terr: Territory in file_map.Territory_List.values():
+	var terr_list = file_map.Confederations[0].Territory_List;
+	for terr: Territory in terr_list.values():
 		# Get Territory Name
 		var terr_name = terr.Territory_Name;
 		# Get Territory Flag or Icon
@@ -53,8 +54,14 @@ func _on_load_world_map_file_selected(path: String) -> void:
 			texture_normal = default_icon;
 		# Add to item list
 		var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
-		# Add to dictionary to keep track
-		graph_edit.world_map = file_map;
+		
+		# Add to local list
+		nation_list[terr_index] = terr;
+		
+		
+	# Add to dictionary to keep track
+	graph_edit.world_map = file_map;
+	graph_edit.nation_list_info = nation_list;
 
 
 func _on_file_name_edit_text_changed(new_text: String) -> void:

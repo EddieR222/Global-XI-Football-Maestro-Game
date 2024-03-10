@@ -153,12 +153,42 @@ func load_tournaments(source) -> void:
 	
 		
 
-
+""" Functions for when user selects in an item list """
 func _on_nation_list_item_selected(index: int) -> void:
 	# Change index for nation list
 	nation_list_index = index
 	
 	# Load the New Selected Territory's or Confederation's tournament
 	load_tournaments(nation_list_info[index]);
+
+func _on_league_pyramid_item_selected(index: int) -> void:
+	# Change index for league pyramid
+	league_pyramid_index = index
+
+func _on_tournament_list_item_selected(index: int) -> void:
+	# Change the index for tournament list
+	tournament_list_index = index	
+
+
+
+""" Item Lists Addition and Deletion """
+func _on_add_league_level_pressed():
+	# Create a new Tournament for the league
+	var new_tour: Tournament = Tournament.new();
+	new_tour.Name = "New Tournament"
 	
 	
+	
+	
+	# Add it to the league pyramid
+	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+	var index = league_pyramid.add_item("New Tournament", default_icon, true);
+	league_pyramid_info[index] = new_tour;
+
+func _on_delete_league_level_pressed():
+	# Remove it from local dict
+	league_pyramid_info.erase(league_pyramid_index);
+
+	# Remove it from league pyramid item list
+	league_pyramid.remove_item(league_pyramid_index);
+
