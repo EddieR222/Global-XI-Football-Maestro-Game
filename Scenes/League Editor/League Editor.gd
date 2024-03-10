@@ -1,6 +1,9 @@
 extends Control
 
 
+@onready var graph_edit: GraphEdit = get_node("VBoxContainer/EditorBar/TabContainer/Tournament Editor");
+
+
 var FileName: String;
 
 
@@ -23,38 +26,35 @@ func _on_load_world_map_file_selected(path: String) -> void:
 	var item_list: ItemList = get_node("VBoxContainer/EditorBar/NationList");
 	
 	
+	
 	# First we need to add all confederations as options
 	var unselectable_item = item_list.add_item("Confederations", null, false);
 	item_list.set_item_custom_bg_color(unselectable_item, Color(0.486, 0.416, 0.4));
+	
 	for confed: Confederation in file_map.Confederations.values():
 		var confed_name = confed.Name;
 		var index: int = item_list.add_item(confed_name, null, true);
 
+	# Now we add all the territories
+	unselectable_item = item_list.add_item("Territories", null, false);
+	item_list.set_item_custom_bg_color(unselectable_item, Color(0.486, 0.416, 0.4));
 	
-	for confed: Confederation in file_map.Confederations.values():
-		if confed.Level != 1:
-			continue
-		# Add Confed Item, its not selectable and Gray Background
-		var confed_name = confed.Name;
-		var index: int = item_list.add_item(confed_name, null, false);
-		item_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.4));
-		
-		for terr: Territory in confed.Territory_List.values():
-			# Get Territory Name
-			var terr_name = terr.Territory_Name;
-			# Get Territory Flag or Icon
-			var texture_normal
-			var flag = terr.Flag;
-			if flag != null:
-				flag.decompress();
-				texture_normal = ImageTexture.create_from_image(flag);
-			else:
-				var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
-				texture_normal = default_icon;
-			# Add to item list
-			var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
-			## Add to dictionary to keep track
-			#terr_list[terr_index] = terr;
+	for terr: Territory in file_map.Territory_List.values():
+		# Get Territory Name
+		var terr_name = terr.Territory_Name;
+		# Get Territory Flag or Icon
+		var texture_normal
+		var flag = terr.Flag;
+		if flag != null:
+			flag.decompress();
+			texture_normal = ImageTexture.create_from_image(flag);
+		else:
+			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			texture_normal = default_icon;
+		# Add to item list
+		var terr_index: int = item_list.add_item(terr_name, texture_normal, true);
+		# Add to dictionary to keep track
+		graph_edit.world_map = file_map;
 
 
 func _on_file_name_edit_text_changed(new_text: String) -> void:
