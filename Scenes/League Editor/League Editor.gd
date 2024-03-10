@@ -5,11 +5,11 @@ var FileName: String;
 
 
 
-func _on_load_file_pressed():
+func _on_load_file_pressed() -> void:
 	#We need to open the file dialog
 	get_node("LoadWorldMap").visible = true;
 
-func _on_load_world_map_file_selected(path):
+func _on_load_world_map_file_selected(path: String) -> void:
 	# Load the data saved in Disk
 	var file_map : WorldMap = ResourceLoader.load(path) as WorldMap;
 	get_node("VBoxContainer/EditorBar/TabContainer/Tournament Editor").world_map = file_map;
@@ -21,6 +21,15 @@ func _on_load_world_map_file_selected(path):
 	file_name_edit.text = FileName
 	
 	var item_list: ItemList = get_node("VBoxContainer/EditorBar/NationList");
+	
+	
+	# First we need to add all confederations as options
+	var unselectable_item = item_list.add_item("Confederations", null, false);
+	item_list.set_item_custom_bg_color(unselectable_item, Color(0.486, 0.416, 0.4));
+	for confed: Confederation in file_map.Confederations.values():
+		var confed_name = confed.Name;
+		var index: int = item_list.add_item(confed_name, null, true);
+
 	
 	for confed: Confederation in file_map.Confederations.values():
 		if confed.Level != 1:
@@ -48,7 +57,7 @@ func _on_load_world_map_file_selected(path):
 			#terr_list[terr_index] = terr;
 
 
-
-
+func _on_file_name_edit_text_changed(new_text: String) -> void:
+	FileName = new_text;
 
 

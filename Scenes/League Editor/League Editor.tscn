@@ -75,9 +75,6 @@ text = "Delete Selected Node"
 [node name="TournamentSelection" type="OptionButton" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
 alignment = 1
-item_count = 1
-popup/item_0/text = "TOurnament Selected"
-popup/item_0/id = 0
 
 [node name="YearSelection" type="SpinBox" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
@@ -110,7 +107,6 @@ custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
-scroll_offset = Vector2(-6, -31)
 zoom_min = 0.05
 zoom_max = 2.0
 show_zoom_label = true
@@ -526,4 +522,5 @@ access = 1
 use_native_dialog = true
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Load File" to="." method="_on_load_file_pressed"]
+[connection signal="text_changed" from="VBoxContainer/TitleBar/FileNameEdit" to="." method="_on_file_name_edit_text_changed"]
 [connection signal="file_selected" from="LoadWorldMap" to="." method="_on_load_world_map_file_selected"]
