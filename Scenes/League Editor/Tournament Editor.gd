@@ -87,9 +87,7 @@ func load_tournaments(source) -> void:
 	# First we clear the current list
 	league_pyramid.clear();
 	tournament_list.clear();
-	
-	
-	
+
 	var leagues: Dictionary
 	var tournaments: Dictionary
 	var super_cup_index: int;
@@ -150,8 +148,6 @@ func load_tournaments(source) -> void:
 		elif index == league_cup:
 			league_pyramid.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.0));
 		
-	
-		
 
 """ Functions for when user selects in an item list """
 func _on_nation_list_item_selected(index: int) -> void:
@@ -184,6 +180,17 @@ func _on_add_league_level_pressed():
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = league_pyramid.add_item("New Tournament", default_icon, true);
 	league_pyramid_info[index] = new_tour;
+	
+	# Save it to the terr/confed selected
+	var sink = nation_list_info[nation_list_index];
+	if sink is Territory:
+		sink.Leagues[index] = new_tour
+	elif sink is Confederation:
+		sink.Confed_Leagues[index] = new_tour
+		
+	# 
+		
+	
 
 func _on_delete_league_level_pressed():
 	# Remove it from local dict
