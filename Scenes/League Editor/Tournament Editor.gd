@@ -82,7 +82,6 @@ func _on_add_stage_popmenu_item_selected(index: int):
 			add_child(new_node)
 			new_node.size = NODE_SIZE;
 
-
 func load_tournaments(source) -> void:
 	# First we clear the current list
 	league_pyramid.clear();
@@ -138,15 +137,15 @@ func load_tournaments(source) -> void:
 			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 			texture_normal = default_icon;
 		# Add it to item list
-		var index = league_pyramid.add_item(league_name, texture_normal, true);
+		var index = tournament_list.add_item(league_name, texture_normal, true);
 		#Save to local list
 		tournament_list_info[index] = tournament;
 		
 		#We have to highlight super cup and leagues cup
 		if index == super_cup_index:
-			league_pyramid.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.4));
+			tournament_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.4));
 		elif index == league_cup:
-			league_pyramid.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.0));
+			tournament_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.0));
 		
 
 """ Functions for when user selects in an item list """
@@ -173,9 +172,6 @@ func _on_add_league_level_pressed():
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
 	
-	
-	
-	
 	# Add it to the league pyramid
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = league_pyramid.add_item("New Tournament", default_icon, true);
@@ -188,9 +184,7 @@ func _on_add_league_level_pressed():
 	elif sink is Confederation:
 		sink.Confed_Leagues[index] = new_tour
 		
-	# 
-		
-	
+	organize_tournaments();
 
 func _on_delete_league_level_pressed():
 	# Remove it from local dict
@@ -199,3 +193,69 @@ func _on_delete_league_level_pressed():
 	# Remove it from league pyramid item list
 	league_pyramid.remove_item(league_pyramid_index);
 
+func _on_add_tournament_pressed() -> void:
+	# Create a new Tournament for the league
+	var new_tour: Tournament = Tournament.new();
+	new_tour.Name = "New Tournament"
+	
+	
+	
+	
+	# Add it to the league pyramid
+	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+	var index = tournament_list.add_item("New Tournament", default_icon, true);
+	tournament_list_info[index] = new_tour;
+	
+	# Save it to the terr/confed selected
+	var sink = nation_list_info[nation_list_index];
+	if sink is Territory:
+		sink.Tournaments[index] = new_tour
+	elif sink is Confederation:
+		sink.Confed_Tournaments[index] = new_tour
+
+func organize_tournaments() -> void:
+	# We need to gather all tournaments into an array
+	var all_tournaments: Array = [];
+	for confed: Confederation in world_map.Confederations.values():
+		var leagues: Dictionary = confed.Confed_Leagues;
+		for tour: Tournament in leagues.values():
+			all_tournaments.push_back(tour)
+		var tournaments: Dictionary = confed.Confed_Tournaments;
+		for tour: Tournament in tournaments.values():
+			all_tournaments.push_back(tour)
+			
+	for terr in nation_list_info.values():
+		if terr is Confederation:
+			continue
+		var leagues: Dictionary = terr.Leagues;
+		for tour: Tournament in leagues.values():
+			all_tournaments.push_back(tour)
+		var tournaments: Dictionary = terr.Tournaments; 
+		for tour: Tournament in tournaments.values():
+			all_tournaments.push_back(tour)
+
+	# Now we sort all these tournaments by name
+	all_tournaments.sort_custom(func(a, b): return a.Name < b.Name);
+	
+	# Now we rewrite the IDs and place into sorted dictionary
+	var index: int = 0;
+	for tournament: Tournament in all_tournaments:
+		tournament.ID = index
+		index += 1;
+
+
+func _on_league_logo_input_file_selected(path: String) -> void:
+	# Load Image of Territory Flag
+	var logo: Image = Image.load_from_file(path);
+	logo.resize(150, 150, 2);
+	var flag_texture: ImageTexture = ImageTexture.create_from_image(logo);
+	
+	# Change Texture of Texture Button to reflect change
+	get_node("../Territory League Pyramid/Tournament Edit Area/Header/TextureButton").texture_normal = flag_texture
+	
+	# Save Image into Territory Class
+	logo.compress(Image.COMPRESS_BPTC);
+	league_pyramid_info[league_pyramid_index].Logo = logo;
+	
+	
+	

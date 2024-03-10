@@ -10,7 +10,7 @@ class_name Confederation extends Resource
 """ Tournament Information """
 @export var Confed_Tournaments: Dictionary;
 @export var Confed_Leagues: Dictionary;
-@export var Super_Cup: int;
-@export var Cup: int;
+@export var Super_Cup: int = -1
+@export var Cup: int = -1
 
 

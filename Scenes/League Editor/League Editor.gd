@@ -68,3 +68,7 @@ func _on_file_name_edit_text_changed(new_text: String) -> void:
 	FileName = new_text;
 
 
+
+
+func _on_texture_button_pressed():
+	get_node("LeagueLogoInput").visible = true;

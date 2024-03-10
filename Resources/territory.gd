@@ -29,8 +29,8 @@ extends Resource
 
 # Tournaments in Country	
 @export var Leagues: Dictionary
-@export var League_Cup: int #index inside of Tournaments Dictionary
-@export var Super_Cup: int #index inside of Tournaments Dictionary
+@export var League_Cup: int = -1#index inside of Tournaments Dictionary
+@export var Super_Cup: int = -1 #index inside of Tournaments Dictionary
 @export var Tournaments: Dictionary
 
 # Teams
