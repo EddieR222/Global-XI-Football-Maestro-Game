@@ -67,8 +67,6 @@ func _on_load_world_map_file_selected(path: String) -> void:
 func _on_file_name_edit_text_changed(new_text: String) -> void:
 	FileName = new_text;
 
-
-
 # DONT FORGET METADATA!!!!!
 func _on_texture_button_pressed():
 	get_node("LeagueLogoInput").visible = true;

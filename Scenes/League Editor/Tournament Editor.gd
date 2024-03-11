@@ -159,6 +159,8 @@ func _on_league_pyramid_item_selected(index: int) -> void:
 func _on_tournament_list_item_selected(index: int) -> void:
 	#Set curr_tournament 
 	curr_tournament = tournament_list.get_item_metadata(index);
+	# Display selected tournament info
+	get_tree().call_group("Tour_Info", "tour_selected", curr_tournament);
 	
 
 """ Item Lists Addition and Deletion """
@@ -210,6 +212,8 @@ func _on_add_tournament_pressed() -> void:
 		sink.Tournaments[index] = new_tour
 	elif sink is Confederation:
 		sink.Confed_Tournaments[index] = new_tour
+		
+	organize_tournaments_ids();
 
 func _on_delete_tournament_pressed():
 	# Get index of selected item
@@ -255,8 +259,6 @@ func organize_tournaments_ids() -> void:
 		tournament.ID = index
 		index += 1;
 
-
-
 """ League Pyramid Editor Inputs Singals """
 # League Logo Texture Button
 func _on_league_logo_input_file_selected(path: String) -> void:
@@ -267,22 +269,31 @@ func _on_league_logo_input_file_selected(path: String) -> void:
 	# Load Image of Territory Flag
 	var logo: Image = Image.load_from_file(path);
 	logo.resize(150, 150, 2);
-	var flag_texture: ImageTexture = ImageTexture.create_from_image(logo);
+	var logo_texture: ImageTexture = ImageTexture.create_from_image(logo);
 	
 	# Change Texture of Texture Button to reflect change
-	get_node("../Territory League Pyramid/Tournament Edit Area/Header/TextureButton").texture_normal = flag_texture
+	get_node("../Territory League Pyramid/Tournament Edit Area/Header/TextureButton").texture_normal = logo_texture
+	
+	# Reflect changes on ItemList
+	var selected_item: int = league_pyramid.get_selected_items()[0];
+	league_pyramid.set_item_icon(selected_item, logo_texture);
 	
 	# Save Image into Territory Class
 	logo.compress(Image.COMPRESS_BPTC);
 	curr_league.Logo = logo;
-	
+
 # League Name LineEdit
 func _on_league_name_text_changed(new_text: String) -> void:
 	# Check if valid, if not return
 	if curr_league == null:
 		return
 	
+	#Store locally
 	curr_league.Name = new_text;
+	
+	#Reflect changes on item_list
+	var selected_item: int = league_pyramid.get_selected_items()[0];
+	league_pyramid.set_item_text(selected_item, new_text);
 	
 # League Importance SpinBox
 func _on_spin_box_value_changed(value: int) -> void:
@@ -393,3 +404,195 @@ func _on_end_day_input_item_selected(index: int) -> void:
 
 
 """ Tournament List Editor Inputs Signals """
+# Tournament Logo Texture BUtton Pressed
+func _on_texture_button_pressed() -> void:
+	get_node("../../../../TournamentLogoInput").visible = true;
+
+# Tournament Logo File Selected
+func _on_tournament_logo_input_file_selected(path: String) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+	
+	# Load Image of Territory Flag
+	var logo: Image = Image.load_from_file(path);
+	logo.resize(150, 150, 2);
+	var logo_texture: ImageTexture = ImageTexture.create_from_image(logo);
+	
+	# Change Texture of Texture Button to reflect change
+	get_node("../Territory Tournaments/Tournament Edit Area/Header/TournamentLogo").texture_normal = logo_texture
+	
+	# Reflect changes on ItemList
+	var selected_item: int = league_pyramid.get_selected_items()[0];
+	tournament_list.set_item_icon(selected_item, logo_texture)
+	
+	# Save Image into Territory Class
+	logo.compress(Image.COMPRESS_BPTC);
+	curr_tournament.Logo = logo;
+
+# Tournament Name LineEdit
+func _on_tournament_name_text_changed(new_text: String) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+	
+	curr_tournament.Name = new_text;
+	
+	# Reflect changes on ItemList
+	var selected_item: int = league_pyramid.get_selected_items()[0];
+	tournament_list.set_item_text(selected_item, new_text);
+
+# Tournament Importance Spinbox
+func _on_tour_importance_input_value_changed(value: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	curr_tournament.Importance = value;
+
+# Tournament Host Country LineEdit
+func _on_tour_host_country_input_text_changed(new_text: String) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	curr_tournament.Host_Country_Name = new_text;
+
+# Tournament Every N Years SpinBox
+func _on_tour_every_n_years_input_value_changed(value: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	curr_tournament.Every_N_Years = value;
+
+# Tournament Start Date Month Input
+func _on_tour_start_month_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	# First we get the selected month
+	var month: String = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourStartMonthInput").get_item_text(index);
+	month = month.to_upper()
+	
+	# Get day input to edit later 
+	var day_input: OptionButton = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourStartDayInput");
+	day_input.clear()
+	
+	# Put in correct days options for month into StartDayInput
+	for day: int in range(1, DAYS[month] + 1):
+		day_input.add_item(str(day));
+		
+		
+	# Store month in League
+	var month_num: int;
+	var curr_index: int = 1
+	for curr_month: String in DAYS.keys():
+		if curr_month == month:
+			month_num = curr_index
+		else:
+			curr_index += 1
+	curr_tournament.Start_Date.push_back(month_num);
+
+# Tournament Start Date Day Input
+func _on_tour_start_day_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	# First we get the selected month
+	var day: String = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourStartDayInput").get_item_text(index);
+	var day_num: int = int(day)
+	
+	# Now we store 
+	curr_tournament.Start_Date.push_back(day_num);
+
+# Tournament End Data Month Input
+func _on_tour_end_month_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	# First we get the selected month
+	var month: String = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourEndMonthInput").get_item_text(index);
+	month = month.to_upper()
+	
+	# Get day input to edit later 
+	var day_input: OptionButton = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourEndDayInput");
+	day_input.clear()
+	
+	# Put in correct days options for month into StartDayInput
+	for day: int in range(1, DAYS[month] + 1):
+		day_input.add_item(str(day));
+		
+	# Store month in League
+	var month_num: int;
+	var curr_index: int = 1
+	for curr_month: String in DAYS.keys():
+		if curr_month == month:
+			month_num = curr_index
+		else:
+			curr_index += 1
+	curr_tournament.End_Date.push_back(month_num);
+
+# Tournament End Date Day Input
+func _on_tour_end_day_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_tournament == null:
+		return
+		
+	# First we get day
+	var day: String = get_node("../Territory Tournaments/Tournament Edit Area/DatesInput/TourEndDayInput").get_item_text(index);
+	var day_num: int = int(day);
+	
+	# Now we store
+	curr_tournament.End_Date.push_back(day_num);
+
+# Make Domestic Cup Button Pressed
+func _on_make_domestic_cup_pressed() -> void:
+	# Save current selected tornament the domestic cup index
+	var selected_index: int = tournament_list.get_selected_items()[0];
+	if curr_nation is Territory:
+		curr_nation.League_Cup = selected_index;
+	elif curr_nation is Confederation:
+		curr_nation.Cup = selected_index;
+		
+	# Now we reflect this in itemlist
+	tournament_list.set_item_custom_bg_color(selected_index, Color(0.2, 0.4, 0.8))
+
+# UnMake Domestic Cup Button Pressed
+func _on_un_make_domestic_cup_pressed() -> void:
+	# Save current selected tornament the domestic cup index
+	var selected_index: int = tournament_list.get_selected_items()[0];
+	if curr_nation is Territory:
+		curr_nation.League_Cup = -1;
+	elif curr_nation is Confederation:
+		curr_nation.Cup = -1;
+		
+	# Now we reflect this in itemlist
+	tournament_list.set_item_custom_bg_color(selected_index, Color(0.1, 0.1, 0.1))
+
+# Make Super Cup Pressed
+func _on_make_super_cup_pressed() -> void:
+	# Save current selected tornament the domestic cup index
+	var selected_index: int = tournament_list.get_selected_items()[0];
+	if curr_nation is Territory:
+		curr_nation.Super_Cup = selected_index;
+	elif curr_nation is Confederation:
+		curr_nation.Super_Cup = selected_index;
+		
+	# Now we reflect this in itemlist
+	tournament_list.set_item_custom_bg_color(selected_index, Color(0.2, 0.8, 0.4))
+
+# UnMake Super Cup Pressed
+func _on_un_make_super_cup_pressed() -> void:
+	# Save current selected tornament the domestic cup index
+	var selected_index: int = tournament_list.get_selected_items()[0];
+	if curr_nation is Territory:
+		curr_nation.Super_Cup = -1;
+	elif curr_nation is Confederation:
+		curr_nation.Super_Cup = -1;
+		
+	# Now we reflect this in itemlist
+	tournament_list.set_item_custom_bg_color(selected_index, Color(0.1, 0.1, 0.1))

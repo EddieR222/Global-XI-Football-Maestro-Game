@@ -1,8 +1,9 @@
 extends OptionButton
 
+
 var month_to_day: Dictionary = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6:30, 7: 31, 8: 31, 9: 30, 10: 31, 11:30, 12:31};
 
-func league_selected(t: Tournament) -> void:
+func tour_selected(t: Tournament) -> void:
 	if t.Start_Date.is_empty():
 		return
 		
@@ -19,3 +20,4 @@ func league_selected(t: Tournament) -> void:
 
 func clear_selection() -> void:
 	select(-1);
+

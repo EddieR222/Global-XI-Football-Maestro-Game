@@ -16,7 +16,7 @@ func league_selected(t: Tournament) -> void:
 		add_item(str(index))
 	
 	# Select the day previously saved
-	select(t.End_Date[1])
+	select(t.End_Date[1] - 1)
 		
 
 func clear_selection() -> void:
