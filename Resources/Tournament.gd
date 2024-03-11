@@ -13,8 +13,8 @@ class_name Tournament extends Resource
 @export var Host_Country_ID: int
 
 @export var Every_N_Years: float;
-@export var Start_Date: Array;
-@export var End_Date: Array;
+@export var Start_Date: Array = []
+@export var End_Date: Array = []
 
 """ Qualification: How do teams qualify? """
 @export var Num_Teams: int;

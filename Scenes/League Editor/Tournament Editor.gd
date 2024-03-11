@@ -27,24 +27,22 @@ var curr_tournament: Tournament;
 
 """ Constants """
 const NODE_SIZE: Vector2 = Vector2(600, 300);
-enum DAYS {JANUARY = 31, FEBRUARY = 28, MARCH = 31, APRIL = 30, MAY = 31, JUNE = 30, JULY = 31, AUGUST = 31, SEPTEMBER = 30, OCTOBER = 31, NOVEMBER = 30, DECEMBER = 31};
+var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30, "MAY": 31, "JUNE":30, "JULY": 31, "AUGUST": 31, "SEPTEMBER": 30, "OCTOBER": 31, "NOVEMBER":30, "DECEMBER":31};
 
 
 """ Members """
 var world_map: WorldMap;
 
 
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	#configure_pop_menus()
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+	##configure_pop_menus()
+	#pass
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#pass
+	#
 	
 func configure_pop_menus() -> void:
 	#First we need to set up the popup menu from the Add League Stage
@@ -52,7 +50,6 @@ func configure_pop_menus() -> void:
 	add_node_popmenu.id_pressed.connect(_on_add_stage_popmenu_item_selected);
 	
 	# Second we need to set up the add qualifying team popup
-	
 
 func _on_add_stage_popmenu_item_selected(index: int):
 	match index:
@@ -149,6 +146,10 @@ func _on_nation_list_item_selected(index: int) -> void:
 	curr_nation = nation_list.get_item_metadata(index)
 	# Load the New Selected Territory's or Confederation's tournament
 	load_tournaments(curr_nation);
+	
+	# Make curr_league and curr_tournament null to show they aren't selected yet
+	curr_league = null;
+	curr_tournament = null;
 
 func _on_league_pyramid_item_selected(index: int) -> void:	
 	curr_league = league_pyramid.get_item_metadata(index);
@@ -159,8 +160,6 @@ func _on_tournament_list_item_selected(index: int) -> void:
 	#Set curr_tournament 
 	curr_tournament = tournament_list.get_item_metadata(index);
 	
-
-
 
 """ Item Lists Addition and Deletion """
 func _on_add_league_level_pressed():
@@ -212,6 +211,19 @@ func _on_add_tournament_pressed() -> void:
 	elif sink is Confederation:
 		sink.Confed_Tournaments[index] = new_tour
 
+func _on_delete_tournament_pressed():
+	# Get index of selected item
+	var selected_index_list = tournament_list.get_selected_items();
+	var index: int;
+	# If none are selected, return early
+	if selected_index_list.is_empty():
+		return
+	else:
+		index = selected_index_list[0];
+		
+	# Remove it from league pyramid item list
+	tournament_list.remove_item(index)
+
 func organize_tournaments_ids() -> void:
 	# We need to gather all tournaments into an array
 	var all_tournaments: Array = [];
@@ -248,6 +260,10 @@ func organize_tournaments_ids() -> void:
 """ League Pyramid Editor Inputs Singals """
 # League Logo Texture Button
 func _on_league_logo_input_file_selected(path: String) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+	
 	# Load Image of Territory Flag
 	var logo: Image = Image.load_from_file(path);
 	logo.resize(150, 150, 2);
@@ -262,22 +278,115 @@ func _on_league_logo_input_file_selected(path: String) -> void:
 	
 # League Name LineEdit
 func _on_league_name_text_changed(new_text: String) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+	
 	curr_league.Name = new_text;
 	
 # League Importance SpinBox
 func _on_spin_box_value_changed(value: int) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
 	curr_league.Importance = value;
 
 # League Host Country LineEdit
 func _on_host_country_input_text_changed(new_text: String) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
 	curr_league.Host_Country_Name = new_text;
 	
 # League N Repeatition Years SpinBox
 func _on_every_n_years_input_value_changed(value: float) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
 	curr_league.Every_N_Years = value;
 
-
+# League Start Date Month Selected
 func _on_start_month_input_item_selected(index: int) -> void:
-	# First we store the month in date
-	curr_league.Start_Date.push_back(0);
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
+	# First we get the selected month
+	var month: String = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/StartMonthInput").get_item_text(index);
+	month = month.to_upper()
 	
+	# Get day input to edit later 
+	var day_input: OptionButton = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/StartDayInput");
+	day_input.clear()
+	
+	# Put in correct days options for month into StartDayInput
+	for day: int in range(1, DAYS[month] + 1):
+		day_input.add_item(str(day));
+		
+		
+	# Store month in League
+	var month_num: int;
+	var curr_index: int = 1
+	for curr_month: String in DAYS.keys():
+		if curr_month == month:
+			month_num = curr_index
+		else:
+			curr_index += 1
+	curr_league.Start_Date.push_back(month_num);
+
+# League End Date Month Selected
+func _on_end_month_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
+	# First we get the selected month
+	var month: String = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/EndMonthInput").get_item_text(index);
+	month = month.to_upper()
+	
+	# Get day input to edit later 
+	var day_input: OptionButton = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/EndDayInput");
+	day_input.clear()
+	
+	# Put in correct days options for month into StartDayInput
+	for day: int in range(1, DAYS[month] + 1):
+		day_input.add_item(str(day));
+		
+	# Store month in League
+	var month_num: int;
+	var curr_index: int = 1
+	for curr_month: String in DAYS.keys():
+		if curr_month == month:
+			month_num = curr_index
+		else:
+			curr_index += 1
+	curr_league.End_Date.push_back(month_num);
+
+# League Start Date Day Selected
+func _on_start_day_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
+	# First we get the selected month
+	var day: String = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/StartDayInput").get_item_text(index);
+	var day_num: int = int(day)
+	
+	# Now we store 
+	curr_league.Start_Date.push_back(day_num);
+
+# League End Date Day Selected
+func _on_end_day_input_item_selected(index: int) -> void:
+	# Check if valid, if not return
+	if curr_league == null:
+		return
+		
+	# First we get day
+	var day: String = get_node("../Territory League Pyramid/Tournament Edit Area/DatesInput/EndDayInput").get_item_text(index);
+	var day_num: int = int(day);
+	
+	# Now we store
+	curr_league.End_Date.push_back(day_num);
