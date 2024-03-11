@@ -28,7 +28,9 @@ var curr_tournament: Tournament;
 """ Constants """
 const NODE_SIZE: Vector2 = Vector2(600, 300);
 var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30, "MAY": 31, "JUNE":30, "JULY": 31, "AUGUST": 31, "SEPTEMBER": 30, "OCTOBER": 31, "NOVEMBER":30, "DECEMBER":31};
-
+const DEFAULT_ITEMLIST_COLOR: Color = Color(0.1, 0.1, 0.1);
+const DOMESTIC_CUP_COLOR: Color = Color(0.2, 0.4, 0.8);
+const SUPER_CUP_COLOR: Color = Color(0.2, 0.8, 0.4)
 
 """ Members """
 var world_map: WorldMap;
@@ -559,7 +561,7 @@ func _on_make_domestic_cup_pressed() -> void:
 		curr_nation.Cup = selected_index;
 		
 	# Now we reflect this in itemlist
-	tournament_list.set_item_custom_bg_color(selected_index, Color(0.2, 0.4, 0.8))
+	tournament_list.set_item_custom_bg_color(selected_index, DOMESTIC_CUP_COLOR)
 
 # UnMake Domestic Cup Button Pressed
 func _on_un_make_domestic_cup_pressed() -> void:
@@ -571,7 +573,7 @@ func _on_un_make_domestic_cup_pressed() -> void:
 		curr_nation.Cup = -1;
 		
 	# Now we reflect this in itemlist
-	tournament_list.set_item_custom_bg_color(selected_index, Color(0.1, 0.1, 0.1))
+	tournament_list.set_item_custom_bg_color(selected_index, DEFAULT_ITEMLIST_COLOR)
 
 # Make Super Cup Pressed
 func _on_make_super_cup_pressed() -> void:
@@ -583,7 +585,7 @@ func _on_make_super_cup_pressed() -> void:
 		curr_nation.Super_Cup = selected_index;
 		
 	# Now we reflect this in itemlist
-	tournament_list.set_item_custom_bg_color(selected_index, Color(0.2, 0.8, 0.4))
+	tournament_list.set_item_custom_bg_color(selected_index, SUPER_CUP_COLOR);
 
 # UnMake Super Cup Pressed
 func _on_un_make_super_cup_pressed() -> void:
@@ -595,4 +597,4 @@ func _on_un_make_super_cup_pressed() -> void:
 		curr_nation.Super_Cup = -1;
 		
 	# Now we reflect this in itemlist
-	tournament_list.set_item_custom_bg_color(selected_index, Color(0.1, 0.1, 0.1))
+	tournament_list.set_item_custom_bg_color(selected_index, DEFAULT_ITEMLIST_COLOR);
