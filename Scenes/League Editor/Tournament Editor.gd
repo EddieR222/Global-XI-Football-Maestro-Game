@@ -17,19 +17,13 @@ const SINGLE_KNOCKOUT_NODE: String ="res://Scenes/League Editor/Tournament Nodes
 """ ItemLists """
 # Nation List
 @onready var nation_list: ItemList = get_node("../../NationList");
-var nation_list_info: Dictionary; 
-var nation_list_index: int = -1;
-
+var curr_nation;
 # League Pyramid List
 @onready var league_pyramid: ItemList = get_node("../Territory League Pyramid/League Pyramid Area/League Pyramid")
-var league_pyramid_info: Dictionary
-var league_pyramid_index: int
-
+var curr_league: Tournament;
 # Tournament List
 @onready var tournament_list: ItemList = get_node("../Territory Tournaments/Tournament List Area/Tournament List")
-var tournament_list_info: Dictionary;
-var tournament_list_index: int; 
-
+var curr_tournament: Tournament;
 
 """ Constants """
 const NODE_SIZE: Vector2 = Vector2(600, 300);
@@ -122,7 +116,7 @@ func load_tournaments(source) -> void:
 		# Add it to item list
 		var index = league_pyramid.add_item(league_name, texture_normal, true);
 		# Save it to local list  
-		league_pyramid_info[index] = league;
+		league_pyramid.set_item_metadata(index, league);
 		
 	# Second we load the other tournaments
 	for tournament: Tournament in tournaments.values():
@@ -140,7 +134,7 @@ func load_tournaments(source) -> void:
 		# Add it to item list
 		var index = tournament_list.add_item(league_name, texture_normal, true);
 		#Save to local list
-		tournament_list_info[index] = tournament;
+		tournament_list.set_item_metadata(index, tournament);
 		
 		#We have to highlight super cup and leagues cup
 		if index == super_cup_index:
@@ -151,22 +145,20 @@ func load_tournaments(source) -> void:
 
 """ Functions for when user selects in an item list """
 func _on_nation_list_item_selected(index: int) -> void:
-	# Change index for nation list
-	nation_list_index = index
-	
+	# Save curr confed/terr to var
+	curr_nation = nation_list.get_item_metadata(index)
 	# Load the New Selected Territory's or Confederation's tournament
-	load_tournaments(nation_list_info[index]);
+	load_tournaments(curr_nation);
 
-func _on_league_pyramid_item_selected(index: int) -> void:
-	# Change index for league pyramid
-	league_pyramid_index = index
-	
+func _on_league_pyramid_item_selected(index: int) -> void:	
+	curr_league = league_pyramid.get_item_metadata(index);
 	# Display selected league's info
-	get_tree().call_group("League_Info", "league_selected", league_pyramid_info[league_pyramid_index]);
+	get_tree().call_group("League_Info", "league_selected", curr_league);
 
 func _on_tournament_list_item_selected(index: int) -> void:
-	# Change the index for tournament list
-	tournament_list_index = index	
+	#Set curr_tournament 
+	curr_tournament = tournament_list.get_item_metadata(index);
+	
 
 
 
@@ -179,45 +171,48 @@ func _on_add_league_level_pressed():
 	# Add it to the league pyramid
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = league_pyramid.add_item("New Tournament", default_icon, true);
-	league_pyramid_info[index] = new_tour;
+	league_pyramid.set_item_metadata(index, new_tour);
 	
 	# Save it to the terr/confed selected
-	var sink = nation_list_info[nation_list_index];
+	var sink = curr_nation
 	if sink is Territory:
 		sink.Leagues[index] = new_tour
 	elif sink is Confederation:
 		sink.Confed_Leagues[index] = new_tour
 		
-	organize_tournaments();
+	organize_tournaments_ids();
 
 func _on_delete_league_level_pressed():
-	# Remove it from local dict
-	league_pyramid_info.erase(league_pyramid_index);
-
+	# Get index of selected item
+	var selected_index_list = league_pyramid.get_selected_items();
+	var index: int;
+	# If none are selected, return early
+	if selected_index_list.is_empty():
+		return
+	else:
+		index = selected_index_list[0];
+		
 	# Remove it from league pyramid item list
-	league_pyramid.remove_item(league_pyramid_index);
+	league_pyramid.remove_item(index)
 
 func _on_add_tournament_pressed() -> void:
 	# Create a new Tournament for the league
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
 	
-	
-	
-	
 	# Add it to the league pyramid
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = tournament_list.add_item("New Tournament", default_icon, true);
-	tournament_list_info[index] = new_tour;
+	tournament_list.set_item_metadata(index, new_tour);
 	
 	# Save it to the terr/confed selected
-	var sink = nation_list_info[nation_list_index];
+	var sink = curr_nation
 	if sink is Territory:
 		sink.Tournaments[index] = new_tour
 	elif sink is Confederation:
 		sink.Confed_Tournaments[index] = new_tour
 
-func organize_tournaments() -> void:
+func organize_tournaments_ids() -> void:
 	# We need to gather all tournaments into an array
 	var all_tournaments: Array = [];
 	for confed: Confederation in world_map.Confederations.values():
@@ -228,8 +223,9 @@ func organize_tournaments() -> void:
 		for tour: Tournament in tournaments.values():
 			all_tournaments.push_back(tour)
 			
-	for terr in nation_list_info.values():
-		if terr is Confederation:
+	for index: int in range(nation_list.item_count):
+		var terr = nation_list.get_item_metadata(index);
+		if terr is Confederation or terr == null:
 			continue
 		var leagues: Dictionary = terr.Leagues;
 		for tour: Tournament in leagues.values():
@@ -262,25 +258,26 @@ func _on_league_logo_input_file_selected(path: String) -> void:
 	
 	# Save Image into Territory Class
 	logo.compress(Image.COMPRESS_BPTC);
-	league_pyramid_info[league_pyramid_index].Logo = logo;
+	curr_league.Logo = logo;
 	
 # League Name LineEdit
 func _on_league_name_text_changed(new_text: String) -> void:
-	league_pyramid_info[league_pyramid_index].Name = new_text;
+	curr_league.Name = new_text;
 	
 # League Importance SpinBox
 func _on_spin_box_value_changed(value: int) -> void:
-	league_pyramid_info[league_pyramid_index].Importance = value;
+	curr_league.Importance = value;
 
 # League Host Country LineEdit
 func _on_host_country_input_text_changed(new_text: String) -> void:
-	league_pyramid_info[league_pyramid_index].Host_Country_Name = new_text;
+	curr_league.Host_Country_Name = new_text;
 	
 # League N Repeatition Years SpinBox
 func _on_every_n_years_input_value_changed(value: float) -> void:
-	league_pyramid_info[league_pyramid_index].Every_N_Years = value;
+	curr_league.Every_N_Years = value;
 
 
 func _on_start_month_input_item_selected(index: int) -> void:
 	# First we store the month in date
-	league_pyramid_info[league_pyramid_index].Start_Date.push_back()
+	curr_league.Start_Date.push_back(0);
+	
