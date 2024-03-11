@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbrka8appw0wv"]
+[gd_scene load_steps=14 format=3 uid="uid://dbrka8appw0wv"]
 
 [ext_resource type="Script" path="res://Scenes/League Editor/League Editor.gd" id="1_k6jpy"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Tournament Editor.gd" id="2_7mbge"]
@@ -9,6 +9,10 @@
 [ext_resource type="Script" path="res://Scenes/League Editor/SpinBox.gd" id="7_mcigt"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Host Country Input.gd" id="8_oxhpt"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Every N Years Input.gd" id="9_mump2"]
+[ext_resource type="Script" path="res://Scenes/League Editor/StartMonthInput.gd" id="10_qwf65"]
+[ext_resource type="Script" path="res://Scenes/League Editor/EndMonthInput.gd" id="11_6sceh"]
+[ext_resource type="Script" path="res://Scenes/League Editor/StartDayInput.gd" id="11_m1i4c"]
+[ext_resource type="Script" path="res://Scenes/League Editor/EndDayInput.gd" id="13_3e5uh"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -229,7 +233,7 @@ size_flags_horizontal = 3
 text = "Start Date"
 horizontal_alignment = 1
 
-[node name="StartMonthInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+[node name="StartMonthInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput" groups=["League_Info"]]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -259,19 +263,21 @@ popup/item_10/text = "November"
 popup/item_10/id = 10
 popup/item_11/text = "December"
 popup/item_11/id = 11
+script = ExtResource("10_qwf65")
 
-[node name="StartDayInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+[node name="StartDayInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput" groups=["League_Info"]]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 allow_reselect = true
+script = ExtResource("11_m1i4c")
 
 [node name="EndDate" type="Label" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
 layout_mode = 2
 text = "End Date"
 horizontal_alignment = 1
 
-[node name="EndMonthInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+[node name="EndMonthInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput" groups=["League_Info"]]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -301,12 +307,14 @@ popup/item_10/text = "November"
 popup/item_10/id = 10
 popup/item_11/text = "December"
 popup/item_11/id = 11
+script = ExtResource("11_6sceh")
 
-[node name="EndDayInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput"]
+[node name="EndDayInput" type="OptionButton" parent="VBoxContainer/EditorBar/TabContainer/Territory League Pyramid/Tournament Edit Area/DatesInput" groups=["League_Info"]]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 allow_reselect = true
+script = ExtResource("13_3e5uh")
 
 [node name="Territory Tournaments" type="HBoxContainer" parent="VBoxContainer/EditorBar/TabContainer"]
 visible = false

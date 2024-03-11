@@ -390,3 +390,6 @@ func _on_end_day_input_item_selected(index: int) -> void:
 	
 	# Now we store
 	curr_league.End_Date.push_back(day_num);
+
+
+""" Tournament List Editor Inputs Signals """

@@ -11,3 +11,7 @@ res://Control.gd
 res://test_itemlist.tscn
 res://Scenes/League Editor/League Editor.gd
 res://Resources/Tournament.gd
+res://Scenes/League Editor/StartMonthInput.gd
+res://Scenes/League Editor/EndMonthInput.gd
+res://Scenes/League Editor/StartDayInput.gd
+res://Scenes/League Editor/EndDayInput.gd
