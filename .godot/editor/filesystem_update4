@@ -3,3 +3,10 @@ res://Scenes/World Editor/World Editor.tscn
 res://Scenes/Team Editor/Team Editor.tscn
 res://Scenes/World Editor/League Editor/LeagueNode.tscn
 res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
+res://Scenes/League Editor/Tournament Editor.gd
+res://Scenes/League Editor/SpinBox.gd
+res://Scenes/League Editor/Host Country Input.gd
+res://Scenes/League Editor/Every N Years Input.gd
+res://Control.gd
+res://test_itemlist.tscn
+res://Scenes/League Editor/League Editor.gd

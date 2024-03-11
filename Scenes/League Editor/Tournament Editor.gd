@@ -33,6 +33,7 @@ var tournament_list_index: int;
 
 """ Constants """
 const NODE_SIZE: Vector2 = Vector2(600, 300);
+enum DAYS {JANUARY = 31, FEBRUARY = 28, MARCH = 31, APRIL = 30, MAY = 31, JUNE = 30, JULY = 31, AUGUST = 31, SEPTEMBER = 30, OCTOBER = 31, NOVEMBER = 30, DECEMBER = 31};
 
 
 """ Members """
@@ -159,6 +160,9 @@ func _on_nation_list_item_selected(index: int) -> void:
 func _on_league_pyramid_item_selected(index: int) -> void:
 	# Change index for league pyramid
 	league_pyramid_index = index
+	
+	# Display selected league's info
+	get_tree().call_group("League_Info", "league_selected", league_pyramid_info[league_pyramid_index]);
 
 func _on_tournament_list_item_selected(index: int) -> void:
 	# Change the index for tournament list
@@ -244,6 +248,9 @@ func organize_tournaments() -> void:
 		index += 1;
 
 
+
+""" League Pyramid Editor Inputs Singals """
+# League Logo Texture Button
 func _on_league_logo_input_file_selected(path: String) -> void:
 	# Load Image of Territory Flag
 	var logo: Image = Image.load_from_file(path);
@@ -257,5 +264,23 @@ func _on_league_logo_input_file_selected(path: String) -> void:
 	logo.compress(Image.COMPRESS_BPTC);
 	league_pyramid_info[league_pyramid_index].Logo = logo;
 	
+# League Name LineEdit
+func _on_league_name_text_changed(new_text: String) -> void:
+	league_pyramid_info[league_pyramid_index].Name = new_text;
 	
+# League Importance SpinBox
+func _on_spin_box_value_changed(value: int) -> void:
+	league_pyramid_info[league_pyramid_index].Importance = value;
+
+# League Host Country LineEdit
+func _on_host_country_input_text_changed(new_text: String) -> void:
+	league_pyramid_info[league_pyramid_index].Host_Country_Name = new_text;
 	
+# League N Repeatition Years SpinBox
+func _on_every_n_years_input_value_changed(value: float) -> void:
+	league_pyramid_info[league_pyramid_index].Every_N_Years = value;
+
+
+func _on_start_month_input_item_selected(index: int) -> void:
+	# First we store the month in date
+	league_pyramid_info[league_pyramid_index].Start_Date.push_back()
