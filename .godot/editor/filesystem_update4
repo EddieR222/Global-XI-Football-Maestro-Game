@@ -1,21 +1,8 @@
 res://Scenes/League Editor/League Editor.tscn
-res://Scenes/League Editor/League Editor.gd
-res://Scenes/League Editor/EndMonthInput.gd
 res://Scenes/World Editor/World Editor.tscn
 res://Scenes/Team Editor/Team Editor.tscn
 res://Scenes/World Editor/League Editor/LeagueNode.tscn
 res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
 res://test_itemlist.tscn
-res://Scenes/League Editor/EndDayInput.gd
-res://Scenes/League Editor/StartDayInput.gd
 res://Scenes/League Editor/Tournament Editor.gd
-res://Scenes/League Editor/TournamentLogo.gd
-res://Scenes/League Editor/TournamentName.gd
-res://Scenes/League Editor/Tournament ID.gd
-res://Scenes/League Editor/TourImportanceInput.gd
-res://Scenes/League Editor/TourHostCountryInput.gd
-res://Scenes/League Editor/Tour Every N Years Input.gd
-res://Scenes/League Editor/TourStartMonthInput.gd
-res://Scenes/League Editor/TourStartDayInput.gd
-res://Scenes/League Editor/TourEndMonthInput.gd
-res://Scenes/League Editor/TourEndDayInput.gd
+res://Scenes/League Editor/Misc Scripts/Tournament Editor.gd

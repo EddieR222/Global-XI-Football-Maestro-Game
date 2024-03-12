@@ -25,6 +25,11 @@ var curr_league: Tournament;
 @onready var tournament_list: ItemList = get_node("../Territory Tournaments/Tournament List Area/Tournament List")
 var curr_tournament: Tournament;
 
+""" PopUp Menus """
+@onready var add_node_popmenu: PopupMenu = get_node("../../../TitleBar/AddLeagueStage").get_popup();
+@onready var tour_select = get_node("../../../TitleBar/TournamentSelection");
+@onready var tour_select_popmenu: PopupMenu = get_node("../../../TitleBar/TournamentSelection").get_popup();
+
 """ Constants """
 const NODE_SIZE: Vector2 = Vector2(600, 300);
 var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30, "MAY": 31, "JUNE":30, "JULY": 31, "AUGUST": 31, "SEPTEMBER": 30, "OCTOBER": 31, "NOVEMBER":30, "DECEMBER":31};
@@ -36,11 +41,11 @@ const SUPER_CUP_COLOR: Color = Color(0.2, 0.8, 0.4)
 var world_map: WorldMap;
 
 
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-	##configure_pop_menus()
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	configure_pop_menus()
 	#pass
-#
+
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
@@ -48,12 +53,23 @@ var world_map: WorldMap;
 	
 func configure_pop_menus() -> void:
 	#First we need to set up the popup menu from the Add League Stage
-	var add_node_popmenu: PopupMenu = get_node("../../../TitleBar/AddLeagueStage").get_popup()
 	add_node_popmenu.id_pressed.connect(_on_add_stage_popmenu_item_selected);
 	
-	# Second we need to set up the add qualifying team popup
+	#Make icons size smaller for popupmenu
+	tour_select_popmenu.add_theme_constant_override("icon_max_width", 25);
+	
+	# Second we need to set up the select tournament popup
+	tour_select_popmenu.id_pressed.connect(_on_tournament_selected);
 
-func _on_add_stage_popmenu_item_selected(index: int):
+func _on_tournament_selected(index: int) -> void:
+	pass
+	
+
+func _on_add_stage_popmenu_item_selected(index: int) -> void: 
+	# Only makes sense to add nodes to league editor is a current tournament is selected to edit
+	if tour_select.get_selected_id() == -1:
+		return
+	
 	match index:
 		0: 
 			print("GroupStage Added")
@@ -78,6 +94,8 @@ func _on_add_stage_popmenu_item_selected(index: int):
 
 func load_tournaments(source) -> void:
 	# First we clear the current list
+	tour_select.select(-1)
+	tour_select_popmenu.clear();
 	league_pyramid.clear();
 	tournament_list.clear();
 
@@ -140,8 +158,70 @@ func load_tournaments(source) -> void:
 			tournament_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.4));
 		elif index == league_cup:
 			tournament_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.0));
+	
+	update_tournament_selection_popup();
 		
-
+func update_tournament_selection_popup() -> void:
+	if curr_nation == null:
+		return
+		
+	# Clear the popup menu
+	tour_select_popmenu.clear();	
+		
+	var leagues: Dictionary
+	var tournaments: Dictionary
+	var super_cup_index: int;
+	var league_cup: int;
+	if curr_nation is Territory:
+		# Load needed variables
+		leagues= curr_nation.Leagues;
+		tournaments = curr_nation.Tournaments;
+		super_cup_index= curr_nation.Super_Cup;
+		league_cup = curr_nation.League_Cup;
+	elif curr_nation is Confederation:
+		leagues = curr_nation.Confed_Leagues;
+		tournaments = curr_nation.Confed_Tournaments;
+		super_cup_index = curr_nation.Super_Cup;
+		league_cup = curr_nation.Cup;
+		
+		
+	# Now we need to load them into the needed itemlists
+	# First we load the league pyramid
+	for league: Tournament in leagues.values():
+		# Get Tournament Name
+		var league_name = league.Name;
+		# Get Tournament Logo
+		var texture_normal
+		var logo = league.Logo;
+		if logo != null:
+			logo.decompress();
+			texture_normal = ImageTexture.create_from_image(logo);
+		else:
+			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			texture_normal = default_icon;
+		# Add it to popup menu
+		tour_select_popmenu.add_icon_item(texture_normal, league_name);
+		# Save it to local list  
+		#league_pyramid.set_item_metadata(index, league);
+		
+	# Second we load the other tournaments
+	for tournament: Tournament in tournaments.values():
+		# Get Tournament Name
+		var tournament_name = tournament.Name;
+		# Get Tournament Logo
+		var texture_normal
+		var logo = tournament.Logo;
+		if logo != null:
+			logo.decompress();
+			texture_normal = ImageTexture.create_from_image(logo);
+		else:
+			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			texture_normal = default_icon;
+		# Add it to item list
+		tour_select_popmenu.add_icon_item(texture_normal, tournament_name)
+		#Save to local list
+		#tournament_list.set_item_metadata(index, tournament);
+	
 """ Functions for when user selects in an item list """
 func _on_nation_list_item_selected(index: int) -> void:
 	# Save curr confed/terr to var
@@ -164,7 +244,6 @@ func _on_tournament_list_item_selected(index: int) -> void:
 	# Display selected tournament info
 	get_tree().call_group("Tour_Info", "tour_selected", curr_tournament);
 	
-
 """ Item Lists Addition and Deletion """
 func _on_add_league_level_pressed():
 	# Create a new Tournament for the league
@@ -184,6 +263,7 @@ func _on_add_league_level_pressed():
 		sink.Confed_Leagues[index] = new_tour
 		
 	organize_tournaments_ids();
+	update_tournament_selection_popup();
 
 func _on_delete_league_level_pressed():
 	# Get index of selected item
@@ -197,6 +277,9 @@ func _on_delete_league_level_pressed():
 		
 	# Remove it from league pyramid item list
 	league_pyramid.remove_item(index)
+	
+	organize_tournaments_ids();
+	update_tournament_selection_popup();
 
 func _on_add_tournament_pressed() -> void:
 	# Create a new Tournament for the league
@@ -216,6 +299,7 @@ func _on_add_tournament_pressed() -> void:
 		sink.Confed_Tournaments[index] = new_tour
 		
 	organize_tournaments_ids();
+	update_tournament_selection_popup();
 
 func _on_delete_tournament_pressed():
 	# Get index of selected item
@@ -229,6 +313,9 @@ func _on_delete_tournament_pressed():
 		
 	# Remove it from league pyramid item list
 	tournament_list.remove_item(index)
+	
+	organize_tournaments_ids();
+	update_tournament_selection_popup();
 
 func organize_tournaments_ids() -> void:
 	# We need to gather all tournaments into an array
@@ -425,7 +512,7 @@ func _on_tournament_logo_input_file_selected(path: String) -> void:
 	get_node("../Territory Tournaments/Tournament Edit Area/Header/TournamentLogo").texture_normal = logo_texture
 	
 	# Reflect changes on ItemList
-	var selected_item: int = league_pyramid.get_selected_items()[0];
+	var selected_item: int = tournament_list.get_selected_items()[0];
 	tournament_list.set_item_icon(selected_item, logo_texture)
 	
 	# Save Image into Territory Class
@@ -441,7 +528,7 @@ func _on_tournament_name_text_changed(new_text: String) -> void:
 	curr_tournament.Name = new_text;
 	
 	# Reflect changes on ItemList
-	var selected_item: int = league_pyramid.get_selected_items()[0];
+	var selected_item: int = tournament_list.get_selected_items()[0];
 	tournament_list.set_item_text(selected_item, new_text);
 
 # Tournament Importance Spinbox
