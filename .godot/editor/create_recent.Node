@@ -1,3 +1,6 @@
+SpinBox
+Label
+GridContainer
 PopupMenu
 HBoxContainer
 VBoxContainer
@@ -5,11 +8,7 @@ Button
 ItemList
 FileDialog
 MarginContainer
-GridContainer
 TextureButton
-SpinBox
-Label
 OptionButton
 MenuBar
 MenuButton
-LineEdit

@@ -31,7 +31,7 @@ var curr_tournament: Tournament;
 @onready var tour_select_popmenu: PopupMenu = get_node("../../../TitleBar/TournamentSelection").get_popup();
 
 """ Constants """
-const NODE_SIZE: Vector2 = Vector2(600, 300);
+const NODE_SIZE: Vector2 = Vector2(600, 525);
 var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30, "MAY": 31, "JUNE":30, "JULY": 31, "AUGUST": 31, "SEPTEMBER": 30, "OCTOBER": 31, "NOVEMBER":30, "DECEMBER":31};
 const DEFAULT_ITEMLIST_COLOR: Color = Color(0.1, 0.1, 0.1);
 const DOMESTIC_CUP_COLOR: Color = Color(0.2, 0.4, 0.8);
@@ -64,34 +64,6 @@ func configure_pop_menus() -> void:
 func _on_tournament_selected(index: int) -> void:
 	pass
 	
-
-func _on_add_stage_popmenu_item_selected(index: int) -> void: 
-	# Only makes sense to add nodes to league editor is a current tournament is selected to edit
-	if tour_select.get_selected_id() == -1:
-		return
-	
-	match index:
-		0: 
-			print("GroupStage Added")
-			var new_node: GraphNode = groupstage_node.instantiate();
-			add_child(new_node)
-			new_node.size = NODE_SIZE;
-		1:
-			print("League Added")
-			var new_node: GraphNode = league_node.instantiate();
-			add_child(new_node)
-			new_node.size = NODE_SIZE;
-		2:
-			print("KnockOut Added")
-			var new_node: GraphNode = knockout_node.instantiate();
-			add_child(new_node)
-			new_node.size = NODE_SIZE;
-		3:
-			print("Single Knockout Added")
-			var new_node: GraphNode = single_knockout_node.instantiate();
-			add_child(new_node)
-			new_node.size = NODE_SIZE;
-
 func load_tournaments(source) -> void:
 	# First we clear the current list
 	tour_select.select(-1)
@@ -685,3 +657,36 @@ func _on_un_make_super_cup_pressed() -> void:
 		
 	# Now we reflect this in itemlist
 	tournament_list.set_item_custom_bg_color(selected_index, DEFAULT_ITEMLIST_COLOR);
+
+
+""" Functions below cover all things in League Editor """
+# When Tournament Stage is Selected to be added
+func _on_add_stage_popmenu_item_selected(index: int) -> void: 
+	# Only makes sense to add nodes to league editor is a current tournament is selected to edit
+	if tour_select.get_selected_id() == -1:
+		return
+	
+	match index:
+		0: 
+			print("GroupStage Added")
+			var new_node: GraphNode = groupstage_node.instantiate();
+			add_child(new_node)
+			new_node.size = NODE_SIZE;
+		1:
+			print("League Added")
+			var new_node: GraphNode = league_node.instantiate();
+			add_child(new_node)
+			new_node.size = NODE_SIZE;
+		2:
+			print("KnockOut Added")
+			var new_node: GraphNode = knockout_node.instantiate();
+			add_child(new_node)
+			new_node.size = NODE_SIZE;
+		3:
+			print("Single Knockout Added")
+			var new_node: GraphNode = single_knockout_node.instantiate();
+			add_child(new_node)
+			new_node.size = NODE_SIZE;
+
+func prepare_tournament_stage_node(node: GraphNode) -> void:
+	pass

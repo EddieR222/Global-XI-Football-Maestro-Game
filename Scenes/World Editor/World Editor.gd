@@ -136,6 +136,7 @@ func _on_file_dialog_file_selected(path):
 	redraw_saved_connections(world_map, graph_edit);
 	world_map.organize_all_territories();
 	graph_edit.world_map = world_map;
+	graph_edit.arrange_nodes();
 	print("Done");
 	
 func redraw_saved_connections(graph: Graph, graph_edit: GraphEdit) -> void:
