@@ -723,7 +723,7 @@ func determine_eligable_teams(item_list: ItemList) -> void:
 		item_list.prepare_item_list(club_teams, national_team.Territory_Name);
 
 func get_confed_national_teams(confed: Confederation) -> Dictionary:
-	var queue: Array = [];
+	var queue: Array = [confed];
 	var curr_confed: Confederation
 	var national_teams: Dictionary
 	var index: int = 0;

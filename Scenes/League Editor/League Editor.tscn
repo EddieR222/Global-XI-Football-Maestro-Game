@@ -589,6 +589,7 @@ access = 2
 use_native_dialog = true
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Load File" to="." method="_on_load_file_pressed"]
+[connection signal="pressed" from="VBoxContainer/TitleBar/Save File" to="." method="_on_save_file_pressed"]
 [connection signal="text_changed" from="VBoxContainer/TitleBar/FileNameEdit" to="." method="_on_file_name_edit_text_changed"]
 [connection signal="value_changed" from="VBoxContainer/TitleBar/YearSelection" to="VBoxContainer/EditorBar/TabContainer/Tournament Editor" method="_on_year_selection_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/EditorBar/NationList" to="VBoxContainer/EditorBar/TabContainer/Tournament Editor" method="_on_nation_list_item_selected"]

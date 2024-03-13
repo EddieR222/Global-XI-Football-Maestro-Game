@@ -59,7 +59,8 @@ func _on_load_world_map_file_selected(path: String) -> void:
 		# Add to local list
 		graph_edit.nation_list.set_item_metadata(terr_index, terr);
 		
-		
+	
+	#create_national_teams(file_map);
 	# Add to dictionary to keep track
 	graph_edit.world_map = file_map;
 
@@ -70,3 +71,21 @@ func _on_file_name_edit_text_changed(new_text: String) -> void:
 # DONT FORGET METADATA!!!!!
 func _on_texture_button_pressed():
 	get_node("LeagueLogoInput").visible = true;
+
+
+func create_national_teams(world_map: WorldMap) -> void:
+	for terr: Territory in world_map.Confederations[0].Territory_List.values():
+		var national_team: Team = Team.new();
+		national_team.Name = terr.Territory_Name + " National Team";
+		national_team.Logo = terr.Flag;
+		national_team.Territory_Name = terr.Territory_Name
+		national_team.Territory_ID = terr.Territory_ID;
+		terr.National_Team = national_team
+		
+
+# When User Presses to Save File
+func _on_save_file_pressed():
+	# Init WorldMap Variable
+	var save_map: WorldMap = graph_edit.world_map;
+	# Finally, save it to file
+	ResourceSaver.save(save_map, "user://{filename}.res".format({"filename": FileName}));

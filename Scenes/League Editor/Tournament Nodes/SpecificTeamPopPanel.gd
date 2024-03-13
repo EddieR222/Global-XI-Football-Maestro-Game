@@ -26,6 +26,8 @@ func _on_teams_list_item_selected(index: int) -> void:
 
 # When User Clicks the Done Button
 func _on_done_button_pressed():
+	if Choosen_Team == null:
+		return
 	# First we need to save the Team to itemlist
 	var team_name: String = Choosen_Team.Name;
 	var logo: Image = Choosen_Team.Logo;
