@@ -44,3 +44,14 @@ func get_stage_id() -> int:
 	
 func get_stage_name() -> String:
 	return Name;
+	
+	
+	
+	
+	
+	
+func set_num_matches_played(num: int) -> void:
+	Num_Matches_Played = num;
+	Num_Home_Matches = num / 2;
+	Num_Away_Matches = Num_Matches_Played - Num_Home_Matches;
+	return

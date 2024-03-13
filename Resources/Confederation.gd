@@ -13,4 +13,8 @@ class_name Confederation extends Resource
 @export var Super_Cup: int = -1
 @export var Cup: int = -1
 
+""" Rankings or CoEfficients """
+@export var National_Teams_Rankings: Dictionary
+@export var National_League_Rankings: Dictionary
+@export var Club_Teams_Rankings: Dictionary
 

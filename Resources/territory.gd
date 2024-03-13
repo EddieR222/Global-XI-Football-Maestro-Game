@@ -2,7 +2,7 @@ class_name Territory
 extends Resource
 
 
-# Identifying Information
+""" Identifying Information """
 @export var Territory_ID: int;
 @export var Territory_Name: String;
 @export var CoTerritory_ID: int;
@@ -12,27 +12,29 @@ extends Resource
 @export var Code: String;
 @export var Flag: Image;
 
-# Country Information
+""" Country Information """
 @export var Population: float; # In Millions
 @export var Area: float; #In Thousands
 @export var GDP: float; # In Billions
 
 
-# Name Database
+""" Name Database """
 @export var First_Names: PackedStringArray;
 @export var Last_Names: PackedStringArray;
 
 
-# Soccer Ratings (Domestic and International) 
+""" Soccer Ratings (Domestic and International) """
 @export var Rating: float;
 @export var League_Elo: float;
 
-# Tournaments in Country	
+""" Tournaments in Country """	
 @export var Leagues: Dictionary
 @export var League_Cup: int = -1#index inside of Tournaments Dictionary
 @export var Super_Cup: int = -1 #index inside of Tournaments Dictionary
 @export var Tournaments: Dictionary
 
-# Teams
+""" Teams """
 @export var Teams: Dictionary
 
+""" Rankings """
+@export var Club_Teams_Rankings: Dictionary
