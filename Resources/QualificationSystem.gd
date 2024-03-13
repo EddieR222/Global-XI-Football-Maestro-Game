@@ -1,10 +1,7 @@
 class_name QualificationSystem extends Resource
 
 
-@export_enum("INPUT:0", "SPECIFIC:1", "TOURNAMENT:2", "RANKING:3") var Qualification_Type: int;
-
-""" Input Specific Details """
-@export var Num_Teams_Accept: int = 0;
+@export_enum("INPUT", "SPECIFIC", "TOURNAMENT", "RANKING") var Qualification_Type: int;
 
 """ Specific Specific Details """
 @export var Specific_Team: Team;

@@ -35,6 +35,7 @@ extends Resource
 
 """ Teams """
 @export var Teams: Dictionary
+@export var National_Team: Team
 
 """ Rankings """
 @export var Club_Teams_Rankings: Dictionary

@@ -40,6 +40,8 @@ const SUPER_CUP_COLOR: Color = Color(0.2, 0.8, 0.4)
 """ Members """
 var world_map: WorldMap;
 
+""" """
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -676,6 +678,7 @@ func _on_add_stage_popmenu_item_selected(index: int) -> void:
 			print("League Added")
 			var new_node: GraphNode = league_node.instantiate();
 			add_child(new_node)
+			prepare_league_node(new_node);
 			new_node.size = NODE_SIZE;
 		2:
 			print("KnockOut Added")
@@ -688,5 +691,97 @@ func _on_add_stage_popmenu_item_selected(index: int) -> void:
 			add_child(new_node)
 			new_node.size = NODE_SIZE;
 
-func prepare_tournament_stage_node(node: GraphNode) -> void:
-	pass
+func prepare_league_node(node: GraphNode) -> void:
+	# First we need to connect the signal from inside to prepare eligable teams
+	node.need_eligable_teams.connect(determine_eligable_teams);
+
+
+""" Functions Below are For Getting Eligabe Teams """
+func determine_eligable_teams(item_list: ItemList) -> void:
+	if curr_nation == null:
+		return
+		
+		
+	var national_teams: Dictionary = {};
+	if curr_nation is Territory:
+		# If Territory, we need to get all teams in this territory, 
+		# including Territories with this Territory as their CoTerritory
+		national_teams = get_territory_national_teams(curr_nation);
+	elif curr_nation is Confederation:
+		# First we get the national teams in Confed and all Children Confeds
+		national_teams = get_confed_national_teams(curr_nation);
+		
+	# Now we add National Teams to ItemList
+	item_list.prepare_item_list(national_teams, "National Teams");
+	
+	# Now we need to add all club teams for each territory
+	for national_team: Team in national_teams.values():
+		var terr_id: int = national_team.Territory_ID;
+		var club_teams: Dictionary = get_territory_club_teams(terr_id);
+		
+		#Add it to itemlist
+		item_list.prepare_item_list(club_teams, national_team.Territory_Name);
+
+func get_confed_national_teams(confed: Confederation) -> Dictionary:
+	var queue: Array = [];
+	var curr_confed: Confederation
+	var national_teams: Dictionary
+	var index: int = 0;
+	
+	while not queue.is_empty():
+		# Get Current Confederations
+		curr_confed = queue.pop_front();
+		
+		# For Curr_Confed, get the national teams
+		for terr: Territory in curr_confed.Territory_List.values():
+			if terr.National_Team not in national_teams.values():
+				national_teams[index] = terr.National_Team;
+				index += 1;
+
+		#Now, we get the children and add them to queue
+		var children: Array = curr_confed.Children_ID;
+		
+		for child: int in children:
+			var child_confed: Confederation = world_map.Confederations[child];
+			queue.push_back(child_confed);
+		
+		
+	return national_teams;
+
+func get_territory_national_teams(terr: Territory) -> Dictionary:
+	# For a specific territory, only the country and other country that have this country as 
+	# CoTerritory will be selected
+	var national_teams: Dictionary = {};
+	national_teams[0] = terr.National_Team;
+	var index: int = 1;
+	
+	for confed: Confederation in world_map.Confederations.values():
+		for t: Territory in confed.Territory_List.values():
+			if t.CoTerritory_ID == terr.Territory_ID and t.National_Team not in national_teams.values():
+				national_teams[index] = t.National_Team;
+				index += 1;
+				
+				
+	return national_teams
+
+func get_territory_club_teams(terr_id: int) -> Dictionary:
+	# For a specific territory, only the country and other country that have this country as 
+	# CoTerritory will be selected
+	var club_teams: Dictionary = {};
+	var index: int = 0;
+	
+	for confed: Confederation in world_map.Confederations.values():
+		for t: Territory in confed.Territory_List.values():
+			if t.Territory_ID == terr_id:
+				for team: Team in t.Teams.values():
+					club_teams[index] = team;
+					index += 1;
+				return club_teams
+				
+				
+	return club_teams
+
+
+# User changed Starting Year
+func _on_year_selection_value_changed(value: int) -> void:
+	world_map.Starting_Year = value;

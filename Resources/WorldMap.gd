@@ -1,6 +1,6 @@
 class_name WorldMap extends Resource
 
-
+@export var Starting_Year: int;
 @export var Confederations: Dictionary
 @export var Territory_List: Dictionary
 

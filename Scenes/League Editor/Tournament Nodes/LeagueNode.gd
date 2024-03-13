@@ -28,6 +28,9 @@ const NODE_SIZE: Vector2 = Vector2(600, 525);
 var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30, "MAY": 31, "JUNE":30, "JULY": 31, "AUGUST": 31, "SEPTEMBER": 30, "OCTOBER": 31, "NOVEMBER":30, "DECEMBER":31};
 
 
+""" Custom Signals """
+signal need_eligable_teams(item_list: ItemList);
+
 func _ready():
 	configure_popups();
 
@@ -144,7 +147,11 @@ func _on_qualifying_method_selected(index: int) -> void:
 			input_teams_panel.visible = true;
 		1: #Specific Teams
 			specific_teams_panel.visible = true;
+			var item_list: ItemList = get_node("SpecificTeamPopPanel/VBoxContainer/GridContainer/TeamsList");
+			emit_signal("need_eligable_teams", item_list);
 		2: #Other Tournament/Stage
 			other_tournament_panel.visible = true;
 		3: #Ranking
 			ranking_panel.visible = true;
+			
+
