@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn4dd7hcawo6o"]
+[gd_scene load_steps=13 format=3 uid="uid://bn4dd7hcawo6o"]
 
 [ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/LeagueNode.gd" id="1_110ef"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/InputTeamsPopPanel.gd" id="2_c5nhr"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/SpecificTeamPopPanel.gd" id="3_j4glf"]
 [ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/TeamsList.gd" id="4_q3fhp"]
+[ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/OtherTournamentPanel.gd" id="5_ju7pm"]
+[ext_resource type="Script" path="res://Scenes/League Editor/Tournament Nodes/TournamentSelection.gd" id="6_aovfb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u7v0"]
 content_margin_left = 10.0
@@ -383,6 +385,7 @@ text = "Done"
 initial_position = 2
 size = Vector2i(598, 215)
 theme_override_styles/panel = SubResource("StyleBoxFlat_k4ocj")
+script = ExtResource("5_ju7pm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OtherTournamentPanel"]
 offset_left = 10.0
@@ -420,6 +423,7 @@ size_flags_horizontal = 4
 
 [node name="TournamentSelection" type="OptionButton" parent="OtherTournamentPanel/VBoxContainer/GridContainer"]
 layout_mode = 2
+script = ExtResource("6_aovfb")
 
 [node name="StageSelection" type="OptionButton" parent="OtherTournamentPanel/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -506,3 +510,6 @@ text = "Done"
 [connection signal="pressed" from="InputTeamsPopPanel/VBoxContainer/DoneButton" to="InputTeamsPopPanel" method="_on_done_button_pressed"]
 [connection signal="item_selected" from="SpecificTeamPopPanel/VBoxContainer/GridContainer/TeamsList" to="SpecificTeamPopPanel" method="_on_teams_list_item_selected"]
 [connection signal="pressed" from="SpecificTeamPopPanel/VBoxContainer/DoneButton" to="SpecificTeamPopPanel" method="_on_done_button_pressed"]
+[connection signal="toggled" from="OtherTournamentPanel/VBoxContainer/GridContainer/WinnersInput" to="OtherTournamentPanel" method="_on_winners_input_toggled"]
+[connection signal="item_selected" from="OtherTournamentPanel/VBoxContainer/GridContainer/TournamentSelection" to="OtherTournamentPanel" method="_on_tournament_selection_item_selected"]
+[connection signal="pressed" from="OtherTournamentPanel/VBoxContainer/DoneButton" to="OtherTournamentPanel" method="_on_done_button_pressed"]

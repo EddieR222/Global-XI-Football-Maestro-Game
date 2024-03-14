@@ -694,7 +694,7 @@ func _on_add_stage_popmenu_item_selected(index: int) -> void:
 func prepare_league_node(node: GraphNode) -> void:
 	# First we need to connect the signal from inside to prepare eligable teams
 	node.need_eligable_teams.connect(determine_eligable_teams);
-
+	node.need_eligable_tours.connect(determine_eligable_tournaments);
 
 """ Functions Below are For Getting Eligabe Teams """
 func determine_eligable_teams(item_list: ItemList) -> void:
@@ -781,6 +781,69 @@ func get_territory_club_teams(terr_id: int) -> Dictionary:
 				
 	return club_teams
 
+""" Function Below are for Getting Eligable Tournaments """
+func determine_eligable_tournaments(option: OptionButton) -> void:
+	if curr_nation == null:
+		return
+		
+	if curr_nation is Confederation:
+		get_confed_tournaments(curr_nation, option);
+
+	pass
+	
+func get_confed_tournaments(confed: Confederation, option: OptionButton) -> void:
+	# We will need to iterate through this confederation and all children confeds
+	var queue: Array = [confed];
+	var curr_confed: Confederation;
+	var confed_collection: Array;
+	var visited_terrs: Array
+	
+	while not queue.is_empty():
+		# Get Current Confederations
+		curr_confed = queue.pop_front();
+		confed_collection.push_back(curr_confed)
+		
+		# For Curr_Confed, go through all territories and add their tournaments to option
+		for terr: Territory in curr_confed.Territory_List.values():
+			var leagues: Dictionary = terr.Leagues;
+			var tournaments: Dictionary = terr.Tournaments;
+			
+			# In order to not repeat Territories
+			if terr.Territory_ID in visited_terrs:
+				continue
+				
+			# Merge to do both leagues and tournaments in one go
+			leagues.merge(tournaments, false);
+			
+			# Add Territory Tournaments to Options Button
+			option.prepare_tour_select(leagues, terr.Territory_Name);
+				
+			# Add Territory to visited
+			visited_terrs.push_back(terr.Territory_ID);
+		#Now, we get the children and add them to queue
+		var children: Array = curr_confed.Children_ID;
+		
+		for child: int in children:
+			var child_confed: Confederation = world_map.Confederations[child];
+			queue.push_back(child_confed);
+		
+	
+	
+	# Once we reach here, we are done with territory tournaments, now we need confed tournaments
+	for confed_iter: Confederation in confed_collection:
+		var leagues: Dictionary = confed_iter.Confed_Leagues;
+		var tournaments: Dictionary = confed_iter.Confed_Tournaments;
+		
+		# Merge to do both leagues and tournaments in one go
+		leagues.merge(tournaments, false);
+		
+		# Add Territory Tournaments to Options Button
+		option.prepare_tour_select(leagues, confed_iter.Name);
+		
+
+
+func get_territory_tournaments(terr: Territory) -> void:
+	pass
 
 # User changed Starting Year
 func _on_year_selection_value_changed(value: int) -> void:

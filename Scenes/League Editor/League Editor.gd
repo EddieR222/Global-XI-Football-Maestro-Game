@@ -73,15 +73,15 @@ func _on_texture_button_pressed():
 	get_node("LeagueLogoInput").visible = true;
 
 
-func create_national_teams(world_map: WorldMap) -> void:
-	for terr: Territory in world_map.Confederations[0].Territory_List.values():
-		var national_team: Team = Team.new();
-		national_team.Name = terr.Territory_Name + " National Team";
-		national_team.Logo = terr.Flag;
-		national_team.Territory_Name = terr.Territory_Name
-		national_team.Territory_ID = terr.Territory_ID;
-		terr.National_Team = national_team
-		
+#func create_national_teams(world_map: WorldMap) -> void:
+	#for terr: Territory in world_map.Confederations[0].Territory_List.values():
+		#var national_team: Team = Team.new();
+		#national_team.Name = terr.Territory_Name + " National Team";
+		#national_team.Logo = terr.Flag;
+		#national_team.Territory_Name = terr.Territory_Name
+		#national_team.Territory_ID = terr.Territory_ID;
+		#terr.National_Team = national_team
+		#
 
 # When User Presses to Save File
 func _on_save_file_pressed():

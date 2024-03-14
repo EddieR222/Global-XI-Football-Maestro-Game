@@ -30,6 +30,7 @@ var DAYS: Dictionary = {"JANUARY": 31, "FEBRUARY": 28, "MARCH": 31, "APRIL": 30,
 
 """ Custom Signals """
 signal need_eligable_teams(item_list: ItemList);
+signal need_eligable_tours(option_button: OptionButton);
 
 func _ready():
 	configure_popups();
@@ -151,6 +152,8 @@ func _on_qualifying_method_selected(index: int) -> void:
 			emit_signal("need_eligable_teams", item_list);
 		2: #Other Tournament/Stage
 			other_tournament_panel.visible = true;
+			var option: OptionButton = get_node("OtherTournamentPanel/VBoxContainer/GridContainer/TournamentSelection");
+			emit_signal("need_eligable_tours", option);
 		3: #Ranking
 			ranking_panel.visible = true;
 			
