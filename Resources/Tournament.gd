@@ -18,12 +18,12 @@ class_name Tournament extends Resource
 
 """ Qualification: How do teams qualify? """
 @export var Num_Teams: int;
-@export var Qualifying_Tournaments: Dictionary
+@export var Qualifying_Tournaments: Array[QualificationSystem];
 
 
 """ Disqualification: How do teams disqualify? (relegation, losers, etc) """
-@export var Disqualification: QualificationSystem
+@export var Disqualification: Array[QualificationSystem];
 
 """ Tournament Stages """
-@export var TournamentStages: Dictionary
+@export var TournamentStages: Array[TournamentStage]
 

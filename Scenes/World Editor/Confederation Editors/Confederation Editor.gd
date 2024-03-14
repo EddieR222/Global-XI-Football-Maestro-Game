@@ -1,21 +1,23 @@
 extends GraphNode
 
 @export var selected_index: int = -1;
-var confed: Confederation;
+var confed: Confederation = Confederation.new();
+var game_map: GameMap;
+
+""" ItemList """
+@onready var item_list: ItemList = get_node("HBoxContainer/ItemList");
+
 signal graphnode_selected(confed_id: int);
 """
 This function allows another scene to get the territory info that is currently selected
 """
 func get_selected_territory() -> Territory:
-	var selected_territory: Territory = confed.Territory_List[selected_index];
+	var selected_territory: Territory = item_list.get_item_metadata(selected_index)
 	return selected_territory;
 	
 func set_selected_territory(t: Territory) -> void:
-	confed.Territory_List[selected_index] = t;
-	
-func get_territory_dict() -> Dictionary:
-	return confed.Territory_List;
-	
+	item_list.set_item_metadata(selected_index, t);
+		
 func set_confed_level(level: int):
 	print("Level Received: " + str(level))
 	confed.Level = level;
@@ -27,7 +29,7 @@ func set_confed(new_confed: Confederation) -> void:
 	# First we set the confed 
 	confed = new_confed;
 	
-	# Now we set the Line Edit to Reflect Confe Name
+	# Now we set the Line Edit to Reflect Confed Name
 	var confed_name_edit: LineEdit = get_node("HBoxContainer2/LineEdit");
 	confed_name_edit.text = confed.Name;
 	
@@ -35,9 +37,10 @@ func set_confed(new_confed: Confederation) -> void:
 	set_confed_level(new_confed.Level)
 	
 	# Now we simply add and item for each territory in territory list, clear if needed
-	var item_list: ItemList = get_node("HBoxContainer/ItemList")
 	item_list.clear();
-	for terr: Territory in new_confed.Territory_List.values():
+	for terr_id: int in new_confed.Territory_List:
+		# Get Territory
+		var terr: Territory = game_map.get_territory_by_id(terr_id);
 		# Get Territory Name
 		var terr_name = terr.Territory_Name;
 		# Get Territory Flag or Icon
@@ -49,10 +52,14 @@ func set_confed(new_confed: Confederation) -> void:
 		else:
 			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 			texture_normal = default_icon;
-		item_list.add_item(terr_name, texture_normal, true);
+		
+		# Add to ItemList	
+		var index: int = item_list.add_item(terr_name, texture_normal, true);
+		
+		# Set Metadata
+		item_list.set_item_metadata(index, terr);
 	
-	
-	
+
 """
 These functions handle signls from within scene
 """
@@ -62,7 +69,7 @@ func _on_add_territory_pressed():
 	var texture: CompressedTexture2D = load("res://Images/icon.svg");
 	var index: int = $HBoxContainer/ItemList.add_item("Territory", texture, true);
 	
-	# For the item in the ItemList, we add a territory to the territory dictionary
+	# For the item in the ItemList, we create the Territory
 	var default_territory: Territory = Territory.new();
 	default_territory.Territory_Name = "Territory"
 	default_territory.CoTerritory_ID = 0;
@@ -73,14 +80,23 @@ func _on_add_territory_pressed():
 	default_territory.Rating = 0;
 	default_territory.League_Elo = 0;
 	
+	
+	#var current_terr_num : int = node.world_map.get_territory_num() + 1;
+	#print("Terr ID: " + str(current_terr_num))
+	#default_territory.Territory_ID = current_terr_num;
+	
+	# Add New Territory to GameMap
+	game_map.add_territory(default_territory);
+	
+	# Add it to Territory List
+	confed.add_territory(default_territory.Territory_ID)
+	
 	# Here we want to set the Territory ID as the next value
 	var node : GraphEdit = get_node("../../Confed Edit");
-	var current_terr_num : int = node.world_map.get_territory_num() + 1;
-	print("Terr ID: " + str(current_terr_num))
-	default_territory.Territory_ID = current_terr_num;
+	node.world_graph.propagate_territory_addition(default_territory.Territory_ID, confed.ID);
 	
-	
-	confed.Territory_List[index] = default_territory;
+	# Set Metadata
+	item_list.set_item_metadata(index, default_territory);
 	
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
@@ -94,38 +110,41 @@ func _on_delete_territory_pressed():
 	graphnode_selected.emit(confed.ID);
 
 
-func delete_and_organize() -> void:
-	# Now we organize the list to keep it linear since thats how items will be 
-	# after a item is deleted
-	var curr_index: int = selected_index;
-	while curr_index + 1 in confed.Territory_List.keys():
-		var temp_terr: Territory = confed.Territory_List[curr_index + 1];
-		confed.Territory_List[curr_index] = temp_terr;
-		curr_index += 1;
-	confed.Territory_List.erase(curr_index); 
-	
-	# Now we simply deleted it from ItemList which automatically shifts everything down
-	$HBoxContainer/ItemList.remove_item(selected_index);
-	selected_index = -1;
-	
-	reflect_territory_changes();
-	
+#func delete_and_organize() -> void:
+	## Now we organize the list to keep it linear since thats how items will be 
+	## after a item is deleted
+	#
+	#
+	## Now we simply deleted it from ItemList which automatically shifts everything down
+	#$HBoxContainer/ItemList.remove_item(selected_index);
+	#selected_index = -1;
+	#
+	#reflect_territory_changes();
+	#
 	
 func reflect_territory_changes():
 	#We first need to go through and update the ItemList
-	for index: int in confed.Territory_List.keys():
-		var curr_terr: Territory = confed.Territory_List[index];
-		$HBoxContainer/ItemList.set_item_text(index, curr_terr.Territory_Name);
-		var flag = curr_terr.Flag;
-		var texture_normal;
+	item_list.clear();
+	for terr_id: int in confed.Territory_List:
+		# Get Territory
+		var terr: Territory = game_map.get_territory_by_id(terr_id);
+		# Get Territory Name
+		var terr_name = terr.Territory_Name;
+		# Get Territory Flag or Icon
+		var texture_normal
+		var flag = terr.Flag;
 		if flag != null:
 			flag.decompress();
 			texture_normal = ImageTexture.create_from_image(flag);
 		else:
 			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 			texture_normal = default_icon;
-			
-		$HBoxContainer/ItemList.set_item_icon(index, texture_normal);
+		
+		# Add to ItemList	
+		var index: int = item_list.add_item(terr_name, texture_normal, true);
+		
+		# Set Metadata
+		item_list.set_item_metadata(index, terr);
 
 """
 The function below will alphabetize and reorganize the dictionary

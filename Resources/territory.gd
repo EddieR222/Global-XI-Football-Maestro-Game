@@ -7,8 +7,6 @@ extends Resource
 @export var Territory_Name: String;
 @export var CoTerritory_ID: int;
 @export var CoTerritory_Name: String;
-@export var Confederation_ID: int
-@export var Confederation_Name: String;
 @export var Code: String;
 @export var Flag: Image;
 
@@ -28,14 +26,14 @@ extends Resource
 @export var League_Elo: float;
 
 """ Tournaments in Country """	
-@export var Leagues: Dictionary
+@export var Leagues: Array[int]
 @export var League_Cup: int = -1#index inside of Tournaments Dictionary
 @export var Super_Cup: int = -1 #index inside of Tournaments Dictionary
-@export var Tournaments: Dictionary
+@export var Tournaments: Array[int]
 
 """ Teams """
-@export var Teams: Dictionary
-@export var National_Team: Team
+@export var Teams: Array[int]
+@export var National_Team: int
 
 """ Rankings """
-@export var Club_Teams_Rankings: Dictionary
+@export var Club_Teams_Rankings: Array[int]
