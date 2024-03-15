@@ -27,6 +27,15 @@ var Stadiums: Array[Stadium] = [];
 var Tournaments: Array[Tournament] = [];
 
 
+@export_category("Time Details")
+## The starting date
+@export
+var Start_Date: Array[int]
+
+## The Year to Start
+@export
+var Starting_Year: int = 2024; #current year is default
+
 """ Getter Functions """
 ## Function to get confed by inputted id. Returns null if id is NOT valid
 func get_confed_by_id(id: int) -> Confederation:

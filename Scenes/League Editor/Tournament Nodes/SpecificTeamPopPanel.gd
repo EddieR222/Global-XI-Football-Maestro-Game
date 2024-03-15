@@ -45,7 +45,7 @@ func _on_done_button_pressed():
 	# We now need to make a new qualification system in order to set it as metadata
 	var qual_info: QualificationSystem = QualificationSystem.new();
 	qual_info.Qualification_Type = Qualification_Type.SPECIFIC;
-	qual_info.Specific_Team = Choosen_Team;
+	qual_info.Specific_Team = Choosen_Team.ID;
 	
 	#Add Metadata
 	global_item_list.set_item_metadata(index, qual_info);

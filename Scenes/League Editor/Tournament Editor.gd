@@ -38,7 +38,7 @@ const DOMESTIC_CUP_COLOR: Color = Color(0.2, 0.4, 0.8);
 const SUPER_CUP_COLOR: Color = Color(0.2, 0.8, 0.4)
 
 """ Members """
-var game_map: GameMap;
+var game_map: GameMap = GameMap.new();
 
 """ """
 
@@ -224,6 +224,9 @@ func _on_tournament_list_item_selected(index: int) -> void:
 	
 """ Item Lists Addition and Deletion """
 func _on_add_league_level_pressed():
+	if curr_nation == null:
+		return
+		
 	# Create a new Tournament for the league
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
@@ -270,6 +273,9 @@ func _on_delete_league_level_pressed():
 	#update_tournament_selection_popup();
 
 func _on_add_tournament_pressed() -> void:
+	if curr_nation == null:
+		return
+	
 	# Create a new Tournament for the league
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
@@ -837,10 +843,38 @@ func get_confed_tournaments(confed: Confederation, option: OptionButton) -> void
 		# Add Territory Tournaments to Options Button
 		option.prepare_tour_select(tournaments_d, confed_iter.Name);
 		
-func get_territory_tournaments(terr: Territory) -> void:
-	pass
-
+func get_territory_tournaments(terr: Territory, option: OptionButton) -> void:
+	# For a specific territory, only the country and other country that have this country as 
+	# CoTerritory will be selected
+	var national_tours: Array[Tournament]
+	
+	# Add Terr Tournaments
+	for tour_id: int in terr.Tournaments:
+		var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+		national_tours.push_back(tour)
+		
+	#Add Terr League
+	for tour_id: int in terr.Leagues:
+		var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+		national_tours.push_back(tour)
+	option.prepare_tour_select(national_tours, terr.Territory_Name);	
+	
+	
+	national_tours.clear();
+	# Add CoTerritory Tournaments
+	for t: Territory in game_map.Territories:
+		if t.CoTerritory_ID == terr.Territory_ID:
+			for tour_id: int in t.Tournaments:
+				var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+				national_tours.push_back(tour)
+			for tour_id: int in t.Leagues:
+				var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+				national_tours.push_back(tour)
+			
+			option.prepare_tour_select(national_tours, t.Territory_Name);
+			national_tours.clear();
+				
+				
 # User changed Starting Year
 func _on_year_selection_value_changed(value: int) -> void:
-	#world_map.Starting_Year = value;
-	pass
+	game_map.Starting_Year = value;

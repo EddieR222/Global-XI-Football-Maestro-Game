@@ -1,2 +1,9 @@
 res://Scenes/League Editor/League Editor.tscn
 res://Scenes/League Editor/Tournament Editor.gd
+res://Scenes/World Editor/World Editor.tscn
+res://Resources/GameMap.gd
+res://Scenes/League Editor/Tournament Nodes/LeagueNode.tscn
+res://Scenes/Team Editor/Team Editor.tscn
+res://Scenes/World Editor/Territory Editors/Territory Editor.tscn
+res://Scenes/World Editor/Confederation Editors/Confederation Editor.tscn
+res://Scenes/League Editor/Tournament Nodes/SpecificTeamPopPanel.gd
