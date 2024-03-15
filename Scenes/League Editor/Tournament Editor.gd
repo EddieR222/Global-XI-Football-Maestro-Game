@@ -137,69 +137,69 @@ func load_tournaments(source) -> void:
 		elif index == league_cup:
 			tournament_list.set_item_custom_bg_color(index, Color(0.486, 0.416, 0.0));
 	
-	update_tournament_selection_popup();
-		
-func update_tournament_selection_popup() -> void:
-	if curr_nation == null:
-		return
-		
-	# Clear the popup menu
-	tour_select_popmenu.clear();	
-		
-	var leagues: Dictionary
-	var tournaments: Dictionary
-	var super_cup_index: int;
-	var league_cup: int;
-	if curr_nation is Territory:
-		# Load needed variables
-		leagues= curr_nation.Leagues;
-		tournaments = curr_nation.Tournaments;
-		super_cup_index= curr_nation.Super_Cup;
-		league_cup = curr_nation.League_Cup;
-	elif curr_nation is Confederation:
-		leagues = curr_nation.Confed_Leagues;
-		tournaments = curr_nation.Confed_Tournaments;
-		super_cup_index = curr_nation.Super_Cup;
-		league_cup = curr_nation.Cup;
-		
-		
-	# Now we need to load them into the needed itemlists
-	# First we load the league pyramid
-	for league: Tournament in leagues.values():
-		# Get Tournament Name
-		var league_name = league.Name;
-		# Get Tournament Logo
-		var texture_normal
-		var logo = league.Logo;
-		if logo != null:
-			logo.decompress();
-			texture_normal = ImageTexture.create_from_image(logo);
-		else:
-			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
-			texture_normal = default_icon;
-		# Add it to popup menu
-		tour_select_popmenu.add_icon_item(texture_normal, league_name);
-		# Save it to local list  
-		#league_pyramid.set_item_metadata(index, league);
-		
-	# Second we load the other tournaments
-	for tournament: Tournament in tournaments.values():
-		# Get Tournament Name
-		var tournament_name = tournament.Name;
-		# Get Tournament Logo
-		var texture_normal
-		var logo = tournament.Logo;
-		if logo != null:
-			logo.decompress();
-			texture_normal = ImageTexture.create_from_image(logo);
-		else:
-			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
-			texture_normal = default_icon;
-		# Add it to item list
-		tour_select_popmenu.add_icon_item(texture_normal, tournament_name)
-		#Save to local list
-		#tournament_list.set_item_metadata(index, tournament);
-	
+	#update_tournament_selection_popup();
+		#
+#func update_tournament_selection_popup() -> void:
+	#if curr_nation == null:
+		#return
+		#
+	## Clear the popup menu
+	#tour_select_popmenu.clear();	
+		#
+	#var leagues: Dictionary
+	#var tournaments: Dictionary
+	#var super_cup_index: int;
+	#var league_cup: int;
+	#if curr_nation is Territory:
+		## Load needed variables
+		#leagues= curr_nation.Leagues;
+		#tournaments = curr_nation.Tournaments;
+		#super_cup_index= curr_nation.Super_Cup;
+		#league_cup = curr_nation.League_Cup;
+	#elif curr_nation is Confederation:
+		#leagues = curr_nation.Confed_Leagues;
+		#tournaments = curr_nation.Confed_Tournaments;
+		#super_cup_index = curr_nation.Super_Cup;
+		#league_cup = curr_nation.Cup;
+		#
+		#
+	## Now we need to load them into the needed itemlists
+	## First we load the league pyramid
+	#for league: Tournament in leagues.values():
+		## Get Tournament Name
+		#var league_name = league.Name;
+		## Get Tournament Logo
+		#var texture_normal
+		#var logo = league.Logo;
+		#if logo != null:
+			#logo.decompress();
+			#texture_normal = ImageTexture.create_from_image(logo);
+		#else:
+			#var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			#texture_normal = default_icon;
+		## Add it to popup menu
+		#tour_select_popmenu.add_icon_item(texture_normal, league_name);
+		## Save it to local list  
+		##league_pyramid.set_item_metadata(index, league);
+		#
+	## Second we load the other tournaments
+	#for tournament: Tournament in tournaments.values():
+		## Get Tournament Name
+		#var tournament_name = tournament.Name;
+		## Get Tournament Logo
+		#var texture_normal
+		#var logo = tournament.Logo;
+		#if logo != null:
+			#logo.decompress();
+			#texture_normal = ImageTexture.create_from_image(logo);
+		#else:
+			#var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
+			#texture_normal = default_icon;
+		## Add it to item list
+		#tour_select_popmenu.add_icon_item(texture_normal, tournament_name)
+		##Save to local list
+		##tournament_list.set_item_metadata(index, tournament);
+	#
 """ Functions for when user selects in an item list """
 func _on_nation_list_item_selected(index: int) -> void:
 	# Save curr confed/terr to var
@@ -227,6 +227,9 @@ func _on_add_league_level_pressed():
 	# Create a new Tournament for the league
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
+			
+	# Save it to GameMap
+	game_map.add_tournament(new_tour);
 	
 	# Save it to the terr/confed selected
 	var sink = curr_nation
@@ -234,19 +237,16 @@ func _on_add_league_level_pressed():
 		sink.Leagues.push_back(new_tour.ID)
 	elif sink is Confederation:
 		sink.Confed_Leagues.push_back(new_tour.ID)
-		
-	# Save it to GameMap
-	game_map.add_tournament(new_tour);
 	
 	# Add it to the league pyramid
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = league_pyramid.add_item("New Tournament", default_icon, true);
 	league_pyramid.set_item_metadata(index, new_tour);
 	
+	# Sort ItemList
+	league_pyramid.sort_items_by_text();
 	
-		
-	organize_tournaments_ids();
-	update_tournament_selection_popup();
+	#update_tournament_selection_popup();
 
 func _on_delete_league_level_pressed():
 	# Get index of selected item
@@ -258,11 +258,16 @@ func _on_delete_league_level_pressed():
 	else:
 		index = selected_index_list[0];
 		
+	# Get tournament
+	var tour: Tournament = league_pyramid.get_item_metadata(index);
+	
 	# Remove it from league pyramid item list
 	league_pyramid.remove_item(index)
 	
-	organize_tournaments_ids();
-	update_tournament_selection_popup();
+	#Remove it from gamemap
+	game_map.erase_tournament_by_id(tour.ID)
+	
+	#update_tournament_selection_popup();
 
 func _on_add_tournament_pressed() -> void:
 	# Create a new Tournament for the league
@@ -274,15 +279,17 @@ func _on_add_tournament_pressed() -> void:
 	var index = tournament_list.add_item("New Tournament", default_icon, true);
 	tournament_list.set_item_metadata(index, new_tour);
 	
+	# Save to GameMap
+	game_map.add_tournament(new_tour)
+	
 	# Save it to the terr/confed selected
 	var sink = curr_nation
 	if sink is Territory:
-		sink.Tournaments[index] = new_tour
+		sink.Tournaments.push_back(new_tour.ID)
 	elif sink is Confederation:
-		sink.Confed_Tournaments[index] = new_tour
+		sink.Confed_Tournaments.push_back(new_tour.ID)
 		
-	organize_tournaments_ids();
-	update_tournament_selection_popup();
+	#update_tournament_selection_popup();
 
 func _on_delete_tournament_pressed():
 	# Get index of selected item
@@ -294,42 +301,16 @@ func _on_delete_tournament_pressed():
 	else:
 		index = selected_index_list[0];
 		
+	# Get Tournament
+	var tour: Tournament = tournament_list.get_item_metadata(index)
+	
 	# Remove it from league pyramid item list
 	tournament_list.remove_item(index)
 	
-	organize_tournaments_ids();
-	update_tournament_selection_popup();
+	# Remove it from game_map
+	game_map.erase_tournament_by_id(tour.ID)
 
-func organize_tournaments_ids() -> void:
-	# We need to gather all tournaments into an array
-	var all_tournaments: Array = [];
-	for confed: Confederation in world_map.Confederations.values():
-		var leagues: Dictionary = confed.Confed_Leagues;
-		for tour: Tournament in leagues.values():
-			all_tournaments.push_back(tour)
-		var tournaments: Dictionary = confed.Confed_Tournaments;
-		for tour: Tournament in tournaments.values():
-			all_tournaments.push_back(tour)
-			
-	for index: int in range(nation_list.item_count):
-		var terr = nation_list.get_item_metadata(index);
-		if terr is Confederation or terr == null:
-			continue
-		var leagues: Dictionary = terr.Leagues;
-		for tour: Tournament in leagues.values():
-			all_tournaments.push_back(tour)
-		var tournaments: Dictionary = terr.Tournaments; 
-		for tour: Tournament in tournaments.values():
-			all_tournaments.push_back(tour)
-
-	# Now we sort all these tournaments by name
-	all_tournaments.sort_custom(func(a, b): return a.Name < b.Name);
-	
-	# Now we rewrite the IDs and place into sorted dictionary
-	var index: int = 0;
-	for tournament: Tournament in all_tournaments:
-		tournament.ID = index
-		index += 1;
+	#update_tournament_selection_popup();
 
 """ League Pyramid Editor Inputs Singals """
 # League Logo Texture Button
@@ -709,9 +690,9 @@ func prepare_league_node(node: GraphNode) -> void:
 func determine_eligable_teams(item_list: ItemList) -> void:
 	if curr_nation == null:
 		return
-		
-		
-	var national_teams: Dictionary = {};
+
+	var national_teams:Array[Team];
+	
 	if curr_nation is Territory:
 		# If Territory, we need to get all teams in this territory, 
 		# including Territories with this Territory as their CoTerritory
@@ -724,71 +705,64 @@ func determine_eligable_teams(item_list: ItemList) -> void:
 	item_list.prepare_item_list(national_teams, "National Teams");
 	
 	# Now we need to add all club teams for each territory
-	for national_team: Team in national_teams.values():
+	for national_team: Team in national_teams:
 		var terr_id: int = national_team.Territory_ID;
-		var club_teams: Dictionary = get_territory_club_teams(terr_id);
+		var club_teams: Array[Team] = get_territory_club_teams(terr_id);
 		
 		#Add it to itemlist
 		item_list.prepare_item_list(club_teams, national_team.Territory_Name);
 
-func get_confed_national_teams(confed: Confederation) -> Dictionary:
+func get_confed_national_teams(confed: Confederation) -> Array[Team]:
 	var queue: Array = [confed];
-	var curr_confed: Confederation
-	var national_teams: Dictionary
-	var index: int = 0;
+	var curr_confed: Confederation;
+	var national_teams: Array[Team];
+	
 	
 	while not queue.is_empty():
 		# Get Current Confederations
 		curr_confed = queue.pop_front();
 		
 		# For Curr_Confed, get the national teams
-		for terr: Territory in curr_confed.Territory_List.values():
-			if terr.National_Team not in national_teams.values():
-				national_teams[index] = terr.National_Team;
-				index += 1;
+		for terr_id: int in curr_confed.Territory_List:
+			var terr: Territory = game_map.get_territory_by_id(terr_id);
+			if terr.National_Team not in national_teams:
+				national_teams.push_back(terr.National_Team);
 
 		#Now, we get the children and add them to queue
 		var children: Array = curr_confed.Children_ID;
 		
 		for child: int in children:
-			var child_confed: Confederation = world_map.Confederations[child];
+			var child_confed: Confederation = game_map.get_confed_by_id(child)
 			queue.push_back(child_confed);
 		
 		
 	return national_teams;
 
-func get_territory_national_teams(terr: Territory) -> Dictionary:
+func get_territory_national_teams(terr: Territory) -> Array[Team]:
 	# For a specific territory, only the country and other country that have this country as 
 	# CoTerritory will be selected
-	var national_teams: Dictionary = {};
-	national_teams[0] = terr.National_Team;
-	var index: int = 1;
+	var national_teams: Array[Team]
+	national_teams.push_back(terr.National_Team);
 	
-	for confed: Confederation in world_map.Confederations.values():
-		for t: Territory in confed.Territory_List.values():
-			if t.CoTerritory_ID == terr.Territory_ID and t.National_Team not in national_teams.values():
-				national_teams[index] = t.National_Team;
-				index += 1;
+	for t: Territory in game_map.Territories:
+		if t.CoTerritory_ID == terr.Territory_ID:
+			national_teams.push_back(t.National_Team);
 				
 				
 	return national_teams
 
-func get_territory_club_teams(terr_id: int) -> Dictionary:
+func get_territory_club_teams(terr_id: int) -> Array[Team]:
 	# For a specific territory, only the country and other country that have this country as 
 	# CoTerritory will be selected
-	var club_teams: Dictionary = {};
-	var index: int = 0;
+	var club_teams: Array[Team] = [];
 	
-	for confed: Confederation in world_map.Confederations.values():
-		for t: Territory in confed.Territory_List.values():
-			if t.Territory_ID == terr_id:
-				for team: Team in t.Teams.values():
-					club_teams[index] = team;
-					index += 1;
-				return club_teams
-				
-				
+	var terr: Territory = game_map.get_territory_by_id(terr_id);
+	for team_id: int in terr.Club_Teams_Rankings:
+		var team: Team = game_map.get_team_by_id(team_id)
+		club_teams.push_back(team);
+	
 	return club_teams
+
 
 """ Function Below are for Getting Eligable Tournaments """
 func determine_eligable_tournaments(option: OptionButton) -> void:
@@ -802,10 +776,10 @@ func determine_eligable_tournaments(option: OptionButton) -> void:
 	
 func get_confed_tournaments(confed: Confederation, option: OptionButton) -> void:
 	# We will need to iterate through this confederation and all children confeds
-	var queue: Array = [confed];
+	var queue: Array[Confederation] = [confed];
 	var curr_confed: Confederation;
 	var confed_collection: Array;
-	var visited_terrs: Array
+	var visited_terrs: Array;
 	
 	while not queue.is_empty():
 		# Get Current Confederations
@@ -813,19 +787,28 @@ func get_confed_tournaments(confed: Confederation, option: OptionButton) -> void
 		confed_collection.push_back(curr_confed)
 		
 		# For Curr_Confed, go through all territories and add their tournaments to option
-		for terr: Territory in curr_confed.Territory_List.values():
-			var leagues: Dictionary = terr.Leagues;
-			var tournaments: Dictionary = terr.Tournaments;
+		for terr_id: int in curr_confed.Territory_List:
+			# Get territory
+			var terr: Territory = game_map.get_territory_by_id(terr_id);
 			
 			# In order to not repeat Territories
 			if terr.Territory_ID in visited_terrs:
 				continue
 				
+			# Get Tournaments
+			var leagues: Array[int] = terr.Leagues;
+			var tournaments: Array[int] = terr.Tournaments;
+				
 			# Merge to do both leagues and tournaments in one go
-			leagues.merge(tournaments, false);
+			leagues.append_array(tournaments);
+			
+			var tournaments_d: Array[Tournament] = [];
+			for tour_id: int in leagues:
+				var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+				tournaments_d.push_back(tour) 
 			
 			# Add Territory Tournaments to Options Button
-			option.prepare_tour_select(leagues, terr.Territory_Name);
+			option.prepare_tour_select(tournaments_d, terr.Territory_Name);
 				
 			# Add Territory to visited
 			visited_terrs.push_back(terr.Territory_ID);
@@ -833,27 +816,31 @@ func get_confed_tournaments(confed: Confederation, option: OptionButton) -> void
 		var children: Array = curr_confed.Children_ID;
 		
 		for child: int in children:
-			var child_confed: Confederation = world_map.Confederations[child];
+			var child_confed: Confederation =game_map.get_confed_by_id(child)
 			queue.push_back(child_confed);
 		
 	
 	
 	# Once we reach here, we are done with territory tournaments, now we need confed tournaments
 	for confed_iter: Confederation in confed_collection:
-		var leagues: Dictionary = confed_iter.Confed_Leagues;
-		var tournaments: Dictionary = confed_iter.Confed_Tournaments;
+		var leagues: Array[int] = confed_iter.Confed_Leagues;
+		var tournaments: Array[int] = confed_iter.Confed_Tournaments;
 		
 		# Merge to do both leagues and tournaments in one go
-		leagues.merge(tournaments, false);
+		leagues.append_array(tournaments)
+		
+		var tournaments_d: Array[Tournament] = [];
+		for tour_id: int in leagues:
+			var tour: Tournament = game_map.get_tournament_by_id(tour_id)
+			tournaments_d.push_back(tour) 
 		
 		# Add Territory Tournaments to Options Button
-		option.prepare_tour_select(leagues, confed_iter.Name);
+		option.prepare_tour_select(tournaments_d, confed_iter.Name);
 		
-
-
 func get_territory_tournaments(terr: Territory) -> void:
 	pass
 
 # User changed Starting Year
 func _on_year_selection_value_changed(value: int) -> void:
-	world_map.Starting_Year = value;
+	#world_map.Starting_Year = value;
+	pass
