@@ -32,7 +32,6 @@ extends Resource
 @export var Tournaments: Array[int]
 
 """ Teams """
-@export var Teams: Array[int]
 @export var National_Team: int
 
 """ Rankings """

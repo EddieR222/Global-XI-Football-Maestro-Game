@@ -8,10 +8,6 @@ All known issues still:
 	Converting to more sustainable documentation and model of data retention
 """
 
-@export var world_map: Graph = Graph.new() 
-#@export var node_selected_num: int = -1
-#@export var node_open_edit: int = -1
-
 @export var game_map: GameMap = GameMap.new()
 @export var world_graph: WorldMapGraph = WorldMapGraph.new();
 @export var curr_node_selected: GraphNode;
@@ -339,7 +335,6 @@ func _on_connection_request(from_node, from_port, to_node, to_port):
 	if from_node == to_node:
 		return
 	
-		
 	# Next we need to ensure a node doesn't connect to a lower level node, essentially not create a cycle
 	var curr_node_path: NodePath = NodePath(from_node);
 	var owner_node_path: NodePath = NodePath(to_node);

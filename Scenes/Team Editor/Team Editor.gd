@@ -1,18 +1,14 @@
-extends Control
+extends Node
 
 
-""" ItemList Details"""
-var terr_index: int = -1
-var terr_list: Dictionary
-var team_index: int = -1
-var team_list: Dictionary
-
-""" Team Info """
-var all_teams: Dictionary;
 
 """ File Saving and Loading Info """
 var FileName : String; 
-var world_map: WorldMap
+var game_map: GameMap;
+
+""" ItemList """
+@onready var team_list: ItemList = get_node("VBoxContainer/Editor Bar/VBoxContainer/Team List");
+@onready var terr_list: ItemList = get_node("VBoxContainer/Editor Bar/Country List");
 
 """
 The following Functions Handle the Saving and Loading of Files
@@ -75,14 +71,12 @@ func _on_line_edit_text_changed(new_text: String):
 These functions deal with the ItemList for Teams
 """
 func load_territory_teams(terr: Territory) -> void:
-	# Get ItemList for Teams
-	var item_list: ItemList = get_node("VBoxContainer/Editor Bar/VBoxContainer/Team List");
-	
 	#Clear itemlist
-	item_list.clear();
+	team_list.clear();
 	
 	# Now add all teams in territory selected
-	for team: Team in terr.Teams.values():
+	for team_id: int in terr.Club_Teams_Rankings:
+		var team: Team = game_map.get_team_by_id(team_id);
 		# Get team name and logo
 		var team_name = team.Name;
 		var logo: Image = team.Logo;
@@ -93,46 +87,36 @@ func load_territory_teams(terr: Territory) -> void:
 		else:
 			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 			texture_normal = default_icon;
-		item_list.add_item(team_name, texture_normal, true);
+			
+		# Add Team to Item List
+		var index: int = team_list.add_item(team_name, texture_normal, true);
+		# Set Metadata for item
+		team_list.set_item_metadata(index, team);
 
-	#Set Team Dictionay locally
-	team_list = terr.Teams;
-
+	#Once we have added all teams, simply sort
+	team_list.sort_items_by_text();
 """
 The function below are to change the index when the user selects a new territory or team
 """
 func _on_country_list_item_selected(index: int) -> void:
-	# Save current teams to country info
-	if terr_index != -1:
-		var previous_terr: Territory = terr_list[terr_index];
-		previous_terr.Teams = team_list
-	
-	
-	# Get Selected Territory and display them to Item List/Save them locally
-	var selected_terr: Territory = terr_list[index];
+	# Get Selected Territory and display them to Item List
+	var selected_terr: Territory = terr_list.get_item_metadata(index);
 	load_territory_teams(selected_terr);
-	terr_index = index
 	
 func _on_team_list_item_selected(index: int) -> void:
 	#We need to display the territory selected
-	team_index = index
+	var team: Team = team_list.get_item_metadata(index)
 	
 	#Call Group to display territory
-	get_tree().call_group("Team_Info", "team_selected", team_list[team_index])
-	
-	# Alphabetize all team ids;
-	organize_team_ids();
-	organize_country_teams(terr_index);
+	get_tree().call_group("Team_Info", "team_selected", team)
 	
 	# We also need to relfect any logo, team_name, or ID changes to previously selected teams
 	reflect_team_changes();
 
 func reflect_team_changes() -> void:
-	# First get the current list of teams and clear the itemlist
-	var item_list: ItemList = get_node("VBoxContainer/Editor Bar/VBoxContainer/Team List");
-	item_list.clear();
 	# Now add all teams in territory selected
-	for team: Team in team_list.values():
+	for team_id: int in range(team_list.item_count):
+		var team: Team = team_list.get_item_metadata(team_id);
 		# Get team name and logo
 		var team_name = team.Name;
 		var logo: Image = team.Logo;
@@ -143,72 +127,21 @@ func reflect_team_changes() -> void:
 		else:
 			var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 			texture_normal = default_icon;
-		item_list.add_item(team_name, texture_normal, true);
+		# Set Item Text
+		team_list.set_item_text(team_id, team_name)
+		# Set Item Logo
+		team_list.set_item_icon(team_id, texture_normal) 
 	
-func delete_and_organize() -> void:
-	# First we remove the team selected from local dictionary
-	team_list.erase(team_index);
-	
-	# Now we get all teams and alphabetize them
-	var entire_team_arr = team_list.values();
-	entire_team_arr.sort_custom(func(a, b): return a.Name < b.Name);
-	
-	# Now we recreate the Team List
-	var entire_team_dict: Dictionary = {};
-	var index: int = 0;
-	for team: Team in entire_team_arr:
-		entire_team_dict[index] = team;
-		index += 1;
-		
-	team_list = entire_team_dict; 
-			
-"""
-This function handles the automatic alphabetizational of teams (by Team Name) and handling Team IDs automatically
-"""
-func organize_team_ids() -> void:
-	var entire_team_list: Array = [];
-	var entire_team_dict: Dictionary = {};
-	# First we need to iterate through all territories to get their teams
-	for terr: Territory in terr_list.values():
-		#Now we need to add teams array to entire_team_list
-		entire_team_list.append_array(terr.Teams.values())
-		
-	#Now we sort through the teams to get the in alphabetical order
-	entire_team_list.sort_custom(func(a: Team, b: Team): return a.Name < b.Name);
-	
-	#Finally we turn it into a dictionary, starting at ID 1
-	var index = 1;
-	for team: Team in entire_team_list:
-		team.ID = index
-		entire_team_dict[index] = team
-		index += 1;
-		
-	#Assign Global Variable all_teams
-	all_teams = entire_team_dict;
-	
-func organize_country_teams(index: int) -> void:
-	# Get Territory 
-	var selected_terr: Territory = terr_list[index];
-	
-	# Now we get all teams and alphabetize them
-	var entire_team_arr = team_list.values();
-	entire_team_arr.sort_custom(func(a, b): return a.Name < b.Name);
-	
-	# Now we recreate the Team List
-	var entire_team_dict: Dictionary = {};
-	var new_index: int = 0;
-	for team: Team in entire_team_arr:
-		entire_team_dict[new_index] = team;
-		new_index += 1;
-		
-	team_list = entire_team_dict; 
+ 
+
 
 """
 The functions below are responcible for adding and deleting teams from Team List
 """
 func _on_add_team_pressed() -> void:
 	# If user hasn't selected a territory to save this new team in, return early
-	if terr_index == -1:
+	var selected_terr: int = terr_list.get_selected_items().pop_front();
+	if selected_terr == null:
 		return
 	# Create new Team Object
 	var team: Team = Team.new();

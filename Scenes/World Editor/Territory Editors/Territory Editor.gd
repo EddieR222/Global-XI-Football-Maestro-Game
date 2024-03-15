@@ -79,10 +79,7 @@ func _on_file_dialog_file_selected(path):
 	flag.compress(Image.COMPRESS_BPTC);
 	territory.Flag = flag;
 		
-""" End of Signal Functions"""
-
-
-	
+""" End of Signal Functions"""	
 func get_territory() -> Territory:
 	return territory;
 	
