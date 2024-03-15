@@ -38,7 +38,7 @@ const DOMESTIC_CUP_COLOR: Color = Color(0.2, 0.4, 0.8);
 const SUPER_CUP_COLOR: Color = Color(0.2, 0.8, 0.4)
 
 """ Members """
-var world_map: WorldMap;
+var game_map: GameMap;
 
 """ """
 
@@ -92,7 +92,9 @@ func load_tournaments(source) -> void:
 		
 	# Now we need to load them into the needed itemlists
 	# First we load the league pyramid
-	for league: Tournament in leagues.values():
+	for league_id: int in leagues:
+		# Get League
+		var league: Tournament = game_map.get_tournament_by_id(league_id); 
 		# Get Tournament Name
 		var league_name = league.Name;
 		# Get Tournament Logo
@@ -110,7 +112,9 @@ func load_tournaments(source) -> void:
 		league_pyramid.set_item_metadata(index, league);
 		
 	# Second we load the other tournaments
-	for tournament: Tournament in tournaments.values():
+	for tour_id: int in tournaments:
+		# Get Tournament
+		var tournament: Tournament = game_map.get_tournament_by_id(tour_id);
 		# Get Tournament Name
 		var league_name = tournament.Name;
 		# Get Tournament Logo
@@ -224,17 +228,22 @@ func _on_add_league_level_pressed():
 	var new_tour: Tournament = Tournament.new();
 	new_tour.Name = "New Tournament"
 	
+	# Save it to the terr/confed selected
+	var sink = curr_nation
+	if sink is Territory:
+		sink.Leagues.push_back(new_tour.ID)
+	elif sink is Confederation:
+		sink.Confed_Leagues.push_back(new_tour.ID)
+		
+	# Save it to GameMap
+	game_map.add_tournament(new_tour);
+	
 	# Add it to the league pyramid
 	var default_icon: CompressedTexture2D = load("res://Images/icon.svg");
 	var index = league_pyramid.add_item("New Tournament", default_icon, true);
 	league_pyramid.set_item_metadata(index, new_tour);
 	
-	# Save it to the terr/confed selected
-	var sink = curr_nation
-	if sink is Territory:
-		sink.Leagues[index] = new_tour
-	elif sink is Confederation:
-		sink.Confed_Leagues[index] = new_tour
+	
 		
 	organize_tournaments_ids();
 	update_tournament_selection_popup();

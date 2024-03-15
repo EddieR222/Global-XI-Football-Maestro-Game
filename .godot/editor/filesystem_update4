@@ -12,3 +12,4 @@ res://Resources/QualificationSystem.gd
 res://Scenes/World Editor/World Editor.gd
 res://Scenes/World Editor/Territory Editors/Territory Editor.gd
 res://Scenes/Team Editor/Team Editor.gd
+res://Scenes/League Editor/Tournament Editor.gd
