@@ -14,9 +14,9 @@ class_name Confederation extends Resource
 @export var Cup: int = -1
 
 """ Rankings or CoEfficients """
-@export var National_Teams_Rankings: Array[int]
-@export var National_League_Rankings: Array[int]
-@export var Club_Teams_Rankings: Array[int]
+@export var National_Teams_Rankings: Array[int] #int = team_id
+@export var National_League_Rankings: Array[int] #int = tournament_id
+@export var Club_Teams_Rankings: Array[int] # int = team_id
 
 
 """ Functions """
@@ -40,7 +40,6 @@ func delete_territory(id: int) -> void:
 		
 	# If id in List, remove. If not in list, do nothing
 	Territory_List.erase(id)
-
 
 ## Update the old territory id to the new one
 func update_territory_id(old_id: int, new_id: int) -> void:

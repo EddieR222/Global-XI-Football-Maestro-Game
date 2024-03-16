@@ -126,8 +126,14 @@ func sort_territories() -> void:
 ## This functions sorts the teams in alphabetical order by name. 
 ## Also changes IDs based on new alphabetical order
 func sort_teams() -> void:
+		# Copy the Unsorted Array for now, to preserve old_ids
+	var unsorted: Array[Team] = Teams.duplicate(false); #false allows us to keep references in place
+	
 	# Sort the array based on Name (Alphabetical Order)
 	Teams.sort_custom(func(a: Team, b: Team): return a.Name < b.Name);
+	
+	
+	
 	
 	# Now update the ID of each Territory, based on index in Array
 	var index = 0;
@@ -282,4 +288,26 @@ func update_confederation_id(old_id: int, new_id: int) -> void:
 		
 ## This function updates the old team ID to the new Team ID across the Entire GameMap
 func update_team_id(old_id: int, new_id: int) -> void:
-	pass
+	# First, we need to go through the confeds and update the team ids
+	for confed: Confederation in Confederations:
+		# First we check if team is in National Team Rankings
+		var index: int = confed.National_Teams_Rankings.find(old_id, 0);
+		if index != -1: #if not -1, then it is present in array
+			confed.National_Teams_Rankings[index] = new_id; # swap id
+		# Second, we check if team is in Club Team Rankings
+		index = confed.Club_Teams_Rankings.find(old_id, 0);
+		if index != -1:
+			confed.Club_Teams_Rankings[index] = new_id; # swap id
+	
+	# Second, we need to update team ids in territories
+	for terr: Territory in Territories:
+		# First, we check it against national_team
+		if terr.National_Team == old_id:
+			terr.National_Team = new_id; #swap id
+		# Second, we check it if in club ranking
+		var index: int = terr.Club_Teams_Rankings.find(old_id, 0);
+		if index != -1:
+			terr.Club_Teams_Rankings[index] = new_id; #swap id
+			
+
+	# Third, 

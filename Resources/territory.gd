@@ -27,12 +27,12 @@ extends Resource
 
 """ Tournaments in Country """	
 @export var Leagues: Array[int]
-@export var League_Cup: int = -1#index inside of Tournaments Dictionary
-@export var Super_Cup: int = -1 #index inside of Tournaments Dictionary
+@export var League_Cup: int = -1 #index inside of Tournaments
+@export var Super_Cup: int = -1 #index inside of Tournaments 
 @export var Tournaments: Array[int]
 
 """ Teams """
-@export var National_Team: int
+@export var National_Team: int #team_id
 
 """ Rankings """
-@export var Club_Teams_Rankings: Array[int]
+@export var Club_Teams_Rankings: Array[int] # Array[Team_ID]

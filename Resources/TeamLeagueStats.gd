@@ -81,6 +81,10 @@ func _init():
 	league_stats.Points = 0;
 	league_stats.Form = 0;
 	
+	league_stats.Points_For_Win = 3;
+	league_stats.Points_For_Draw = 1;
+	league_stats.Points_For_Lose = 0;
+	
 
 
 	

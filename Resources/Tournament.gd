@@ -6,6 +6,7 @@ class_name Tournament extends Resource
 @export var ID: int
 @export var Importance: int
 @export var Player_Team: int; 
+@export var Num_Teams: int;
 
 
 @export var Host_Country_Name: String
@@ -16,11 +17,9 @@ class_name Tournament extends Resource
 @export var End_Date: Array = []
 
 """ Qualification: How do teams qualify? """
-@export var Num_Teams: int;
 @export var Qualifying_Tournaments: Array[QualificationSystem];
 
-
-""" Disqualification: How do teams disqualify? (relegation, losers, etc) """
+""" How do Teams """
 @export var Disqualification: Array[QualificationSystem];
 
 """ Tournament Stages """

@@ -6,23 +6,14 @@ class_name TournamentStage extends Resource
 @export var Stage_ID: int;
 @export var Start_Date: Array;
 @export var End_Date: Array;
-@export var Participating_Teams: Array;
+#@export var Participating_Teams: Array;
 
 """ Info For Graph """
 @export var Next_Stages: Array[int]
 @export var Previous_Stages: Array[int]
 
 
-""" League Specific Options """
-@export var Num_Matches_Played: int;
-@export var Num_Home_Matches: int;
-@export var Num_Away_Matches: int; 
 
-@export var Points_For_Win: int;
-@export var Points_For_Draw: int;
-@export var Points_For_Lose: int;
-
-@export var LeagueTable: Array[TeamLeagueStats];
 
 
 """ KnockOut Specific Options """
@@ -50,8 +41,8 @@ func get_stage_name() -> String:
 	
 	
 	
-func set_num_matches_played(num: int) -> void:
-	Num_Matches_Played = num;
-	Num_Home_Matches = num / 2;
-	Num_Away_Matches = Num_Matches_Played - Num_Home_Matches;
-	return
+#func set_num_matches_played(num: int) -> void:
+	#Num_Matches_Played = num;
+	#Num_Home_Matches = num / 2;
+	#Num_Away_Matches = Num_Matches_Played - Num_Home_Matches;
+	#return
