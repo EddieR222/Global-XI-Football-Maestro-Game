@@ -1,5 +1,7 @@
 # Global XI Football Maestro
 
+![alt text][logo]
+[logo]:  "Global XI Football Maestro"
 
 Welcome to Global XI Football Maestro!!!
 
