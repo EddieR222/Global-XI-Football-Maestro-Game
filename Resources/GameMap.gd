@@ -77,13 +77,10 @@ func get_tournament_by_id(id: int) -> Tournament:
 ## This functions sorts the confederations in alphabetical order by name. 
 ## Also changes IDs based on new alphabetical order
 func sort_confederations() -> void:
-	# Copy the Unsorted Array for now, to preserve old_ids
-	var unsorted: Array[Confederation] = Confederations.duplicate(false);
-	
 	# Sort the array based on Name (Alphabetical Order)
 	Confederations.sort_custom(func(a: Confederation, b: Confederation): return a.Name < b.Name);
 	
-	# Now update the ID of each Territory, based on index in Array
+	# Now update the ID of each Confederation, based on index in Array
 	var new_index = 0;
 	for confed: Confederation in Confederations:
 		# Get old index
@@ -94,7 +91,7 @@ func sort_confederations() -> void:
 		update_confederation_id(old_index, -100);
 		# Now convert new_id to old_id
 		update_confederation_id(new_index, old_index);
-		# Finally, convert -1 to new_id
+		# Finally, convert -100 to new_id
 		update_confederation_id(-100, new_index);
 		
 		# Iter new_index
@@ -104,28 +101,26 @@ func sort_confederations() -> void:
 ## This functions sorts the territories in alphabetical order by name. 
 ## Also changes IDs based on new alphabetical order
 func sort_territories() -> void:
-	# Copy the Unsorted Array for now, to preserve old_ids
-	var unsorted: Array[Territory] = Territories.duplicate(false); #false allows us to keep references in place
-	
 	# Sort the array based on Name (Alphabetical Order)
-	Territories.sort_custom(func(a: Territory, b: Territory): return a.Territory_Name < b.Territory_Name);
-	
-	
-	# Now we have to update this new confed_id everywhere in this GameMap	
-	for old_index: int in range(0, unsorted.size()):
-		var terr: Territory = unsorted[old_index];
-		for new_index: int in range(0, Territories.size()):
-			var new_terr: Territory = Territories[new_index];
-			if is_same(terr, new_terr): #is_same also ensures the references point to same thing
-				update_confederation_id(old_index, new_index);
+	Territories.sort_custom(func(a: Territory, b: Territory): return a.Territory_Name.to_lower().strip_edges() < b.Territory_Name.to_lower().strip_edges());
 
 	# Now update the ID of each Territory, based on index in Array
 	var new_index = 0;
 	for terr: Territory in Territories:
-		terr.Territory_ID = new_index;
-		new_index += 1;
+		# Get old index
+		var old_index: int = terr.Territory_ID;
 		
-
+		# Swap it for new one
+		# Convert OLD_ID to -100 (unused id)
+		update_territory_id(old_index, -100);
+		# Now convert new_id to old_id
+		update_territory_id(new_index, old_index);
+		# Finally, convert -100 to new_id
+		update_territory_id(-100, new_index);
+		
+		# Iter new_index
+		new_index += 1;
+	
 ## This functions sorts the teams in alphabetical order by name. 
 ## Also changes IDs based on new alphabetical order
 func sort_teams() -> void:
@@ -261,6 +256,14 @@ func erase_tournament_by_id(id: int) -> void:
 """ Updating IDs Across GameMap """
 ## This function updates the old territory ID to the new one across the Entire GameMap
 func update_territory_id(old_id: int, new_id: int) -> void:
+	#First, we update the territory ID in all Territories
+	for terr: Territory in Territories:
+		if terr.Territory_ID == old_id:
+			terr.Territory_ID = new_id;
+			
+		if terr.CoTerritory_ID == old_id:
+			terr.CoTerritory_ID = new_id;
+
 	# First we update the territory IDs in all confederations
 	for confed: Confederation in Confederations:
 		confed.update_territory_id(old_id, new_id); 

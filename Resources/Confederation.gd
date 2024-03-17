@@ -33,6 +33,9 @@ func add_territory(id: int) -> void:
 	# Add the id to Territory List
 	Territory_List.push_back(id)
 	
+	# Sort list
+	Territory_List.sort();
+	
 func delete_territory(id: int) -> void:
 	# Id of territory should be positive
 	if id < 0:
@@ -40,6 +43,9 @@ func delete_territory(id: int) -> void:
 		
 	# If id in List, remove. If not in list, do nothing
 	Territory_List.erase(id)
+	
+	# Sort List
+	Territory_List.sort();
 
 ## Update the old territory id to the new one
 func update_territory_id(old_id: int, new_id: int) -> void:

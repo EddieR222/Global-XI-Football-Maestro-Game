@@ -53,9 +53,7 @@ func _process(delta):
 	#This means that is the territory editor is visible, we move it to edge of node that opened it
 	if terr_edit_node.visible:
 		terr_edit_node.position = curr_node_open_edit.position + Vector2(curr_node_open_edit.size.x, 0) * zoom;
-		
-	#if $"../../FileDialog".visible == true:
-		#$"../../FileDialog".size = Vector2(275, 160)
+	
 		
 func establish_world_node() -> GraphNode:
 	#First we simply instantiate the Node into the scene tree
@@ -129,11 +127,9 @@ func save_territory() -> void:
 	# First we need to grab the current territory information displayed on the territory edit node
 	var curr_territory: Territory = terr_edit_node.get_territory();
 	
-	# Add Territory to GameMap or Update
-	#var terr: Territory = game_map.get_territory_by_id(curr_territory.ID)
-	
-	var curr_confed: Confederation = game_map.get_confed_by_id(curr_node_open_edit.confed.ID)
-	curr_confed.add_territory(curr_territory.Territory_ID);
+
+	# Save to itemlist
+	curr_node_open_edit.set_selected_territory(curr_territory);
 	
 	## Now we need to display the changes in ItemList
 	curr_node_open_edit.reflect_territory_changes();
@@ -213,14 +209,17 @@ func _on_confirmation_dialog_confirmed() -> void:
 			world_graph.propagate_territory_deletion(terr_id, curr_node_selected.confed.ID);
 			game_map.erase_territories_by_id(terr_id);
 	
-	#clear_nodes_connections(node.name)
-	#world_map.delete_node(node);
-	#world_map.organize_levels();
-	#world_map.organize_all_territories();
+	# Remove GraphNode from graph
 	var id: int = curr_node_selected.confed.ID
 	world_graph.remove_node(id)
+	
+	# Erase Node from GameMap
 	game_map.erase_confederation_by_id(id)
-	#curr_node_selected.free();
+	
+	#Free the GraphNode
+	curr_node_selected.free();
+	
+	# Set it equal to null
 	curr_node_selected = null;
 	
 """ 
@@ -278,6 +277,7 @@ func _on_done_button_pressed():
 	
 	# Now we set node_open_edit to null to show that node_tracker isn't open and we are allowed to changed
 	curr_node_open_edit.reflect_territory_changes();
+	curr_node_open_edit.item_list.sort_items_by_text()
 	curr_node_open_edit = null;
 
 	
@@ -316,7 +316,18 @@ func _on_deleted_confirmed():
 	
 	# If no dependence, delete and propragte deletion
 	world_graph.propagate_territory_deletion(curr_node_selected.get_selected_territory().Territory_ID, curr_node_selected.confed.ID);
+	
+	# Delete from Confed
+	curr_node_selected.delete_territory(curr_node_selected.get_selected_territory().Territory_ID)
+	
+	# Delete from GameMap
 	game_map.erase_territories_by_id(curr_node_selected.get_selected_territory().Territory_ID)
+	
+	# Sort ItemList
+	curr_node_open_edit.item_list.sort_items_by_text()
+	
+	
+
 
 
 """

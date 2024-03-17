@@ -100,6 +100,9 @@ func _on_add_territory_pressed():
 	
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
+	
+	# Sort Item List
+	item_list.sort_items_by_text();
 
 
 func _on_delete_territory_pressed():
@@ -109,18 +112,6 @@ func _on_delete_territory_pressed():
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
 
-
-#func delete_and_organize() -> void:
-	## Now we organize the list to keep it linear since thats how items will be 
-	## after a item is deleted
-	#
-	#
-	## Now we simply deleted it from ItemList which automatically shifts everything down
-	#$HBoxContainer/ItemList.remove_item(selected_index);
-	#selected_index = -1;
-	#
-	#reflect_territory_changes();
-	#
 	
 func reflect_territory_changes():
 	#We first need to go through and update the ItemList
