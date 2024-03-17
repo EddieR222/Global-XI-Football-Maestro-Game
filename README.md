@@ -8,6 +8,7 @@
 <a href="#introduction">Introduction</a> &nbsp;&bull;&nbsp;
 <a href="#features">Features</a> &nbsp;&bull;&nbsp;
 <a href="#technologies">Technologies</a> &nbsp;&bull;&nbsp;
+<a href="#current state">Current State</a> &nbsp;
 
 
 # Introduction
@@ -58,4 +59,8 @@ More game modes to be announced....
 The game will be written in **Godot 4.2** (as of now) and using the **GDScript** language (for now). The game will be released on PC and Mobile upon initial release. Release date is still to be decided but it can be made earlier the more people help to contribute!!
 
 If you wish to see this game come to reality faster, please help contribute to this game! **Thank you!**
+
+# Current State
+
+For the past three months, I have been the sole developer of the game. While I am proud of where I am, progress can be much faster. For the most part, the main focus has been on the customization of the game so far. The menus to customize the world, territories, confederations, teams, and now the tournaments have a foundation to build up from. Much of the world structure such as leagues, confederations, players, territories, and even name databases has been figured out after months of initial research. Unit Testing is an important step moving forward and is documentation of everything. Documentation and more details will be provided soon. For now, I hope this may seem as a worthy project for anyone and everyone to help out :)  Thank you!
 
