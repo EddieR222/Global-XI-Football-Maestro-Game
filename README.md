@@ -1,11 +1,27 @@
 # Global XI Football Maestro
 
-![alt text][logo]
-[logo]:  "Global XI Football Maestro"
+
+![alt text](https://github.com/EddieR222/Global-XI-Football-Maestro/blob/main/Images/Global_XI_Football_Maestro_Logo.JPG "Global XI Football Maestro")
 
 Welcome to Global XI Football Maestro!!!
 
-This football game is meant to be a free alternative football manager game that can be played on PC and Mobile.
+<p align="center">
+<a href="#introduction">Introduction</a> &nbsp;&bull;&nbsp;
+<a href="#goalsn">Goals</a> &nbsp;&bull;&nbsp;
+<a href="#technologies">Technologies</a> &nbsp;&bull;&nbsp;
+<a href="#documentation">Documentation</a> &nbsp;&bull;&nbsp;
+</p>
+
+# Introduction
+
+Welcome to Global XI Football Maestro, a new work in progress alternative football game with one principle in mind: Football Is For Everyone. I believe that football should be enjoyed by everyone regardless of background, financial status, or location. For this reason, Global XI Football Maestro is going to be a **Free** and **Open Source** football game that aims to start a community of players all working together to make the best version a football game can be.
+
+This project aims to be more than a game; its the start of a movement. As the first FOSS football game, I hope this game inspires people of all different talents to work together to make the beautiful game as fun and personal to everyone. If you wish to help this dream become a reality, please consider contributing to this project
+
+
+
+
+# Goals
 The goals of the game are the following
 
 1. **Free to play**
