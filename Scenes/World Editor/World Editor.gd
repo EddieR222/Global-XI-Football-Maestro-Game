@@ -106,7 +106,7 @@ func redraw_saved_connections(graph: WorldMapGraph, graph_edit: GraphEdit) -> vo
 		# we detect this by seeing if owner_id is -1 (applies for detached trees and world node)
 		if node.confed.Owner_ID == -1:
 			#We know we have a root node here, we have to iterate down now
-			var queue: Array[GraphNode]
+			var queue: Array[GraphNode];
 			var curr_node: GraphNode;
 			queue.push_back(node);
 	

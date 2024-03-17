@@ -1,4 +1,4 @@
-class_name LeagueStage extends "res://Resources/TournamentStage.gd"
+class_name LeagueStage extends "res://Resources/Tournament Stages/TournamentStage.gd"
 
 """ League Specific Options """
 @export var Type: int = 1;
@@ -7,10 +7,10 @@ class_name LeagueStage extends "res://Resources/TournamentStage.gd"
 @export var Num_Away_Matches: int; 
 
 @export var Points_For_Win: int = 3;
-@export var Points_For_Draw: int = 1;
+@export var Points_For_Draw: int = 1; 
 @export var Points_For_Lose: int = 0;
 
-@export var LeagueTable: Array[TeamLeagueStats] = []
+@export var LeagueTable: Array[TeamLeagueStats] = [];
 
 
 """ Promotion and Relegation System """
@@ -18,9 +18,13 @@ class_name LeagueStage extends "res://Resources/TournamentStage.gd"
 @export
 var Winners: Array[int] = []; 
 
-## Relegation: The numbers here show which positions in the league table are consider losers
+## Relegation: The numbers here show which positions in the league table are considered losers
 @export
 var Losers: Array[int] = [];
+
+## Misc Output Teams
+var Miscs: Array[int] = [];
+var Misc_Winner: Array[int] = [];
 
 """ Init """
 #func _init():
@@ -67,4 +71,41 @@ func set_league_table(teams: Array[int], game_map: GameMap) -> void:
 
 """ Sorting Info """
 func sort_league_table() -> void:
-	LeagueTable.sort_custom(func(a: TeamLeagueStats, b: TeamLeagueStats): return a.Points < b.Points);
+	LeagueTable.sort_custom(sorting_function);
+
+func sorting_function(a: TeamLeagueStats, b: TeamLeagueStats) -> bool:
+	# First we sort by Points, if equal then we sort by the next criteria which is goal difference
+	if a.Points != b.Points:
+		return a.Points > b.Points; # > for descending
+		
+	# Sort by Goal Difference, if this is also equal then we sort by third criteria, goal scored
+	if a.Goals_Diff != b.Goals_Diff:
+		return a.Goals_Diff > b.Goals_Diff;  
+		
+	# Sort by Goals Scored, if equal then result to yellow cards
+	if a.Goals_For != b.Goals_For:
+		return a.Goals_For > b.Goals_For;
+		
+	# Sort by Yellow Cards, if still equal then rank by recent form
+	if a.Yellow_Cards != b.Yellow_Cards: 
+		return a.Yellow_Cards < b.Yellow_Cards;
+		
+	# Sort by recent form, if still equal then choose random
+	var a_form_sum: int = 0;
+	for points: int in a.Form:
+		a_form_sum += points;
+		
+	var b_form_sum: int = 0;
+	for points: int in b.Form:
+		b_form_sum += points
+		
+	if a_form_sum != b_form_sum:
+		return a_form_sum > b_form_sum;
+		
+	# Finally, if its still a tie, just randomly choose the winner
+	var random_bool: Array = [true, false];
+	return random_bool.pick_random();
+	
+
+""" Updating League Table """
+

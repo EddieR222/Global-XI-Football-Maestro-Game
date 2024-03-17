@@ -10,7 +10,7 @@ class_name TeamLeagueStats extends Resource
 @export var Goals_Against: int;
 @export var Goals_Diff: int;
 @export var Points: int;
-@export var Form: Array;
+@export var Form: Array[int];
 @export var Yellow_Cards: int;
 @export var Red_Cards: int;
 

@@ -13,14 +13,6 @@ class_name TournamentStage extends Resource
 @export var Previous_Stages: Array[int]
 
 
-
-
-
-""" KnockOut Specific Options """
-
-@export var Num_Matches_Each_Stage: int;
-@export var Final_Num_Matches: int;
-
 """ Single KnockOut and Knockout Specific Options """
 @export var Allow_Same_League: bool;
 

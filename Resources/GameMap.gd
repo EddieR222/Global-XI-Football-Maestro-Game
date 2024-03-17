@@ -83,18 +83,21 @@ func sort_confederations() -> void:
 	# Sort the array based on Name (Alphabetical Order)
 	Confederations.sort_custom(func(a: Confederation, b: Confederation): return a.Name < b.Name);
 	
-	# Now we have to update this new confed_id everywhere in this GameMap	
-	for old_index: int in range(0, unsorted.size()):
-		var confed: Confederation = unsorted[old_index]
-		for new_index: int in range(0, Confederations.size()):
-			var new_confed: Confederation = Confederations[new_index];
-			if is_same(confed, new_confed):
-				update_confederation_id(old_index, new_index);
-	
 	# Now update the ID of each Territory, based on index in Array
 	var new_index = 0;
 	for confed: Confederation in Confederations:
-		confed.ID = new_index;
+		# Get old index
+		var old_index: int = confed.ID;
+		
+		# Swap it for new one
+		# Convert OLD_ID to -100 (unused id)
+		update_confederation_id(old_index, -100);
+		# Now convert new_id to old_id
+		update_confederation_id(new_index, old_index);
+		# Finally, convert -1 to new_id
+		update_confederation_id(-100, new_index);
+		
+		# Iter new_index
 		new_index += 1;
 	
 	
@@ -277,6 +280,10 @@ func update_confederation_id(old_id: int, new_id: int) -> void:
 	# Thankfully, only need uopdating in Confederations themselves
 	# We iter through All Confederations, and update Owner and Children ID 
 	for confed: Confederation in Confederations:
+		## Update Confederation ID itself if needed
+		if confed.ID == old_id:
+			confed.ID = new_id
+		#
 		# Update Children if old_id is present
 		var index_to_change: int = confed.Children_ID.find(old_id);
 		if index_to_change != -1:

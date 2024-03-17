@@ -160,7 +160,12 @@ func _on_item_list_item_selected(index):
 
 
 func _on_line_edit_text_changed(new_text):
+	# Save Name to Confed
 	confed.Name = new_text;
+	
+	# Sort Confederations again, since the name of this confed has changed
+	game_map.sort_confederations();
+	
 	# Emit signal as button press counts as GraphNode selected
 	graphnode_selected.emit(confed.ID);
 
