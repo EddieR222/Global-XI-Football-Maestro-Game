@@ -23,4 +23,4 @@ var Miscs: Array[int] = [];
 var Misc_Winner: Array[bool] = [];
 
 """ The Rounds of the Knockout tournament """
-@export var Rounds: Array[]
+@export var Rounds: Array[KnockOutRound]

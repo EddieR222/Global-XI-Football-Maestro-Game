@@ -8,3 +8,5 @@ res://Resources/GameMap.gd
 res://Scenes/World Editor/Confederation Editors/Confederation Editor.gd
 res://Scenes/World Editor/GraphEdit.gd
 res://Resources/Confederation.gd
+res://Resources/Tournament Stages/SingleKnockOutStage.gd
+res://Resources/Tournament Stages/KnockoutStage.gd
